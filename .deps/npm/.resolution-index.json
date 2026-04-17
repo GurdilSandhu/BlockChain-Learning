@@ -40,7 +40,7 @@
   "Practice/calculator.sol": {
     "__sources__": {
       "Practice/calculator.sol": {
-        "content": "// SPDX-License-Identifier: MIT\r\n\r\npragma solidity ^0.8.0;\r\n\r\ncontract Calculator{\r\n\r\n    uint public result;\r\n\r\n    event Calculation(string operation, uint value, uint result);\r\n\r\n    function setValue(uint _value) public{\r\n        result = _value;\r\n        emit  Calculation(\"SET\", _value, result);\r\n    }\r\n}",
+        "content": "// SPDX-License-Identifier: MIT\r\n\r\npragma solidity ^0.8.0;\r\n\r\ncontract Calculator{\r\n\r\n    uint public result;\r\n\r\n    event Calculation(string operation, uint value, uint result);\r\n\r\n    function Addvalue(uint _value) public{\r\n        result += _value;\r\n        emit Calculation(\"ADD\", _value, result);\r\n    }\r\n\r\n    function Multiplyvalue(uint _value) public{\r\n        result *= _value;\r\n        emit Calculation(\"MULTI\", _value, result);\r\n    }\r\n\r\n    function Dividevalue(uint _value) public{\r\n        result/= _value;\r\n        emit Calculation(\"DIV\", _value, result);\r\n    }\r\n\r\n    function Subvalue(uint _value) public{\r\n        result-= _value;\r\n        emit Calculation(\"SUB\", _value, result);\r\n    }\r\n} ",
         "file": "Practice/calculator.sol"
       }
     }
