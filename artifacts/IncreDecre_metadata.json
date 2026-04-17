@@ -10,9 +10,9 @@
 				"name": "Decrement",
 				"outputs": [
 					{
-						"internalType": "int256",
+						"internalType": "uint256",
 						"name": "",
-						"type": "int256"
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "nonpayable",
@@ -23,9 +23,9 @@
 				"name": "Increment",
 				"outputs": [
 					{
-						"internalType": "int256",
+						"internalType": "uint256",
 						"name": "",
-						"type": "int256"
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "nonpayable",
@@ -36,9 +36,9 @@
 				"name": "value",
 				"outputs": [
 					{
-						"internalType": "int256",
+						"internalType": "uint256",
 						"name": "",
-						"type": "int256"
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -73,11 +73,11 @@
 	},
 	"sources": {
 		"Practice/IncreDecre.sol": {
-			"keccak256": "0x818e324bbd0b703fcebb19842d9aa0ae5147abef95c19fb309103bb3dd880b36",
+			"keccak256": "0x5689e3519ce75656fb53fa1c21485f109dede064eb69c0b832f73d4ea9c1f513",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://bc8b8fa4bc51bd4f46c79c923b953101023aa95a5adb88ad38efc3324cac0732",
-				"dweb:/ipfs/QmX4eEDwwBZXEs8pVhMoGHNHF8vXNTgEtPEJ24gpzheKzS"
+				"bzz-raw://4ea5ec0031c4d693598c5ce50f25a75d9d6c86ba2916d7f8caa8a08f83b96571",
+				"dweb:/ipfs/QmcDqHkeakdpAPjmL2HwaGarzDnYi53ko4mX55qr1SBjtX"
 			]
 		}
 	},

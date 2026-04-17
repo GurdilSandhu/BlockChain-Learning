@@ -16,15 +16,15 @@
 					},
 					{
 						"indexed": false,
-						"internalType": "int256",
+						"internalType": "uint256",
 						"name": "value",
-						"type": "int256"
+						"type": "uint256"
 					},
 					{
 						"indexed": false,
-						"internalType": "int256",
+						"internalType": "uint256",
 						"name": "result",
-						"type": "int256"
+						"type": "uint256"
 					}
 				],
 				"name": "Calculation",
@@ -33,9 +33,9 @@
 			{
 				"inputs": [
 					{
-						"internalType": "int256",
+						"internalType": "uint256",
 						"name": "_value",
-						"type": "int256"
+						"type": "uint256"
 					}
 				],
 				"name": "Addvalue",
@@ -46,9 +46,9 @@
 			{
 				"inputs": [
 					{
-						"internalType": "int256",
+						"internalType": "uint256",
 						"name": "_value",
-						"type": "int256"
+						"type": "uint256"
 					}
 				],
 				"name": "Dividevalue",
@@ -59,9 +59,9 @@
 			{
 				"inputs": [
 					{
-						"internalType": "int256",
+						"internalType": "uint256",
 						"name": "_value",
-						"type": "int256"
+						"type": "uint256"
 					}
 				],
 				"name": "Multiplyvalue",
@@ -72,9 +72,9 @@
 			{
 				"inputs": [
 					{
-						"internalType": "int256",
+						"internalType": "uint256",
 						"name": "_value",
-						"type": "int256"
+						"type": "uint256"
 					}
 				],
 				"name": "Subvalue",
@@ -87,9 +87,9 @@
 				"name": "result",
 				"outputs": [
 					{
-						"internalType": "int256",
+						"internalType": "uint256",
 						"name": "",
-						"type": "int256"
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -124,11 +124,11 @@
 	},
 	"sources": {
 		"Practice/calculator.sol": {
-			"keccak256": "0xe5da3f9291b60131e9b67f0586ef72751c61968c29b497b49e0200d10e65e923",
+			"keccak256": "0xd3369d9c2728eec58960987ac2c3d5cc1d4c09a8350140d8d0b27ade26ac6dde",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://664591b5a08c0730551af9710bc79cf59feb5bad48e6f940e7be629cc1badbaf",
-				"dweb:/ipfs/Qme9TAzPeNBHnsieyeKxApTWPNYQZ1ThoqoxkJi2NZrahh"
+				"bzz-raw://91d9677d03b637be8cd6e140b5b0690c9597d39d62bea5f5801eb7bd3cf3711f",
+				"dweb:/ipfs/QmQYz8BHhUdM88hLFGotaTU7D179DLaeejdFj8BQqiUtPV"
 			]
 		}
 	},
