@@ -40,14 +40,6 @@
       }
     }
   },
-  "Practice/IncreDecre.sol": {
-    "__sources__": {
-      "Practice/IncreDecre.sol": {
-        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract IncreDecre{\r\n     uint public value = 0;\r\n\r\n     function Increment() public returns(uint){\r\n        value++;\r\n        return value;\r\n     }\r\n\r\n      function Decrement() public returns(uint){\r\n        value--;\r\n        return value;\r\n     }\r\n}",
-        "file": "Practice/IncreDecre.sol"
-      }
-    }
-  },
   "Practice/calculator.sol": {
     "__sources__": {
       "Practice/calculator.sol": {
@@ -109,6 +101,22 @@
       "learning/Inventory.sol": {
         "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract Inventory{\r\n\r\n    uint public Total_available\r\n}",
         "file": "learning/Inventory.sol"
+      }
+    }
+  },
+  "Practice/IncreDecre.sol": {
+    "__sources__": {
+      "Practice/IncreDecre.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract IncreDecre{\r\n     uint public value = 0;\r\n\r\n     function Increment() public returns(uint){\r\n        value++;\r\n        return value;\r\n     }\r\n\r\n      function Decrement() public returns(uint){\r\n        value--;\r\n        return value;\r\n     }\r\n}",
+        "file": "Practice/IncreDecre.sol"
+      }
+    }
+  },
+  "Practice/TicketBooking.sol": {
+    "__sources__": {
+      "Practice/TicketBooking.sol": {
+        "content": "// Design a contract for booking event tickets with limited availability.\r\n\r\n// Requirements:\r\n// Total tickets are fixed\r\n// Users can book tickets\r\n// Track total tickets sold\r\n\r\n// Conditions:\r\n// Cannot book zero tickets\r\n// Cannot book more tickets than available\r\n// Total sold tickets should never exceed the maximum limit\r\n\r\n// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract TicketBooking{\r\n    uint Total_tickets = 100;\r\n    uint Tickets_sold;\r\n\r\n    function book(uint tickets) public{\r\n        require(tickets>0,\"Insufficient Tickets\");\r\n        require(tickets<=100,\"Limited Tickets only 100\");\r\n\r\n        Total_tickets-=tickets;\r\n        Tickets_sold += tickets;\r\n\r\n        assert(Total_tickets>=0);\r\n    }\r\n\r\n    function Total_tickets_sold() view public returns(uint){\r\n        return Tickets_sold;\r\n    }\r\n}",
+        "file": "Practice/TicketBooking.sol"
       }
     }
   }

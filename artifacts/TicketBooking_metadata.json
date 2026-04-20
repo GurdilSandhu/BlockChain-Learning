@@ -1,0 +1,72 @@
+{
+	"compiler": {
+		"version": "0.8.0+commit.c7dfd78e"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "Total_tickets_sold",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "tickets",
+						"type": "uint256"
+					}
+				],
+				"name": "book",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"Practice/TicketBooking.sol": "TicketBooking"
+		},
+		"evmVersion": "istanbul",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"Practice/TicketBooking.sol": {
+			"keccak256": "0xb12e4a5812eeae4ef769baf257f33b7bf0ff30f68c98108c95149ced099d33d9",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://1e2c4bd6d1fcde95dc127abc5f5cb508c5dc2a32f9986503aa68f65af885cc7a",
+				"dweb:/ipfs/QmXpfgHiovkXgKHvfnFdQ2ZRmYo8nhfA3ZYqpuECSQLrMs"
+			]
+		}
+	},
+	"version": 1
+}
