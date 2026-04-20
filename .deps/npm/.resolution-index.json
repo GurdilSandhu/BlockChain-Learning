@@ -13,14 +13,6 @@
       }
     }
   },
-  "learning/function.sol": {
-    "__sources__": {
-      "learning/function.sol": {
-        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\n\r\ncontract Functions{\r\n\r\n    string  greetings = \"Helloo\";\r\n    uint num = 12;\r\n\r\n    function sayHello() public pure returns(string memory){\r\n        return \"Hello \";\r\n    } \r\n\r\n    function sum(int a, int b) public pure returns(int){\r\n        return a+b;\r\n    }\r\n\r\n    // function sayHelloo() public view returns(string memory){\r\n    //     return greetings;\r\n    // }\r\n\r\n    function Greet() public view returns(string memory) {\r\n        return greetings;\r\n    }\r\n\r\n    function number() public view returns(uint){\r\n        return num;\r\n    }\r\n    \r\n    function sayHelloo() public pure returns(string memory){\r\n        return \"Helloo\";\r\n    }\r\n}",
-        "file": "learning/function.sol"
-      }
-    }
-  },
   "first.sol": {
     "__sources__": {
       "first.sol": {
@@ -40,11 +32,11 @@
       }
     }
   },
-  "Practice/calculator.sol": {
+  "Practice/studentAge.sol": {
     "__sources__": {
-      "Practice/calculator.sol": {
-        "content": "// SPDX-License-Identifier: MIT\r\n\r\npragma solidity ^0.8.0;\r\n\r\ncontract Calculator{\r\n\r\n    uint public result;\r\n\r\n    event Calculation(string operation, uint value, uint result);\r\n\r\n    function Addvalue(uint _value) public{\r\n        result += _value;\r\n        emit Calculation(\"ADD\", _value, result);\r\n    }\r\n\r\n    function Multiplyvalue(uint _value) public{\r\n        result *= _value;\r\n        emit Calculation(\"MULTI\", _value, result);\r\n    }\r\n\r\n    function Dividevalue(uint _value) public{\r\n        result/= _value;\r\n        emit Calculation(\"DIV\", _value, result);\r\n    }\r\n\r\n    function Subvalue(uint _value) public{\r\n        result-= _value;\r\n        emit Calculation(\"SUB\", _value, result);\r\n    }\r\n} ",
-        "file": "Practice/calculator.sol"
+      "Practice/studentAge.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract StudentAge{\r\n    \r\n    uint age;\r\n\r\n    function setAge(uint value) public returns(uint){\r\n        age = value;\r\n        return age;\r\n    }\r\n\r\n    function increaseAge(uint value) public returns(uint){\r\n        age += value;\r\n        return age;\r\n    }\r\n\r\n    function getAge() public view returns(uint){\r\n        return age;\r\n    }\r\n\r\n    function resetAge() public returns(uint){\r\n        age = 0;\r\n        return age;\r\n    }\r\n}",
+        "file": "Practice/studentAge.sol"
       }
     }
   },
@@ -53,6 +45,70 @@
       "Practice/IncreDecre.sol": {
         "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract IncreDecre{\r\n     uint public value = 0;\r\n\r\n     function Increment() public returns(uint){\r\n        value++;\r\n        return value;\r\n     }\r\n\r\n      function Decrement() public returns(uint){\r\n        value--;\r\n        return value;\r\n     }\r\n}",
         "file": "Practice/IncreDecre.sol"
+      }
+    }
+  },
+  "Practice/calculator.sol": {
+    "__sources__": {
+      "Practice/calculator.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\n\r\npragma solidity ^0.8.0;\r\n\r\ncontract Calculator{\r\n\r\n    uint public result;\r\n\r\n    event Calculation(string operation, uint value, uint result);\r\n\r\n    function Addvalue(uint _value) public{\r\n        result += _value;\r\n        emit Calculation(\"ADD\", _value, result);\r\n    }\r\n\r\n    function Multiplyvalue(uint _value) public{\r\n        result *= _value;\r\n        emit Calculation(\"MULTI\", _value, result);\r\n    }\r\n\r\n    function Dividevalue(uint _value) public{\r\n        result/= _value;\r\n        emit Calculation(\"DIV\", _value, result);\r\n    }\r\n\r\n    function Subvalue(uint _value) public{\r\n        result-= _value;\r\n        emit Calculation(\"SUB\", _value, result);\r\n    }\r\n} ",
+        "file": "Practice/calculator.sol"
+      }
+    }
+  },
+  "learning/dataTypes.sol": {
+    "__sources__": {
+      "learning/dataTypes.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract DataTypes{\r\n    uint public a = 55;\r\n    int public b = -55;\r\n    string public name = \"Sandhu\";\r\n    bool public isActive = true;\r\n    bytes public abc = \"Yo\";\r\n    address public owner = 0x5B38Da6a701c568545dCfcB03FcB875f56beddC4;\r\n    address public dummy;\r\n}",
+        "file": "learning/dataTypes.sol"
+      }
+    }
+  },
+  "learning/first.sol": {
+    "__sources__": {
+      "learning/first.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract First{\r\n    uint num1 = 555;\r\n    uint num2 = 55;\r\n\r\n    int num_1 = -55;\r\n    int num_2 = 555;\r\n\r\n    uint public sum = num1 + num2;\r\n\r\n    int public sum_1 = num_1 + num_2;\r\n\r\n}",
+        "file": "learning/first.sol"
+      }
+    }
+  },
+  "learning/conditionalStatements.sol": {
+    "__sources__": {
+      "learning/conditionalStatements.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract ConditionalStatement{\r\n    \r\n}",
+        "file": "learning/conditionalStatements.sol"
+      }
+    }
+  },
+  "learning/function.sol": {
+    "__sources__": {
+      "learning/function.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\n\r\ncontract Functions{\r\n\r\n    string  greetings = \"Helloo\";\r\n    uint num = 12;\r\n\r\n    function sayHello() public pure returns(string memory){\r\n        return \"Hello \";\r\n    } \r\n\r\n    function sum(int a, int b) public pure returns(int){\r\n        return a+b;\r\n    }\r\n\r\n    // function sayHelloo() public view returns(string memory){\r\n    //     return greetings;\r\n    // }\r\n\r\n    function Greet() public view returns(string memory) {\r\n        return greetings;\r\n    }\r\n\r\n    function number() public view returns(uint){\r\n        return num;\r\n    }\r\n    \r\n    function sayHelloo() public pure returns(string memory){\r\n        return \"Helloo\";\r\n    }\r\n}",
+        "file": "learning/function.sol"
+      }
+    }
+  },
+  "learning/ParkingLot.sol": {
+    "__sources__": {
+      "learning/ParkingLot.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract Parking{\r\n    uint public Total_slots=100;\r\n\r\n    function book(uint slots) public{\r\n        require(Total_slots>0,\"Not sufficient slots\");\r\n        \r\n        Total_slots-=slots;\r\n\r\n    }\r\n\r\n    function leave(uint slots) public{\r\n        if(slots<=0){\r\n          revert(\"Not booked\");\r\n        }\r\n        Total_slots+=slots;\r\n\r\n        assert(Total_slots<=100);\r\n    }\r\n}",
+        "file": "learning/ParkingLot.sol"
+      }
+    }
+  },
+  "learning/bank.sol": {
+    "__sources__": {
+      "learning/bank.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\n// contract Bank{\r\n\r\n//     uint Total_balance = 0;\r\n\r\n//     //internal check\r\n//     assert(Total_balance>=amount);\r\n\r\n//     function deposite(uint amount) public{\r\n        \r\n//         require(amount>0 ,\"amount must be greater than 0\");\r\n        \r\n//         Total_balance+= amount;\r\n//     }\r\n\r\n//     function withdraw(uint amount) public{\r\n\r\n//         if(amount>balance){\r\n//             revert()\r\n//         }\r\n//     }\r\n\r\n// }\r\n\r\n\r\ncontract BankExample {\r\n\r\n    uint public balance = 1000;\r\n\r\n    // Add amount\r\n    function deposit(uint amount) public {\r\n        require(amount > 0, \"Amount must be greater than 0\"); //  input validation\r\n\r\n        balance += amount;\r\n\r\n        // Internal check (should never fail)\r\n        assert(balance >= amount); //  internal invariant\r\n    }\r\n\r\n    // Withdraw amount\r\n    function withdraw(uint amount) public {\r\n        if (amount > balance) {\r\n            revert(\"Insufficient balance\"); //  custom condition\r\n        }\r\n\r\n        balance -= amount;\r\n\r\n        // Internal safety check\r\n        assert(balance >= 0 && balance>=400);//balance should be greater than 400\r\n    }\r\n}",
+        "file": "learning/bank.sol"
+      }
+    }
+  },
+  "learning/Inventory.sol": {
+    "__sources__": {
+      "learning/Inventory.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract Inventory{\r\n\r\n    uint public Total_available\r\n}",
+        "file": "learning/Inventory.sol"
       }
     }
   }
