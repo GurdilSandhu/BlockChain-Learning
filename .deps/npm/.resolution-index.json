@@ -159,5 +159,13 @@
         "file": "Practice/VotingSystem.sol"
       }
     }
+  },
+  "Practice/ToDoList.sol": {
+    "__sources__": {
+      "Practice/ToDoList.sol": {
+        "content": "// 3. Todo List Smart Contract\r\n\r\n// Requirements:\r\n\r\n// Array to store tasks (string)\r\n// Mapping to track task completion (index => bool)\r\n// Function to add task\r\n// Function to mark task complete:\r\n// Use require to check valid index\r\n\r\n// Expected Output:\r\n\r\n// Tasks added in array\r\n// Only valid tasks can be marked complete\r\n// Completion status stored properly\r\n\r\n// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract ToDo{\r\n    string[] tasks;\r\n    mapping(uint => bool) isComplete;\r\n\r\n    function addTask(string memory task) public{\r\n        require(bytes(task).length>=3,\"Minimum 3 letter word\");\r\n        tasks.push(task);\r\n    }\r\n\r\n    function TickTask(uint index) public{\r\n        require(!isComplete[index],\"Already Completed\");\r\n        require(tasks.length>index,\"Invalid task\");\r\n        \r\n        isComplete[index]= true;\r\n    }\r\n\r\n    function getAllTasks() public view returns (string[] memory, bool[] memory) {\r\n        bool[] memory completionStatus = new bool[](tasks.length);\r\n        for (uint i = 0; i < tasks.length; i++) {\r\n            completionStatus[i] = isComplete[i];\r\n        }\r\n        return (tasks, completionStatus);\r\n    }\r\n\r\n}",
+        "file": "Practice/ToDoList.sol"
+      }
+    }
   }
 }
