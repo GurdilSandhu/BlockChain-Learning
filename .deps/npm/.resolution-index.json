@@ -96,14 +96,6 @@
       }
     }
   },
-  "learning/bank.sol": {
-    "__sources__": {
-      "learning/bank.sol": {
-        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\n// contract Bank{\r\n\r\n//     uint Total_balance = 0;\r\n\r\n//     //internal check\r\n//     assert(Total_balance>=amount);\r\n\r\n//     function deposite(uint amount) public{\r\n        \r\n//         require(amount>0 ,\"amount must be greater than 0\");\r\n        \r\n//         Total_balance+= amount;\r\n//     }\r\n\r\n//     function withdraw(uint amount) public{\r\n\r\n//         if(amount>balance){\r\n//             revert()\r\n//         }\r\n//     }\r\n\r\n// }\r\n\r\n\r\ncontract BankExample {\r\n\r\n    uint public balance = 1000;\r\n\r\n    // Add amount\r\n    function deposit(uint amount) public {\r\n        require(amount > 0, \"Amount must be greater than 0\"); //  input validation\r\n\r\n        balance += amount;\r\n\r\n        // Internal check (should never fail)\r\n        assert(balance >= amount); //  internal invariant\r\n    }\r\n\r\n    // Withdraw amount\r\n    function withdraw(uint amount) public {\r\n        if (amount > balance) {\r\n            revert(\"Insufficient balance\"); //  custom condition\r\n        }\r\n\r\n        balance -= amount;\r\n\r\n        // Internal safety check\r\n        assert(balance >= 0 && balance>=400);//balance should be greater than 400\r\n    }\r\n}",
-        "file": "learning/bank.sol"
-      }
-    }
-  },
   "Practice/IncreDecre.sol": {
     "__sources__": {
       "Practice/IncreDecre.sol": {
@@ -120,27 +112,11 @@
       }
     }
   },
-  "learning/simpleWallet.sol": {
-    "__sources__": {
-      "learning/simpleWallet.sol": {
-        "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.0;\n\ncontract Wallet {\n    mapping(address => uint) public balance;\n\n    function deposit(uint value) public {\n        balance[msg.sender] += value;\n    }\n\n    function withdraw(uint value) public{\n        require(balance[msg.sender]>value,\"insufficient balance\");\n        balance[msg.sender] -= value;\n    }\n\n    function checkBalance() public view returns(uint){\n        return balance[msg.sender];\n    }\n}\n",
-        "file": "learning/simpleWallet.sol"
-      }
-    }
-  },
   "learning/array.sol": {
     "__sources__": {
       "learning/array.sol": {
         "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract Array{\r\n     uint[5] public numbers;\r\n     uint selected_index;\r\n\r\n    function selectIndex(uint index) public returns(uint){\r\n       selected_index = index;\r\n    }\r\n\r\n    function addNumber(uint value) public returns(uint[5] memory){\r\n         numbers[selected_index].push();\r\n    }\r\n\r\n     function getAll() public view returns(uint[5] memory){\r\n        return numbers;\r\n     } \r\n}\r\n",
         "file": "learning/array.sol"
-      }
-    }
-  },
-  "Practice/StudentAttendance.sol": {
-    "__sources__": {
-      "Practice/StudentAttendance.sol": {
-        "content": "// Student Attendance Tracker\r\n// Problem:\r\n\r\n// Requirements:\r\n// Mark attendance for a student\r\n// Maintain count of attended classes\r\n\r\n// Conditions:\r\n// A student cannot be marked present more than once for the same session\r\n// Attendance count should not exceed total sessions\r\n// Invalid student entries should be rejected\r\n\r\n// SPDX-License-Identifier: MIT\r\n// pragma solidity ^0.8.0;\r\n\r\n// contract StudentAttendance{\r\n//     bool isPresent;\r\n//     uint public Total_count;\r\n//     uint CSEcount;\r\n//     uint SCIcount;\r\n//     uint SSTcount;\r\n//     uint ITcount;\r\n//     uint ENGcount;\r\n\r\n//     function CSE(bool attend) public{\r\n//         if(attend==true && CSEcount<1){\r\n//             isPresent=true;\r\n//             CSEcount++;\r\n//             Total_count++;\r\n//         }\r\n//         isPresent = false;\r\n//     }\r\n\r\n//     function Science(bool attend) public{\r\n//         if(attend==true && SCIcount<1){\r\n//             isPresent=true;\r\n//             SCIcount++;\r\n//             Total_count++;\r\n//         }\r\n//         isPresent= false;\r\n//     }\r\n\r\n//     function SSt(bool attend) public{\r\n//         if(attend==true && SSTcount<1){\r\n//             isPresent=true;\r\n//             SSTcount++;\r\n//             Total_count++;\r\n//         }\r\n//         isPresent= false;\r\n//     }\r\n\r\n//     function IT(bool attend) public{\r\n//         if(attend==true && ITcount<1){\r\n//             isPresent=true;\r\n//             ITcount++;\r\n//             Total_count++;\r\n//         }\r\n//         isPresent= false;\r\n//     }\r\n\r\n//     function English(bool attend) public{\r\n//         if(attend==true && ENGcount<1){\r\n//             isPresent=true;\r\n//             ENGcount++;\r\n//             Total_count++;\r\n//         }\r\n//         isPresent= false;\r\n//     }\r\n\r\n// }\r\n\r\n// 1. Student Marks Management System\r\n\r\n// Requirements:\r\n\r\n// Create a mapping to store student marks (address => uint)\r\n// Maintain an array of student addresses\r\n// Function to add marks:\r\n// Use require to ensure marks are between 0–100\r\n// Add student to array only if not already added\r\n// Function to get all student addresses\r\n\r\n// Expected Output:\r\n\r\n// Stores marks securely\r\n// Prevents invalid marks\r\n// No duplicate student entries in array\r\n\r\n// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract StudentManagement{\r\n    mapping (address => uint) marks;\r\n    address[] students;\r\n\r\n    mapping (address => bool) isStudentAdded;\r\n\r\n    function addMarks(uint value) public{\r\n        require(value<=100 && value>=0,\"Marks must be between 0 to 100\");\r\n        marks[msg.sender]+=value;\r\n\r\n        if (!isStudentAdded[msg.sender]) {\r\n            students.push(msg.sender);\r\n            isStudentAdded[msg.sender] = true;\r\n        }\r\n    }\r\n\r\n    function getAll() public view returns(address[] memory){\r\n        return students;\r\n    }\r\n    \r\n    function checkmarks() public view returns(uint){\r\n        return marks[msg.sender];\r\n    }\r\n    \r\n}",
-        "file": "Practice/StudentAttendance.sol"
       }
     }
   },
@@ -152,11 +128,19 @@
       }
     }
   },
-  "Practice/VotingSystem.sol": {
+  "Practice/Bank.sol": {
     "__sources__": {
-      "Practice/VotingSystem.sol": {
-        "content": "// 2. Voting System\r\n\r\n// Requirements:\r\n\r\n// Mapping to track if a user has voted (address => bool)\r\n// Array to store candidates\r\n// Mapping for vote count (candidate => uint)\r\n// Function to vote:\r\n// Use require to ensure user votes only once\r\n// Candidate must exist (validate using array)\r\n\r\n// Expected Output:\r\n\r\n// Each address votes only once\r\n// Vote count increases correctly\r\n// Invalid candidates rejected\r\n\r\n// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\n\r\ncontract votingSystem{\r\n    mapping(address => bool) isVoted;\r\n    string[] candidates;\r\n    mapping(string => uint) voteCount;\r\n\r\n    function addCandidate(string memory name) public{\r\n        require(bytes(name).length>0,\"name can not be empty\");\r\n        candidates.push(name);\r\n    }\r\n\r\n    function addVote(uint candidate) public{\r\n        require(!isVoted[msg.sender],\"vote only once\");\r\n        require(candidate<candidates.length,\"invalid candidate\");\r\n        \r\n        string memory candidateName = candidates[candidate];\r\n        voteCount[candidateName] += 1;\r\n        isVoted[msg.sender]= true;\r\n    }\r\n\r\n     function getCandidate(uint256 index) public view returns (string memory, uint256) {\r\n        require(index < candidates.length, \"Invalid candidate index\");\r\n        string memory name = candidates[index];\r\n        return (name, voteCount[name]);\r\n    }\r\n\r\n\r\n}",
-        "file": "Practice/VotingSystem.sol"
+      "Practice/Bank.sol": {
+        "content": "// 4. Bank Deposit System\r\n\r\n// Requirements:\r\n\r\n// Mapping for balances (address => uint)\r\n// Array to store all users who deposited\r\n// Function to deposit:\r\n// Use require to ensure deposit > 0\r\n// Add user to array if first-time deposit\r\n// Function to withdraw:\r\n// Use require to check sufficient balance\r\n\r\n// Expected Output:\r\n\r\n// Tracks balances correctly\r\n// Prevents zero deposits\r\n// Prevents over-withdrawal",
+        "file": "Practice/Bank.sol"
+      }
+    }
+  },
+  "Practice/StudentAttendance.sol": {
+    "__sources__": {
+      "Practice/StudentAttendance.sol": {
+        "content": "// Student Attendance Tracker\r\n// Problem:\r\n\r\n// Requirements:\r\n// Mark attendance for a student\r\n// Maintain count of attended classes\r\n\r\n// Conditions:\r\n// A student cannot be marked present more than once for the same session\r\n// Attendance count should not exceed total sessions\r\n// Invalid student entries should be rejected\r\n\r\n// SPDX-License-Identifier: MIT\r\n// pragma solidity ^0.8.0;\r\n\r\n// contract StudentAttendance{\r\n//     bool isPresent;\r\n//     uint public Total_count;\r\n//     uint CSEcount;\r\n//     uint SCIcount;\r\n//     uint SSTcount;\r\n//     uint ITcount;\r\n//     uint ENGcount;\r\n\r\n//     function CSE(bool attend) public{\r\n//         if(attend==true && CSEcount<1){\r\n//             isPresent=true;\r\n//             CSEcount++;\r\n//             Total_count++;\r\n//         }\r\n//         isPresent = false;\r\n//     }\r\n\r\n//     function Science(bool attend) public{\r\n//         if(attend==true && SCIcount<1){\r\n//             isPresent=true;\r\n//             SCIcount++;\r\n//             Total_count++;\r\n//         }\r\n//         isPresent= false;\r\n//     }\r\n\r\n//     function SSt(bool attend) public{\r\n//         if(attend==true && SSTcount<1){\r\n//             isPresent=true;\r\n//             SSTcount++;\r\n//             Total_count++;\r\n//         }\r\n//         isPresent= false;\r\n//     }\r\n\r\n//     function IT(bool attend) public{\r\n//         if(attend==true && ITcount<1){\r\n//             isPresent=true;\r\n//             ITcount++;\r\n//             Total_count++;\r\n//         }\r\n//         isPresent= false;\r\n//     }\r\n\r\n//     function English(bool attend) public{\r\n//         if(attend==true && ENGcount<1){\r\n//             isPresent=true;\r\n//             ENGcount++;\r\n//             Total_count++;\r\n//         }\r\n//         isPresent= false;\r\n//     }\r\n\r\n// }\r\n\r\n// 1. Student Marks Management System\r\n\r\n// Requirements:\r\n\r\n// Create a mapping to store student marks (address => uint)\r\n// Maintain an array of student addresses\r\n// Function to add marks:\r\n// Use require to ensure marks are between 0–100\r\n// Add student to array only if not already added\r\n// Function to get all student addresses\r\n\r\n// Expected Output:\r\n\r\n// Stores marks securely\r\n// Prevents invalid marks\r\n// No duplicate student entries in array\r\n\r\n// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract StudentManagement{\r\n    mapping (address => uint) marks;\r\n    address[] students;\r\n\r\n    mapping (address => bool) isStudentAdded;\r\n\r\n    function addMarks(uint value) public{\r\n        require(value<=100 && value>=0,\"Marks must be between 0 to 100\");\r\n        marks[msg.sender]+=value;\r\n\r\n        if (!isStudentAdded[msg.sender]) {\r\n            students.push(msg.sender);\r\n            isStudentAdded[msg.sender] = true;\r\n        }\r\n    }\r\n\r\n    function getAll() public view returns(address[] memory){\r\n        return students;\r\n    }\r\n    \r\n    function checkmarks() public view returns(uint){\r\n        return marks[msg.sender];\r\n    }\r\n    \r\n}",
+        "file": "Practice/StudentAttendance.sol"
       }
     }
   },
@@ -165,6 +149,38 @@
       "Practice/ToDoList.sol": {
         "content": "// 3. Todo List Smart Contract\r\n\r\n// Requirements:\r\n\r\n// Array to store tasks (string)\r\n// Mapping to track task completion (index => bool)\r\n// Function to add task\r\n// Function to mark task complete:\r\n// Use require to check valid index\r\n\r\n// Expected Output:\r\n\r\n// Tasks added in array\r\n// Only valid tasks can be marked complete\r\n// Completion status stored properly\r\n\r\n// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract ToDo{\r\n    string[] tasks;\r\n    mapping(uint => bool) isComplete;\r\n\r\n    function addTask(string memory task) public{\r\n        require(bytes(task).length>=3,\"Minimum 3 letter word\");\r\n        tasks.push(task);\r\n    }\r\n\r\n    function TickTask(uint index) public{\r\n        require(!isComplete[index],\"Already Completed\");\r\n        require(tasks.length>index,\"Invalid task\");\r\n        \r\n        isComplete[index]= true;\r\n    }\r\n\r\n    function getAllTasks() public view returns (string[] memory, bool[] memory) {\r\n        bool[] memory completionStatus = new bool[](tasks.length);\r\n        for (uint i = 0; i < tasks.length; i++) {\r\n            completionStatus[i] = isComplete[i];\r\n        }\r\n        return (tasks, completionStatus);\r\n    }\r\n\r\n}",
         "file": "Practice/ToDoList.sol"
+      }
+    }
+  },
+  "Practice/VotingSystem.sol": {
+    "__sources__": {
+      "Practice/VotingSystem.sol": {
+        "content": "// 2. Voting System\r\n\r\n// Requirements:\r\n\r\n// Mapping to track if a user has voted (address => bool)\r\n// Array to store candidates\r\n// Mapping for vote count (candidate => uint)\r\n// Function to vote:\r\n// Use require to ensure user votes only once\r\n// Candidate must exist (validate using array)\r\n\r\n// Expected Output:\r\n\r\n// Each address votes only once\r\n// Vote count increases correctly\r\n// Invalid candidates rejected\r\n\r\n// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\n\r\ncontract votingSystem{\r\n    mapping(address => bool) isVoted;\r\n    string[] candidates;\r\n    mapping(string => uint) voteCount;\r\n\r\n    function addCandidate(string memory name) public{\r\n        require(bytes(name).length>0,\"name can not be empty\");\r\n        candidates.push(name);\r\n    }\r\n\r\n    function addVote(uint candidate) public{\r\n        require(!isVoted[msg.sender],\"vote only once\");\r\n        require(candidate<candidates.length,\"invalid candidate\");\r\n        \r\n        string memory candidateName = candidates[candidate];\r\n        voteCount[candidateName] += 1;\r\n        isVoted[msg.sender]= true;\r\n    }\r\n\r\n     function getCandidate(uint256 index) public view returns (string memory, uint256) {\r\n        require(index < candidates.length, \"Invalid candidate index\");\r\n        string memory name = candidates[index];\r\n        return (name, voteCount[name]);\r\n    }\r\n\r\n\r\n}",
+        "file": "Practice/VotingSystem.sol"
+      }
+    }
+  },
+  "learning/bank.sol": {
+    "__sources__": {
+      "learning/bank.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\n// contract Bank{\r\n\r\n//     uint Total_balance = 0;\r\n\r\n//     //internal check\r\n//     assert(Total_balance>=amount);\r\n\r\n//     function deposite(uint amount) public{\r\n        \r\n//         require(amount>0 ,\"amount must be greater than 0\");\r\n        \r\n//         Total_balance+= amount;\r\n//     }\r\n\r\n//     function withdraw(uint amount) public{\r\n\r\n//         if(amount>balance){\r\n//             revert()\r\n//         }\r\n//     }\r\n\r\n// }\r\n\r\n\r\ncontract BankExample {\r\n\r\n    uint public balance = 1000;\r\n\r\n    // Add amount\r\n    function deposit(uint amount) public {\r\n        require(amount > 0, \"Amount must be greater than 0\"); //  input validation\r\n\r\n        balance += amount;\r\n\r\n        // Internal check (should never fail)\r\n        assert(balance >= amount); //  internal invariant\r\n    }\r\n\r\n    // Withdraw amount\r\n    function withdraw(uint amount) public {\r\n        if (amount > balance) {\r\n            revert(\"Insufficient balance\"); //  custom condition\r\n        }\r\n\r\n        balance -= amount;\r\n\r\n        // Internal safety check\r\n        assert(balance >= 0 && balance>=400);//balance should be greater than 400\r\n    }\r\n}",
+        "file": "learning/bank.sol"
+      }
+    }
+  },
+  "learning/simpleWallet.sol": {
+    "__sources__": {
+      "learning/simpleWallet.sol": {
+        "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.0;\n\ncontract Wallet {\n    mapping(address => uint) public balance;\n\n    function deposit(uint value) public {\n        balance[msg.sender] += value;\n    }\n\n    function withdraw(uint value) public{\n        require(balance[msg.sender]>value,\"insufficient balance\");\n        balance[msg.sender] -= value;\n    }\n\n    function checkBalance() public view returns(uint){\n        return balance[msg.sender];\n    }\n}\n",
+        "file": "learning/simpleWallet.sol"
+      }
+    }
+  },
+  "Practice/BankDepositeSystem.sol": {
+    "__sources__": {
+      "Practice/BankDepositeSystem.sol": {
+        "content": "// 4. Bank Deposit System\n\n// Requirements:\n\n// Mapping for balances (address => uint)\n// Array to store all users who deposited\n// Function to deposit:\n// Use require to ensure deposit > 0\n// Add user to array if first-time deposit\n// Function to withdraw:\n// Use require to check sufficient balance\n\n// Expected Output:\n\n// Tracks balances correctly\n// Prevents zero deposits\n// Prevents over-withdrawal\n\n// SPDX-License-Identifier: MIT\npragma solidity ^0.8.0;\n\ncontract Bank_Deposite_System {\n    mapping(address => uint) balance;\n    address[] users;\n    mapping(address => bool) isUserAdded;\n\n    function Deposit(uint amount) public {\n        require(amount > 0, \"amount should be greater than 0\");\n        balance[msg.sender] += amount;\n        if (!isUserAdded[msg.sender]) {\n            users.push(msg.sender);\n            isUserAdded[msg.sender] = true;\n        }\n    }\n\n    function Withdraw(uint amount) public {\n        require(\n            amount > 0 && amount < balance[msg.sender],\n            \"amount should be greater than 0 and must be in bank\"\n        );\n        balance[msg.sender] -= amount;\n    }\n\n    function getAllUsers() public view returns (address[] memory, uint[] memory) {\n        uint[] memory all_balances=new uint[](users.length);\n        for (uint i = 0; i < users.length; i++) {\n            all_balances[i]= balance[users[i]];\n        }\n\n        return (users, all_balances);\n    }\n\n     function checkBalance() public view returns(uint){\n        return balance[msg.sender];\n    }\n}\n",
+        "file": "Practice/BankDepositeSystem.sol"
       }
     }
   }
