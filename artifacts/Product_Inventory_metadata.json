@@ -6,6 +6,11 @@
 	"output": {
 		"abi": [
 			{
+				"inputs": [],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "uint256",
@@ -73,7 +78,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"Practice/ProductInventory.sol": "Product_Inventory"
+			"Practice/Stock.sol": "Product_Inventory"
 		},
 		"evmVersion": "istanbul",
 		"libraries": {},
@@ -87,12 +92,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"Practice/ProductInventory.sol": {
-			"keccak256": "0xa0bc53a0c6883482c726f658dcbf44118d204915c9a508fda4f43153fa86e27b",
+		"Practice/Stock.sol": {
+			"keccak256": "0x9dbc93f419bfa5b812c93eb7a360fe31c7c00d4a1668a4f0f0976e28850ea70d",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://52e7f6da362cc58ba933d69a5b4e348a717597695a5af6153b324a03c3c1efd1",
-				"dweb:/ipfs/QmW3RhwwXZp9uhHsGv75xADXAtyVq8R165Pqoe99eu3r8b"
+				"bzz-raw://bf0f0fad7dd896463f7bf411bdb52d3772d1dd1df6ce57fee660a70d3ba36d7e",
+				"dweb:/ipfs/QmUSmqkwwy5AGPrFq3tpy3zpDGHyd7wLi2zdjLbwhqS9FP"
 			]
 		}
 	},
