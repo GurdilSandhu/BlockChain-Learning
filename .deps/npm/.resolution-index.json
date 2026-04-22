@@ -176,14 +176,6 @@
       }
     }
   },
-  "learning/array.sol": {
-    "__sources__": {
-      "learning/array.sol": {
-        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract Array{\r\n     uint[][] public numbers;\r\n     uint selected_index;\r\n\r\n     constructor(){\r\n      numbers=[2,3,4,5];\r\n      numbers= [10,23]\r\n     }\r\n\r\n    function selectIndex(uint index) public returns(uint){\r\n       selected_index = index;\r\n    }\r\n\r\n    function addNumber(uint value) public returns(uint[5] memory){\r\n         numbers[selected_index].push();\r\n    }\r\n\r\n     function getAll() public view returns(uint[5] memory){\r\n        return numbers;\r\n     } \r\n}\r\n",
-        "file": "learning/array.sol"
-      }
-    }
-  },
   "Practice/ProductInventory.sol": {
     "__sources__": {
       "Practice/ProductInventory.sol": {
@@ -192,19 +184,27 @@
       }
     }
   },
-  "Practice/Stock.sol": {
-    "__sources__": {
-      "Practice/Stock.sol": {
-        "content": "//  Inventory Management with Access Restrictions\n// Problem Statement:\n// Create a contract to manage product stock. The contract owner should be able to add \n// and update product quantities. Each product must have a valid stock value. \n//Maintain a list of all product identifiers and prevent duplicate entries. \n//Users should be able to reduce stock when purchasing, ensuring stock never goes negative.\n//  Limited Slot Registration System\n\n// SPDX-License-Identifier: MIT\npragma solidity ^0.8.0;\n\ncontract Product_Inventory{\n    address owner;\n    uint[] productID;\n    mapping (uint => uint) product_stock;\n    mapping (uint => bool) isExisted;\n\n    constructor(){\n        owner=msg.sender;\n    }\n\n    modifier checkOwner{\n        require(owner==msg.sender,\"Access Denied\");\n        _;\n    }\n\n    function addProductID(uint id,uint quantity) public checkOwner{\n        require(!isExisted[id],\"Id already exist\");\n       \n        productID.push(id);\n        product_stock[id]=quantity;\n        isExisted[id]=true;\n    }\n\n    function buyProduct(uint id, uint quantity) public{\n        require(isExisted[id],\"Invalid Id\");\n        require(product_stock[id]>=quantity,\"Invalid quantity\");\n     \n        product_stock[id]-=quantity;\n    }\n\n     function getFullDetails() public view returns (uint[] memory, uint[] memory) {\n        uint[] memory all_products=new uint[](productID.length);\n        for (uint i = 0; i < productID.length; i++) {\n            all_products[i]= product_stock[productID[i]];\n        }\n\n        return (productID, all_products);\n    }\n}",
-        "file": "Practice/Stock.sol"
-      }
-    }
-  },
   "Practice/MultiModifiers.sol": {
     "__sources__": {
       "Practice/MultiModifiers.sol": {
         "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract MutliModifier{\r\n    address owner;\r\n    uint public amount;\r\n\r\n    constructor(){\r\n        owner=msg.sender;\r\n    }\r\n\r\n    modifier checkOwner{\r\n       require(owner==msg.sender,\"Not Owner\");\r\n       _;\r\n    }\r\n\r\n    modifier moneyTransfer(uint value){\r\n       require(value>=100,\"Amount should be greater than or equal to 100\");\r\n       _;\r\n    }\r\n\r\n    function number(uint value) public checkOwner{\r\n          amount+=value;\r\n    }\r\n\r\n    function Transfer(uint value) public moneyTransfer(value){\r\n          \r\n          amount-=value;\r\n    }\r\n}",
         "file": "Practice/MultiModifiers.sol"
+      }
+    }
+  },
+  "learning/array.sol": {
+    "__sources__": {
+      "learning/array.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract Array{\r\n     uint[][] public numbers;\r\n     uint selected_index;\r\n\r\n     constructor(){\r\n      numbers=[2,3,4,5];\r\n      numbers= [10,23]\r\n     }\r\n\r\n    function selectIndex(uint index) public returns(uint){\r\n       selected_index = index;\r\n    }\r\n\r\n    function addNumber(uint value) public returns(uint[5] memory){\r\n         numbers[selected_index].push();\r\n    }\r\n\r\n     function getAll() public view returns(uint[5] memory){\r\n        return numbers;\r\n     } \r\n}\r\n",
+        "file": "learning/array.sol"
+      }
+    }
+  },
+  "Practice/Stock.sol": {
+    "__sources__": {
+      "Practice/Stock.sol": {
+        "content": "//  Inventory Management with Access Restrictions\n// Problem Statement:\n// Create a contract to manage product stock. The contract owner should be able to add \n// and update product quantities. Each product must have a valid stock value. \n//Maintain a list of all product identifiers and prevent duplicate entries. \n//Users should be able to reduce stock when purchasing, ensuring stock never goes negative.\n//  Limited Slot Registration System\n\n// SPDX-License-Identifier: MIT\npragma solidity ^0.8.0;\n\ncontract Inventory_Management{\n    address owner;\n    uint[] productID;\n    mapping (uint => uint) product_stock;\n    mapping (uint => bool) isExisted;\n\n    constructor(){\n        owner=msg.sender;\n    }\n\n    modifier checkOwner{\n        require(owner==msg.sender,\"Access Denied\");\n        _;\n    }\n\n    function addProduct(uint id,uint quantity) public checkOwner{\n        require(!isExisted[id],\"Id already exist\");\n       \n        productID.push(id);\n        product_stock[id]=quantity;\n        isExisted[id]=true;\n    }\n\n    function updateProduct(uint id,uint quantity) public checkOwner{\n        require(!isExisted[id],\"Id already exist\");\n       \n        productID.push(id);\n        product_stock[id]=quantity;\n        isExisted[id]=true;\n    }\n\n    function buyProduct(uint id, uint quantity) public {\n        require(isExisted[id],\"Invalid Id\");\n        require(product_stock[id]>=quantity,\"Invalid quantity\");\n     \n        product_stock[id]-=quantity;\n\n        assert(product_stock[id]>=0);\n    }\n\n     function getFullDetails() public view returns (uint[] memory, uint[] memory) {\n        uint[] memory all_products=new uint[](productID.length);\n        for (uint i = 0; i < productID.length; i++) {\n            all_products[i]= product_stock[productID[i]];\n        }\n\n        return (productID, all_products);\n    }\n}",
+        "file": "Practice/Stock.sol"
       }
     }
   }

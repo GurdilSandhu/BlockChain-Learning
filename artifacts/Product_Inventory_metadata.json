@@ -23,7 +23,7 @@
 						"type": "uint256"
 					}
 				],
-				"name": "addProductID",
+				"name": "addProduct",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -63,6 +63,24 @@
 				],
 				"stateMutability": "view",
 				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "quantity",
+						"type": "uint256"
+					}
+				],
+				"name": "updateProduct",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
 			}
 		],
 		"devdoc": {
@@ -93,11 +111,11 @@
 	},
 	"sources": {
 		"Practice/Stock.sol": {
-			"keccak256": "0x9dbc93f419bfa5b812c93eb7a360fe31c7c00d4a1668a4f0f0976e28850ea70d",
+			"keccak256": "0x8bc89eff57655e17cb58c193abbd695a27efe4efa08f944d53c12e96e710b1a3",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://bf0f0fad7dd896463f7bf411bdb52d3772d1dd1df6ce57fee660a70d3ba36d7e",
-				"dweb:/ipfs/QmUSmqkwwy5AGPrFq3tpy3zpDGHyd7wLi2zdjLbwhqS9FP"
+				"bzz-raw://692e0f08dcb9b371da870c145a25f81dc440d80dd14a454ae0642f8f664ebc54",
+				"dweb:/ipfs/QmQhbZfi5Lz4Gwc6zDnVWpy2FEvW2j9xYw4k3A7nWyH4mG"
 			]
 		}
 	},
