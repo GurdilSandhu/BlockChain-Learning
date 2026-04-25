@@ -224,22 +224,6 @@
       }
     }
   },
-  "Practice/ControlRegistration.sol": {
-    "__sources__": {
-      "Practice/ControlRegistration.sol": {
-        "content": "//  Controlled User Registration with Capacity Limit\r\n\r\n// Problem Statement:\r\n// Create a contract where users can register themselves, \r\n//but only up to a fixed maximum limit defined during deployment. \r\n//Store all registered users in a list and track their registration status. \r\n//Ensure a user cannot register more than once. Only valid registrations should be accepted, \r\n//and once the limit is reached, no further entries should be allowed.\r\n\r\n// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract Registration_Management{\r\n    mapping (uint => string) registrations;\r\n    mapping (uint => bool) isRegistered;\r\n    uint[] Total_Reg;\r\n\r\n    modifier checkTotalRegistrations{\r\n        require(Total_Reg.length<10,\"Entries are Full now\");\r\n        _;\r\n    }\r\n    \r\n    function addUser(uint id, string memory name) public checkTotalRegistrations{\r\n       require(!isRegistered[id],\"user already registered\");\r\n       Total_Reg.push(id);\r\n       registrations[id]= name;\r\n       isRegistered[id]=true;\r\n    }\r\n\r\n    function getFullDetails() public view returns (uint[] memory, string[] memory) {\r\n        string[] memory all_users = new string[](Total_Reg.length);\r\n        for (uint i = 0; i < Total_Reg.length; i++) {\r\n            all_users[i]= registrations[Total_Reg[i]];\r\n        }\r\n\r\n        return (Total_Reg, all_users);\r\n    }\r\n}",
-        "file": "Practice/ControlRegistration.sol"
-      }
-    }
-  },
-  "Practice/calculator.sol": {
-    "__sources__": {
-      "Practice/calculator.sol": {
-        "content": "// SPDX-License-Identifier: MIT\r\n\r\npragma solidity ^0.8.0;\r\n\r\ncontract Calculator{\r\n\r\n    uint public result;\r\n\r\n    event Calculation(string operation, uint value, uint result);\r\n\r\n    function Addvalue(uint _value) public{\r\n        result += _value;\r\n        emit Calculation(\"ADD\", _value, result);\r\n    }\r\n\r\n    function Multiplyvalue(uint _value) public{\r\n        result *= _value;\r\n        emit Calculation(\"MULTI\", _value, result);\r\n    }\r\n\r\n    function Dividevalue(uint _value) public{\r\n        result/= _value;\r\n        emit Calculation(\"DIV\", _value, result);\r\n    }\r\n\r\n    function Subvalue(uint _value) public{\r\n        result-= _value;\r\n        emit Calculation(\"SUB\", _value, result);\r\n    }\r\n} ",
-        "file": "Practice/calculator.sol"
-      }
-    }
-  },
   "Practice/ImportCalculator.sol": {
     "__sources__": {
       "Practice/ImportCalculator.sol": {
@@ -261,6 +245,22 @@
       }
     }
   },
+  "Practice/calculator.sol": {
+    "__sources__": {
+      "Practice/calculator.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\n\r\npragma solidity ^0.8.0;\r\n\r\ncontract Calculator{\r\n\r\n    uint public result;\r\n\r\n    event Calculation(string operation, uint value, uint result);\r\n\r\n    function Addvalue(uint _value) public{\r\n        result += _value;\r\n        emit Calculation(\"ADD\", _value, result);\r\n    }\r\n\r\n    function Multiplyvalue(uint _value) public{\r\n        result *= _value;\r\n        emit Calculation(\"MULTI\", _value, result);\r\n    }\r\n\r\n    function Dividevalue(uint _value) public{\r\n        result/= _value;\r\n        emit Calculation(\"DIV\", _value, result);\r\n    }\r\n\r\n    function Subvalue(uint _value) public{\r\n        result-= _value;\r\n        emit Calculation(\"SUB\", _value, result);\r\n    }\r\n} ",
+        "file": "Practice/calculator.sol"
+      }
+    }
+  },
+  "Practice/ControlRegistration.sol": {
+    "__sources__": {
+      "Practice/ControlRegistration.sol": {
+        "content": "//  Controlled User Registration with Capacity Limit\r\n\r\n// Problem Statement:\r\n// Create a contract where users can register themselves, \r\n//but only up to a fixed maximum limit defined during deployment. \r\n//Store all registered users in a list and track their registration status. \r\n//Ensure a user cannot register more than once. Only valid registrations should be accepted, \r\n//and once the limit is reached, no further entries should be allowed.\r\n\r\n// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract Registration_Management{\r\n    mapping (uint => string) registrations;\r\n    mapping (uint => bool) isRegistered;\r\n    uint[] Total_Reg;\r\n\r\n    modifier checkTotalRegistrations{\r\n        require(Total_Reg.length<10,\"Entries are Full now\");\r\n        _;\r\n    }\r\n    \r\n    function addUser(uint id, string memory name) public checkTotalRegistrations{\r\n       require(!isRegistered[id],\"user already registered\");\r\n       Total_Reg.push(id);\r\n       registrations[id]= name;\r\n       isRegistered[id]=true;\r\n    }\r\n\r\n    function getFullDetails() public view returns (uint[] memory, string[] memory) {\r\n        string[] memory all_users = new string[](Total_Reg.length);\r\n        for (uint i = 0; i < Total_Reg.length; i++) {\r\n            all_users[i]= registrations[Total_Reg[i]];\r\n        }\r\n\r\n        return (Total_Reg, all_users);\r\n    }\r\n}",
+        "file": "Practice/ControlRegistration.sol"
+      }
+    }
+  },
   "Practice/importCalculator.sol": {
     "./exportCalculator.sol": "Practice/exportCalculator.sol",
     "__sources__": {
@@ -271,6 +271,27 @@
       "Practice/exportCalculator.sol": {
         "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract Calculator{\r\n    uint public result;\r\n\r\n    function add(uint value) external{\r\n        result+=value;\r\n    }\r\n\r\n    function sub(uint value) external{\r\n        result-=value;\r\n    }\r\n\r\n    function multi(uint value) external{\r\n        result*=value;\r\n    }\r\n\r\n    function divide(uint value) external{\r\n        result/=value;\r\n    }\r\n\r\n    function modulo(uint value) external{\r\n        result%=value;\r\n    }\r\n\r\n    function square(uint value) external{\r\n        result = value * value;\r\n    }\r\n\r\n    function cube(uint value) external{\r\n        result = value * value * value;\r\n    }\r\n\r\n    function sqrt(uint value) external{\r\n        if(value>3){\r\n           result = value;\r\n           uint x = value / 2 + 1;\r\n           while(x<result){\r\n            result = x;\r\n            x = (value / x + x) / 2;\r\n           }\r\n         }else if (value !=0){\r\n            result=1;\r\n         }else \r\n         result=0;\r\n    }\r\n\r\n    function SeeResult() external view returns(uint){\r\n        return result;\r\n    }\r\n\r\n}",
         "file": "Practice/exportCalculator.sol"
+      }
+    }
+  },
+  "Practice/currencyConverting.sol": {
+    "./currencyConversion.sol": "Practice/currencyConversion.sol",
+    "__sources__": {
+      "Practice/currencyConverting.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n import \"./currencyConversion.sol\";\r\n\r\ncontract UserContract {\r\n    currencyConversion converting;\r\n\r\n    constructor(address conversionAddress) {\r\n        converting = currencyConversion(conversionAddress);\r\n    }\r\n\r\n    function convert(string memory currency, uint amount) external{\r\n\r\n    }\r\n\r\n    function getConvertedAmount(string memory currency, uint amount) public view returns (uint) {\r\n        ICurrencyConversion conversion = ICurrencyConversion(conversionAddress);\r\n        return conversion.convert(currency, amount);\r\n    }\r\n}",
+        "file": "Practice/currencyConverting.sol"
+      },
+      "Practice/currencyConversion.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract currencyConversion{\r\n    address public owner;\r\n\r\n    constructor() {\r\n        owner = msg.sender;\r\n    }\r\n\r\n    modifier onlyOwner() {\r\n        require(msg.sender == owner, \"Not owner\");\r\n        _;\r\n    }\r\n\r\n    mapping(string => uint) public rates;\r\n\r\n    function setRate(string memory currency, uint rate) external onlyOwner {\r\n        rates[currency] = rate;\r\n    }\r\n\r\n    function convert(string memory currency, uint amount) external view returns (uint) {\r\n        uint rate = rates[currency];\r\n        require(rate > 0, \"Rate not set\");\r\n\r\n        return amount * rate;\r\n    }\r\n}",
+        "file": "Practice/currencyConversion.sol"
+      }
+    }
+  },
+  "Practice/currencyConversion.sol": {
+    "__sources__": {
+      "Practice/currencyConversion.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract currencyConversion{\r\n    address public owner;\r\n\r\n    constructor() {\r\n        owner = msg.sender;\r\n    }\r\n\r\n    modifier onlyOwner() {\r\n        require(msg.sender == owner, \"Not owner\");\r\n        _;\r\n    }\r\n\r\n    mapping(string => uint) public rates;\r\n\r\n    function setRate(string memory currency, uint rate) external onlyOwner {\r\n        rates[currency] = rate;\r\n    }\r\n\r\n    function convert(string memory currency, uint amount) external view returns (uint) {\r\n        uint rate = rates[currency];\r\n        require(rate > 0, \"Rate not set\");\r\n\r\n        return amount * rate;\r\n    }\r\n}",
+        "file": "Practice/currencyConversion.sol"
       }
     }
   }
