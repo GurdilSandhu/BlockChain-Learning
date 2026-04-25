@@ -290,7 +290,7 @@
   "Practice/currencyConversion.sol": {
     "__sources__": {
       "Practice/currencyConversion.sol": {
-        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract currencyConversion{\r\n    address public owner;\r\n\r\n    constructor() {\r\n        owner = msg.sender;\r\n    }\r\n\r\n    modifier onlyOwner() {\r\n        require(msg.sender == owner, \"Not owner\");\r\n        _;\r\n    }\r\n\r\n    mapping(string => uint) public rates;\r\n\r\n    function setRate(string memory currency, uint rate) external onlyOwner {\r\n        rates[currency] = rate;\r\n    }\r\n\r\n    function convert(string memory currency, uint amount) external view returns (uint) {\r\n        uint rate = rates[currency];\r\n        require(rate > 0, \"Rate not set\");\r\n\r\n        return amount * rate;\r\n    }\r\n}",
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract currencyConversion{\r\n    address public owner;\r\n\r\n    constructor() {\r\n        owner = msg.sender;\r\n    }\r\n\r\n    modifier onlyOwner() {\r\n        require(msg.sender == owner, \"Not owner\");\r\n        _;\r\n    }\r\n\r\n    mapping(string => uint) public rates;\r\n\r\n    function setRate(string memory currency, uint rate) external onlyOwner {\r\n        rates[currency] = rate;\r\n    }\r\n\r\n    function convert(string memory currency, uint amount) external view returns (uint) {\r\n        uint rate = rates[currency];\r\n        require(rate > 0, \"Rate not set\");\r\n\r\n        return amount * rate; \r\n    }\r\n}",
         "file": "Practice/currencyConversion.sol"
       }
     }
