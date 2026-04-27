@@ -32,14 +32,6 @@
       }
     }
   },
-  "Practice/studentAge.sol": {
-    "__sources__": {
-      "Practice/studentAge.sol": {
-        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract StudentAge{\r\n    \r\n    uint age;\r\n\r\n    function setAge(uint value) public returns(uint){\r\n        age = value;\r\n        return age;\r\n    }\r\n\r\n    function increaseAge(uint value) public returns(uint){\r\n        age += value;\r\n        return age;\r\n    }\r\n\r\n    function getAge() public view returns(uint){\r\n        return age;\r\n    }\r\n\r\n    function resetAge() public returns(uint){\r\n        age = 0;\r\n        return age;\r\n    }\r\n}",
-        "file": "Practice/studentAge.sol"
-      }
-    }
-  },
   "learning/first.sol": {
     "__sources__": {
       "learning/first.sol": {
@@ -149,14 +141,6 @@
       "learning/ProductSellBy.sol": {
         "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract Product_sell_buy{\r\n\r\n    struct Product{\r\n        string name;\r\n        uint quantity;\r\n        uint price;\r\n    }\r\n\r\n    mapping (uint=> Product) products;\r\n\r\n    function addproduct(uint id, string memory name, uint quantity,uint price) public{\r\n        products[id] = Product(name,quantity,price);\r\n    }\r\n    \r\n    function buyproduct(uint id,uint quantity) public{\r\n        require(products[id].quantity>=quantity,\"Not enough\");\r\n        products[id].quantity-=quantity;\r\n    }\r\n\r\n    function getProductDetails(uint id) public view returns(string memory name, uint quantity, uint price){\r\n        Product memory p = products[id];\r\n        return(p.name,p.quantity,p.price); \r\n    }\r\n\r\n\r\n}",
         "file": "learning/ProductSellBy.sol"
-      }
-    }
-  },
-  "Practice/ProductInventory.sol": {
-    "__sources__": {
-      "Practice/ProductInventory.sol": {
-        "content": "// 5. Product Inventory System\r\n\r\n// Requirements:\r\n\r\n// Array of product IDs\r\n// Mapping for product stock (productId => quantity)\r\n// Function to add product:\r\n// Use require to ensure product doesn't already exist\r\n// Function to buy product:\r\n// Use require to check stock availability\r\n\r\n// Expected Output:\r\n\r\n// No duplicate product IDs\r\n// Stock reduces after purchase\r\n// Cannot buy out-of-stock product\r\n\r\n// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract Product_Inventory{\r\n    uint[] productID;\r\n    mapping (uint => uint) product_stock;\r\n    mapping (uint => bool) isExisted;\r\n\r\n    function addProductID(uint id,uint quantity) public{\r\n        require(!isExisted[id],\"Id already exist\");\r\n       \r\n        productID.push(id);\r\n        product_stock[id]=quantity;\r\n        isExisted[id]=true;\r\n    }\r\n\r\n    function buyProduct(uint id, uint quantity) public{\r\n        require(isExisted[id],\"Invalid Id\");\r\n        require(product_stock[id]>=quantity,\"Invalid quantity\");\r\n     \r\n        product_stock[id]-=quantity;\r\n    }\r\n\r\n     function getFullDetails() public view returns (uint[] memory, uint[] memory) {\r\n        uint[] memory all_products=new uint[](productID.length);\r\n        for (uint i = 0; i < productID.length; i++) {\r\n            all_products[i]= product_stock[productID[i]];\r\n        }\r\n\r\n        return (productID, all_products);\r\n    }\r\n}",
-        "file": "Practice/ProductInventory.sol"
       }
     }
   },
@@ -295,18 +279,26 @@
       }
     }
   },
-  "Practice/Stock.sol": {
+  "Practice/Access-Based.sol": {
     "__sources__": {
-      "Practice/Stock.sol": {
-        "content": "//  Inventory Management with Access Restrictions\n// Problem Statement:\n// Create a contract to manage product stock. The contract owner should be able to add \n// and update product quantities. Each product must have a valid stock value. \n//Maintain a list of all product identifiers and prevent duplicate entries. \n//Users should be able to reduce stock when purchasing, ensuring stock never goes negative.\n//  Limited Slot Registration System\n\n// SPDX-License-Identifier: MIT\npragma solidity ^0.8.0;\n\ncontract Inventory_Management{\n    address owner;\n    uint[] productID;\n    mapping (uint => uint) product_stock;\n    mapping (uint => bool) isExisted;\n\n    constructor(){\n        owner=msg.sender;\n    }\n\n    modifier checkOwner{\n        require(owner==msg.sender,\"Access Denied\");\n        _;\n    }\n\n    function addProduct(uint id,uint quantity) public checkOwner{\n        require(!isExisted[id],\"Id already exist\");\n       \n        productID.push(id);\n        product_stock[id]=quantity;\n        isExisted[id]=true;\n    }\n\n    function updateProduct(uint id,uint quantity) public checkOwner{\n        require(!isExisted[id],\"Id already exist\");\n       \n        productID.push(id);\n        product_stock[id]=quantity;\n        isExisted[id]=true;\n    }\n\n    function buyProduct(uint id, uint quantity) public {\n        require(isExisted[id],\"Invalid Id\");\n        require(product_stock[id]>=quantity,\"Invalid quantity\");\n     \n        product_stock[id]-=quantity;\n\n        assert(product_stock[id]>=0);\n    }\n\n     function getFullDetails() public view returns (uint[] memory, uint[] memory) {\n        uint[] memory all_products=new uint[](productID.length);\n        for (uint i = 0; i < productID.length; i++) {\n            all_products[i]= product_stock[productID[i]];\n        }\n\n        return (productID, all_products);\n    }\n}",
-        "file": "Practice/Stock.sol"
+      "Practice/Access-Based.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract RoleControl {\r\n\r\n\r\n    enum Role { Admin, Manager, User }\r\n\r\n    mapping(address => Role) public roles;\r\n\r\n    constructor(){\r\n        roles[msg.sender]= Role.Admin;\r\n    }\r\n\r\n    modifier onlyAdmin() {\r\n        require(roles[msg.sender]== Role.Admin,\"Access Denied\");\r\n        _;\r\n    }\r\n\r\n    modifier onlyManager() {\r\n        require(Role.Manager==roles[msg.sender],\"Access Denied\");\r\n        _;\r\n    } \r\n\r\n    function assignRole(address _user, Role _role) public onlyAdmin{\r\n        // only admin\r\n        roles[_user]= _role;\r\n\r\n    } \r\n\r\n    struct Task{\r\n        uint id;\r\n        string Description;\r\n        bool isCompleted;\r\n    }\r\n\r\n    mapping (uint => Task) public tasks;\r\n    uint[] alltaskIds;\r\n\r\n    function createTask(uint _id, string memory _description) public onlyManager{\r\n        // only manager\r\n        alltaskIds.push(_id);\r\n        tasks[_id] = Task(_id, _description, false);\r\n    }\r\n\r\n    function completeTask(uint _id ,bool _isCompleted) public {\r\n        // only user\r\n        tasks[_id] = Task(_id, tasks[_id].Description, _isCompleted);\r\n    }\r\n}",
+        "file": "Practice/Access-Based.sol"
+      }
+    }
+  },
+  "sourcify-verified/11155111/0x6efDBdEB4EffF1e71D4E6518199f0B6Be818a3c5/sources/Practice/Access-Based.sol": {
+    "__sources__": {
+      "sourcify-verified/11155111/0x6efDBdEB4EffF1e71D4E6518199f0B6Be818a3c5/sources/Practice/Access-Based.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract RoleControl {\r\n\r\n\r\n    enum Role { Admin, Manager, User }\r\n\r\n    mapping(address => Role) public roles;\r\n\r\n    constructor(){\r\n        roles[msg.sender]= Role.Admin;\r\n    }\r\n\r\n    modifier onlyAdmin() {\r\n        require(roles[msg.sender]== Role.Admin,\"Access Denied\");\r\n        _;\r\n    }\r\n\r\n    modifier onlyManager() {\r\n        require(Role.Manager==roles[msg.sender],\"Access Denied\");\r\n        _;\r\n    }\r\n\r\n    function assignRole(address _user, Role _role) public onlyAdmin{\r\n        // only admin\r\n        roles[_user]= _role;  \r\n\r\n    }\r\n\r\n    struct Task{\r\n        uint id;\r\n        string Description;\r\n        bool isCompleted;\r\n    }\r\n\r\n    mapping (uint => Task) public tasks;\r\n    uint[] alltaskIds;\r\n\r\n    function createTask(uint _id, string memory _description) public onlyManager{\r\n        // only manager\r\n        alltaskIds.push(_id);\r\n        tasks[_id] = Task(_id, _description, false);\r\n    }\r\n\r\n    function completeTask(uint _id ,bool _isCompleted) public {\r\n        // only user\r\n        tasks[_id] = Task(_id, tasks[_id].Description, _isCompleted);\r\n    }\r\n}",
+        "file": "sourcify-verified/11155111/0x6efDBdEB4EffF1e71D4E6518199f0B6Be818a3c5/sources/Practice/Access-Based.sol"
       }
     }
   },
   "learning/Orders.sol": {
     "__sources__": {
       "learning/Orders.sol": {
-        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract Orders{\r\n\r\n    address owner;\r\n\r\n    constructor(){\r\n        owner=msg.sender;\r\n    }\r\n\r\n    modifier checkOwner{\r\n        require(owner==msg.sender,\"Access Denied\");\r\n        _;\r\n    }\r\n\r\n    enum Status{Pending,Prepared,Shipped,Delivered,Cancelled}\r\n \r\n    struct Order{\r\n        uint id;\r\n        string deliveryPartner;\r\n        Status status;\r\n    }\r\n    \r\n    mapping (uint => Order) public orders;\r\n\r\n    struct User{\r\n        uint id;\r\n        string name;\r\n        address wallet;\r\n    }\r\n    mapping (uint => User) public users;\r\n    uint[] allUserIds;\r\n\r\n    function addUser(uint _id, string memory name) public {\r\n           allUserIds.push(_id);\r\n           users[_id] = User(_id,name,msg.sender);\r\n    }\r\n\r\n\r\n    function addOrder(uint _id, string memory deliveryPartner) public{\r\n         orders[_id]= Order(_id, deliveryPartner,Status.Pending);\r\n    }\r\n\r\n\r\n}",
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract Orders{\r\n\r\n    address owner;\r\n\r\n    constructor(){\r\n        owner=msg.sender;\r\n    }\r\n\r\n    modifier checkOwner{\r\n        require(owner==msg.sender,\"Access Denied\");\r\n        _;\r\n    }\r\n\r\n    enum Status{Pending,Prepared,Shipped,Delivered,Cancelled}\r\n \r\n    struct Order{\r\n        uint id;\r\n        string deliveryPartner;\r\n        Status status;\r\n    }\r\n    \r\n    mapping (uint => Order) public orders;\r\n    mapping (uint => bool) isOrdered;\r\n\r\n    struct User{\r\n        uint id;\r\n        string name;\r\n        address wallet;\r\n    }\r\n    \r\n    mapping (uint => User) public users;\r\n    mapping (address => bool) isRegistered;\r\n    uint[] allUserIds;\r\n\r\n    function addUser(uint _id, string memory name) public {\r\n         require(!isRegistered[msg.sender],\"user already registered\");\r\n           allUserIds.push(_id);\r\n           users[_id] = User(_id,name,msg.sender);\r\n           isRegistered[msg.sender] = true;\r\n    }\r\n\r\n\r\n    function addOrder(uint _id, string memory deliveryPartner) public{\r\n         orders[_id] = Order(_id, deliveryPartner,Status.Pending);\r\n    }\r\n\r\n    function updateOrder(uint _id, Status _status) public checkOwner{\r\n         orders[_id]= Order(_id, orders[_id].deliveryPartner, _status);\r\n    }\r\n\r\n}",
         "file": "learning/Orders.sol"
       }
     }
@@ -319,19 +311,35 @@
       }
     }
   },
-  "sourcify-verified/11155111/0x6efDBdEB4EffF1e71D4E6518199f0B6Be818a3c5/sources/Practice/Access-Based.sol": {
+  "Practice/exportCalculator.sol": {
     "__sources__": {
-      "sourcify-verified/11155111/0x6efDBdEB4EffF1e71D4E6518199f0B6Be818a3c5/sources/Practice/Access-Based.sol": {
-        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract RoleControl {\r\n\r\n\r\n    enum Role { Admin, Manager, User }\r\n\r\n    mapping(address => Role) public roles;\r\n\r\n    constructor(){\r\n        roles[msg.sender]= Role.Admin;\r\n    }\r\n\r\n    modifier onlyAdmin() {\r\n        require(roles[msg.sender]== Role.Admin,\"Access Denied\");\r\n        _;\r\n    }\r\n\r\n    modifier onlyManager() {\r\n        require(Role.Manager==roles[msg.sender],\"Access Denied\");\r\n        _;\r\n    }\r\n\r\n    function assignRole(address _user, Role _role) public onlyAdmin{\r\n        // only admin\r\n        roles[_user]= _role;  \r\n\r\n    }\r\n\r\n    struct Task{\r\n        uint id;\r\n        string Description;\r\n        bool isCompleted;\r\n    }\r\n\r\n    mapping (uint => Task) public tasks;\r\n    uint[] alltaskIds;\r\n\r\n    function createTask(uint _id, string memory _description) public onlyManager{\r\n        // only manager\r\n        alltaskIds.push(_id);\r\n        tasks[_id] = Task(_id, _description, false);\r\n    }\r\n\r\n    function completeTask(uint _id ,bool _isCompleted) public {\r\n        // only user\r\n        tasks[_id] = Task(_id, tasks[_id].Description, _isCompleted);\r\n    }\r\n}",
-        "file": "sourcify-verified/11155111/0x6efDBdEB4EffF1e71D4E6518199f0B6Be818a3c5/sources/Practice/Access-Based.sol"
+      "Practice/exportCalculator.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract Calculator{\r\n    uint public result;\r\n\r\n    function add(uint value) external{\r\n        result+=value;\r\n    }\r\n\r\n    function sub(uint value) external{\r\n        result-=value;\r\n    }\r\n\r\n    function multi(uint value) external{\r\n        result*=value;\r\n    }\r\n\r\n    function divide(uint value) external{\r\n        result/=value;\r\n    }\r\n\r\n    function modulo(uint value) external{\r\n        result%=value;\r\n    }\r\n\r\n    function square(uint value) external{\r\n        result = value * value;\r\n    }\r\n\r\n    function cube(uint value) external{\r\n        result = value * value * value;\r\n    }\r\n\r\n    function sqrt(uint value) external{\r\n        if(value>3){\r\n           result = value;\r\n           uint x = value / 2 + 1;\r\n           while(x<result){\r\n            result = x;\r\n            x = (value / x + x) / 2;\r\n           }\r\n         }else if (value !=0){\r\n            result=1;\r\n         }else \r\n         result=0;\r\n    }\r\n\r\n    function SeeResult() external view returns(uint){\r\n        return result;\r\n    }\r\n\r\n}",
+        "file": "Practice/exportCalculator.sol"
       }
     }
   },
-  "Practice/Access-Based.sol": {
+  "Practice/ProductInventory.sol": {
     "__sources__": {
-      "Practice/Access-Based.sol": {
-        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract RoleControl {\r\n\r\n\r\n    enum Role { Admin, Manager, User }\r\n\r\n    mapping(address => Role) public roles;\r\n\r\n    constructor(){\r\n        roles[msg.sender]= Role.Admin;\r\n    }\r\n\r\n    modifier onlyAdmin() {\r\n        require(roles[msg.sender]== Role.Admin,\"Access Denied\");\r\n        _;\r\n    }\r\n\r\n    modifier onlyManager() {\r\n        require(Role.Manager==roles[msg.sender],\"Access Denied\");\r\n        _;\r\n    } \r\n\r\n    function assignRole(address _user, Role _role) public onlyAdmin{\r\n        // only admin\r\n        roles[_user]= _role;\r\n\r\n    } \r\n\r\n    struct Task{\r\n        uint id;\r\n        string Description;\r\n        bool isCompleted;\r\n    }\r\n\r\n    mapping (uint => Task) public tasks;\r\n    uint[] alltaskIds;\r\n\r\n    function createTask(uint _id, string memory _description) public onlyManager{\r\n        // only manager\r\n        alltaskIds.push(_id);\r\n        tasks[_id] = Task(_id, _description, false);\r\n    }\r\n\r\n    function completeTask(uint _id ,bool _isCompleted) public {\r\n        // only user\r\n        tasks[_id] = Task(_id, tasks[_id].Description, _isCompleted);\r\n    }\r\n}",
-        "file": "Practice/Access-Based.sol"
+      "Practice/ProductInventory.sol": {
+        "content": "// 5. Product Inventory System\r\n\r\n// Requirements:\r\n\r\n// Array of product IDs\r\n// Mapping for product stock (productId => quantity)\r\n// Function to add product:\r\n// Use require to ensure product doesn't already exist\r\n// Function to buy product:\r\n// Use require to check stock availability\r\n\r\n// Expected Output:\r\n\r\n// No duplicate product IDs\r\n// Stock reduces after purchase\r\n// Cannot buy out-of-stock product\r\n\r\n// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract Product_Inventory{\r\n    uint[] productID;\r\n    mapping (uint => uint) product_stock;\r\n    mapping (uint => bool) isExisted;\r\n\r\n    function addProductID(uint id,uint quantity) public{\r\n        require(!isExisted[id],\"Id already exist\");\r\n       \r\n        productID.push(id);\r\n        product_stock[id]=quantity;\r\n        isExisted[id]=true;\r\n    }\r\n\r\n    function buyProduct(uint id, uint quantity) public{\r\n        require(isExisted[id],\"Invalid Id\");\r\n        require(product_stock[id]>=quantity,\"Invalid quantity\");\r\n     \r\n        product_stock[id]-=quantity;\r\n    }\r\n\r\n     function getFullDetails() public view returns (uint[] memory, uint[] memory) {\r\n        uint[] memory all_products=new uint[](productID.length);\r\n        for (uint i = 0; i < productID.length; i++) {\r\n            all_products[i]= product_stock[productID[i]];\r\n        }\r\n\r\n        return (productID, all_products);\r\n    }\r\n}",
+        "file": "Practice/ProductInventory.sol"
+      }
+    }
+  },
+  "Practice/studentAge.sol": {
+    "__sources__": {
+      "Practice/studentAge.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract StudentAge{\r\n    \r\n    uint age;\r\n\r\n    function setAge(uint value) public returns(uint){\r\n        age = value;\r\n        return age;\r\n    }\r\n\r\n    function increaseAge(uint value) public returns(uint){\r\n        age += value;\r\n        return age;\r\n    }\r\n\r\n    function getAge() public view returns(uint){\r\n        return age;\r\n    }\r\n\r\n    function resetAge() public returns(uint){\r\n        age = 0;\r\n        return age;\r\n    }\r\n}",
+        "file": "Practice/studentAge.sol"
+      }
+    }
+  },
+  "Practice/Stock.sol": {
+    "__sources__": {
+      "Practice/Stock.sol": {
+        "content": "//  Inventory Management with Access Restrictions\n\n// Created a contract to manage product stock. The contract owner is able to add \n// and update product quantities. Each product have a valid stock value. \n// Maintained list of all product identifiers and prevent duplicate entries. \n// Users are able to reduce stock when purchasing, ensuring stock never goes negative.\n\n// SPDX-License-Identifier: MIT\npragma solidity ^0.8.0;\n\ncontract Inventory_Management{\n    address owner;\n    uint[] productID;\n    mapping (uint => uint) product_stock;\n    mapping (uint => bool) isExisted;\n\n    constructor(){\n        owner=msg.sender;\n    }\n\n    modifier checkOwner{\n        require(owner==msg.sender,\"Access Denied\");\n        _;\n    }\n\n    function addProduct(uint id,uint quantity) public checkOwner{\n        require(!isExisted[id],\"Id already exist\");\n       \n        productID.push(id);\n        product_stock[id]=quantity;\n        isExisted[id]=true;\n    }\n\n    function updateProduct(uint id,uint quantity) public checkOwner{\n        require(!isExisted[id],\"Id already exist\");\n       \n        productID.push(id);\n        product_stock[id]=quantity;\n        isExisted[id]=true;\n    }\n\n    function buyProduct(uint id, uint quantity) public {\n        require(isExisted[id],\"Invalid Id\");\n        require(product_stock[id]>=quantity,\"Invalid quantity\");\n     \n        product_stock[id]-=quantity;\n\n        assert(product_stock[id]>=0);\n    }\n\n     function getFullDetails() public view returns (uint[] memory, uint[] memory) {\n        uint[] memory all_products=new uint[](productID.length);\n        for (uint i = 0; i < productID.length; i++) {\n            all_products[i]= product_stock[productID[i]];\n        }\n\n        return (productID, all_products);\n    }\n}",
+        "file": "Practice/Stock.sol"
       }
     }
   }

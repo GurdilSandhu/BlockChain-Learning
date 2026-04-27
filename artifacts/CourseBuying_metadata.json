@@ -76,11 +76,11 @@
 			]
 		},
 		"learning/CourseSelling.sol": {
-			"keccak256": "0xaa265fb21761af7df1ab9eec4951ba4e7a776eca40ff684d36b71a25ade50b24",
+			"keccak256": "0x33778ee27bddc98164bfe4348449e521066b684b1883193b1317c61e4d9fda94",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://c6198f64dbd3fde6fdc79755b2c3ecc84ce8fd449ecab1f99146d08f217c58a0",
-				"dweb:/ipfs/QmWTijnCYJMnWNa57RHqd4pyEgHxG5eS5BKpRAzrWtCfzz"
+				"bzz-raw://25c6d98fd072e71bc7bac95003df6c62306d03a42a9dda0f181786c231779446",
+				"dweb:/ipfs/QmbUZ3T5TmLSqzPEstsXKknwkBhsJYA2jsJs5Lc1xc4K16"
 			]
 		}
 	},

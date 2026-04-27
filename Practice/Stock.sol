@@ -1,10 +1,9 @@
 //  Inventory Management with Access Restrictions
-// Problem Statement:
-// Create a contract to manage product stock. The contract owner should be able to add 
-// and update product quantities. Each product must have a valid stock value. 
-//Maintain a list of all product identifiers and prevent duplicate entries. 
-//Users should be able to reduce stock when purchasing, ensuring stock never goes negative.
-//  Limited Slot Registration System
+
+// Created a contract to manage product stock. The contract owner is able to add 
+// and update product quantities. Each product have a valid stock value. 
+// Maintained list of all product identifiers and prevent duplicate entries. 
+// Users are able to reduce stock when purchasing, ensuring stock never goes negative.
 
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;

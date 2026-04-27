@@ -111,11 +111,11 @@
 	},
 	"sources": {
 		"Practice/Stock.sol": {
-			"keccak256": "0x911bf66a27446a86a5254cab0522d90c7d2f3929b286504695c69c17217f468e",
+			"keccak256": "0x1d1651159c0777cb76ecab9ec8d90ce73a50f9c0b2bb518e60010dc00e32eecd",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://4890d2b961713b6814c7c45aaf6251cb491c9983501fb2b3344c0daa48b60948",
-				"dweb:/ipfs/QmfVtTxTEyFqPjTbmMuVC6EVkpZpBJMBbbNc49k5oR9vPt"
+				"bzz-raw://e74a5ebfe0cb6587b834a4fa419cbdedbc5b556a74d69f383c02fbdd8d6880d8",
+				"dweb:/ipfs/QmUAY1ZSTU4aAQioNqfdCT3uM4YqKk7mdX2A7wduuQLPXq"
 			]
 		}
 	},
