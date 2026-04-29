@@ -14,4 +14,4 @@ contract CourseBuying{
     function addStudent(uint id, string memory name, uint demandfees) public{
           purchase.addStudent(id, name, demandfees);
     }
-} 
+}  
