@@ -326,7 +326,7 @@
     "./CourseSelling.sol": "learning/CourseSelling.sol",
     "__sources__": {
       "learning/CourseBuying.sol": {
-        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\nimport \"./CourseSelling.sol\";\r\n\r\n\r\ncontract CourseBuying{\r\n    CourseSelling purchase;\r\n\r\n    constructor(address linkaddress){\r\n        purchase = CourseSelling(linkaddress);\r\n    }\r\n\r\n    function addStudent(uint id, string memory name, uint demandfees) public{\r\n          purchase.addStudent(id, name, demandfees);\r\n    }\r\n} ",
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\nimport \"./CourseSelling.sol\";\r\n\r\n\r\ncontract CourseBuying{\r\n    CourseSelling purchase;\r\n\r\n    constructor(address linkaddress){\r\n        purchase = CourseSelling(linkaddress);\r\n    }\r\n\r\n    function addStudent(uint id, string memory name, uint demandfees) public{\r\n          purchase.addStudent(id, name, demandfees);\r\n    }\r\n}  ",
         "file": "learning/CourseBuying.sol"
       },
       "learning/CourseSelling.sol": {
