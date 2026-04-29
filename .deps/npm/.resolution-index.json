@@ -234,27 +234,6 @@
       }
     }
   },
-  "learning/CourseBuying.sol": {
-    "./CourseSelling.sol": "learning/CourseSelling.sol",
-    "__sources__": {
-      "learning/CourseBuying.sol": {
-        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\nimport \"./CourseSelling.sol\";\r\n\r\n\r\ncontract CourseBuying{\r\n    CourseSelling purchase;\r\n\r\n    constructor(address linkaddress){\r\n        purchase = CourseSelling(linkaddress);\r\n    }\r\n\r\n    function addStudent(uint id, string memory name, uint demandfees) public{\r\n          purchase.addStudent(id, name, demandfees);\r\n    }\r\n}",
-        "file": "learning/CourseBuying.sol"
-      },
-      "learning/CourseSelling.sol": {
-        "content": "// teacher can add course duration fee\n// import link send to student\n// add student names\n// student can add offer price\n\n// SPDX-License-Identifier: MIT\npragma solidity ^0.8.0;\n\ncontract CourseSelling {\n    address owner;\n    constructor() {\n        owner = msg.sender;\n    }\n    modifier checkOwner() {\n        require(owner == msg.sender, \"Access Denied\");\n        _;\n    }\n\n    struct course {\n        string courseName;\n        string courseDuration;\n        uint fees;\n    }\n    mapping(uint => course) public courses;\n    uint[] allCourseIds;\n\n    function addCourse(\n        uint id,\n        string memory name,\n        string memory duration,\n        uint fees\n    ) external checkOwner {\n        allCourseIds.push(id);\n        courses[id] = course(name, duration, fees);\n    }\n\n    struct student {\n        uint id;\n        string studentName;\n        uint demandFees;\n        address wallet;\n    }\n\n    mapping(uint => student) public students;\n    uint[] allStudentsIds;\n\n    function addStudent(\n        uint id,\n        string memory name,\n        uint demandfees\n    ) external returns (uint) {\n        allStudentsIds.push(id);\n        students[id] = student(id, name, demandfees, msg.sender);\n        return courses[id].fees;\n    }\n}\n",
-        "file": "learning/CourseSelling.sol"
-      }
-    }
-  },
-  "learning/CourseSelling.sol": {
-    "__sources__": {
-      "learning/CourseSelling.sol": {
-        "content": "// teacher can add course duration fee\n// import link send to student\n// add student names\n// student can add offer price\n\n// SPDX-License-Identifier: MIT\npragma solidity ^0.8.0;\n\ncontract CourseSelling {\n    address owner;\n    constructor() {\n        owner = msg.sender;\n    }\n    modifier checkOwner() {\n        require(owner == msg.sender, \"Access Denied\");\n        _;\n    }\n\n    struct course {\n        string courseName;\n        string courseDuration;\n        uint fees;\n    }\n    mapping(uint => course) public courses;\n    uint[] allCourseIds;\n\n    function addCourse(\n        uint id,\n        string memory name,\n        string memory duration,\n        uint fees\n    ) external checkOwner {\n        allCourseIds.push(id);\n        courses[id] = course(name, duration, fees);\n    }\n\n    struct student {\n        uint id;\n        string studentName;\n        uint demandFees;\n        address wallet;\n    }\n\n    mapping(uint => student) public students;\n    uint[] allStudentsIds;\n\n    function addStudent(\n        uint id,\n        string memory name,\n        uint demandfees\n    ) external returns (uint) {\n        allStudentsIds.push(id);\n        students[id] = student(id, name, demandfees, msg.sender);\n        return courses[id].fees;\n    }\n}\n",
-        "file": "learning/CourseSelling.sol"
-      }
-    }
-  },
   "Practice/Access.sol": {
     "__sources__": {
       "Practice/Access.sol": {
@@ -340,6 +319,19 @@
       "Practice/Stock.sol": {
         "content": "//  Inventory Management with Access Restrictions\n\n// Created a contract to manage product stock. The contract owner is able to add \n// and update product quantities. Each product have a valid stock value. \n// Maintained list of all product identifiers and prevent duplicate entries. \n// Users are able to reduce stock when purchasing, ensuring stock never goes negative.\n\n// SPDX-License-Identifier: MIT\npragma solidity ^0.8.0;\n\ncontract Inventory_Management{\n    address owner;\n    uint[] productID;\n    mapping (uint => uint) product_stock;\n    mapping (uint => bool) isExisted;\n\n    constructor(){\n        owner=msg.sender;\n    }\n\n    modifier checkOwner{\n        require(owner==msg.sender,\"Access Denied\");\n        _;\n    }\n\n    function addProduct(uint id,uint quantity) public checkOwner{\n        require(!isExisted[id],\"Id already exist\");\n       \n        productID.push(id);\n        product_stock[id]=quantity;\n        isExisted[id]=true;\n    }\n\n    function updateProduct(uint id,uint quantity) public checkOwner{\n        require(!isExisted[id],\"Id already exist\");\n       \n        productID.push(id);\n        product_stock[id]=quantity;\n        isExisted[id]=true;\n    }\n\n    function buyProduct(uint id, uint quantity) public {\n        require(isExisted[id],\"Invalid Id\");\n        require(product_stock[id]>=quantity,\"Invalid quantity\");\n     \n        product_stock[id]-=quantity;\n\n        assert(product_stock[id]>=0);\n    }\n\n     function getFullDetails() public view returns (uint[] memory, uint[] memory) {\n        uint[] memory all_products=new uint[](productID.length);\n        for (uint i = 0; i < productID.length; i++) {\n            all_products[i]= product_stock[productID[i]];\n        }\n\n        return (productID, all_products);\n    }\n}",
         "file": "Practice/Stock.sol"
+      }
+    }
+  },
+  "learning/CourseBuying.sol": {
+    "./CourseSelling.sol": "learning/CourseSelling.sol",
+    "__sources__": {
+      "learning/CourseBuying.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\nimport \"./CourseSelling.sol\";\r\n\r\n\r\ncontract CourseBuying{\r\n    CourseSelling purchase;\r\n\r\n    constructor(address linkaddress){\r\n        purchase = CourseSelling(linkaddress);\r\n    }\r\n\r\n    function addStudent(uint id, string memory name, uint demandfees) public{\r\n          purchase.addStudent(id, name, demandfees);\r\n    }\r\n} ",
+        "file": "learning/CourseBuying.sol"
+      },
+      "learning/CourseSelling.sol": {
+        "content": "// teacher can add course duration fee\n// import link send to student\n// add student names\n// student can add offer price\n\n// SPDX-License-Identifier: MIT\npragma solidity ^0.8.0;\n\ncontract CourseSelling {\n    address owner;\n    constructor() {\n        owner = msg.sender;\n    }\n    modifier checkOwner() {\n        require(owner == msg.sender, \"Access Denied\");\n        _;\n    }\n\n    struct course {\n        string courseName;\n        string courseDuration;\n        uint fees;\n    }\n    mapping(uint => course) public courses;\n    uint[] allCourseIds;\n\n    function addCourse(\n        uint id,\n        string memory name,\n        string memory duration,\n        uint fees\n    ) external checkOwner {\n        allCourseIds.push(id);\n        courses[id] = course(name, duration, fees);\n    }\n\n    struct student {\n        uint id;\n        string studentName;\n        uint demandFees;\n        address wallet;\n    }\n\n    mapping(uint => student) public students;\n    uint[] allStudentsIds;\n\n    function addStudent(\n        uint id,\n        string memory name,\n        uint demandfees\n    ) external returns (uint) {\n        allStudentsIds.push(id);\n        students[id] = student(id, name, demandfees, msg.sender);\n        return courses[id].fees;\n    }\n}\n",
+        "file": "learning/CourseSelling.sol"
       }
     }
   }
