@@ -88,14 +88,6 @@
       }
     }
   },
-  "learning/addArray.sol": {
-    "__sources__": {
-      "learning/addArray.sol": {
-        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract addArray{\r\n    uint[] public num = [1,2,3];\r\n\r\n    function addElement(uint value) public{\r\n        num.push(value);\r\n    }\r\n\r\n     function getAll() public view returns(uint[] memory){\r\n        return num;\r\n     } \r\n}",
-        "file": "learning/addArray.sol"
-      }
-    }
-  },
   "Practice/Bank.sol": {
     "__sources__": {
       "Practice/Bank.sol": {
@@ -351,10 +343,18 @@
       }
     }
   },
+  "learning/addArray.sol": {
+    "__sources__": {
+      "learning/addArray.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract addArray{\r\n    uint[] public num = [1,2,3];\r\n\r\n    function addElement(uint value) public{\r\n        num.push(value);\r\n    }\r\n\r\n     function getAll() public view returns(uint[] memory){\r\n        return num;\r\n     } \r\n}",
+        "file": "learning/addArray.sol"
+      }
+    }
+  },
   "learning/payable.sol": {
     "__sources__": {
       "learning/payable.sol": {
-        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract receive_Ether{\r\n    // address private owner;\r\n\r\n    // constructor(){\r\n    //     owner = msg.sender;\r\n    // }\r\n\r\n    function deposit() public payable {}\r\n\r\n    function getBalance() public view returns(uint){\r\n        return address(this).balance;\r\n    }\r\n\r\n    function withdraw(uint amount) public {\r\n        // uint withd = amount -(_value * (10 ** 18));\r\n        require(amount <= address(this).balance  ,\"No Funds\");\r\n        payable(msg.sender).transfer(amount);\r\n    }\r\n}",
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract receive_Ether{\r\n    address private owner;\r\n\r\n    constructor(){\r\n        owner = msg.sender;\r\n    }\r\n\r\n    modifier checkOwner{\r\n        require(owner == msg.sender,\"Access Denied\");\r\n        _;\r\n    }\r\n\r\n    mapping (address => uint) public balances;\r\n    uint newBalance;\r\n\r\n    function deposit() public payable {\r\n         require(msg.value > 0,\"add some funds\");\r\n         balances[msg.sender] += msg.value;\r\n    }\r\n\r\n    function getMyBalance() public view returns(uint){\r\n        return balances[msg.sender];\r\n    }\r\n\r\n    function withdraw(uint amount) public payable{\r\n        require(balances[msg.sender] >= amount ,\"No Funds\");\r\n        balances[msg.sender] -= amount;\r\n        payable(msg.sender).transfer(amount);\r\n    }\r\n\r\n    function getAllBalances() public view checkOwner returns(uint){\r\n        return address(this).balance;\r\n    }\r\n}",
         "file": "learning/payable.sol"
       }
     }
