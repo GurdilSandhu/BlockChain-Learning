@@ -9,17 +9,6 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "initialSize",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "nonpayable",
-				"type": "constructor"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
 						"name": "value",
 						"type": "uint256"
 					}
@@ -34,9 +23,9 @@
 				"name": "getAll",
 				"outputs": [
 					{
-						"internalType": "uint256[][]",
+						"internalType": "uint256[]",
 						"name": "",
-						"type": "uint256[][]"
+						"type": "uint256[]"
 					}
 				],
 				"stateMutability": "view",
@@ -48,14 +37,9 @@
 						"internalType": "uint256",
 						"name": "",
 						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
 					}
 				],
-				"name": "numbers",
+				"name": "number",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -67,16 +51,23 @@
 				"type": "function"
 			},
 			{
-				"inputs": [
+				"inputs": [],
+				"name": "removeNumber",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "total",
+				"outputs": [
 					{
 						"internalType": "uint256",
-						"name": "index",
+						"name": "sum",
 						"type": "uint256"
 					}
 				],
-				"name": "selectIndex",
-				"outputs": [],
-				"stateMutability": "nonpayable",
+				"stateMutability": "view",
 				"type": "function"
 			}
 		],
@@ -108,11 +99,11 @@
 	},
 	"sources": {
 		"learning/array.sol": {
-			"keccak256": "0x083790c297b09b311cdbbcb3410698401ac432bfe833055a160eb3db9a1c1901",
+			"keccak256": "0x578fcb85167b61b656186d91b3c6067b3c8f0da1a61267f3a793528571b516d7",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://4ba3259f0f5742b69fa7a4dd080a5be183611844abdff5dcab154a9e7edf9db2",
-				"dweb:/ipfs/QmdboWxwd6gyfQh7hhatpy6vtGCziUWnnjy6tcG19oCJgJ"
+				"bzz-raw://f31428a81d9ce404af0cb46b963a41237c6c3c5e1c9586ade706d663bc87b286",
+				"dweb:/ipfs/QmfBfCcSCjbvYUizceBBnYRkoMqvAAYuvwm5TanBLwX6Fn"
 			]
 		}
 	},

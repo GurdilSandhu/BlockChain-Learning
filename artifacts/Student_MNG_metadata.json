@@ -6,11 +6,6 @@
 	"output": {
 		"abi": [
 			{
-				"inputs": [],
-				"stateMutability": "nonpayable",
-				"type": "constructor"
-			},
-			{
 				"inputs": [
 					{
 						"internalType": "uint256",
@@ -18,12 +13,17 @@
 						"type": "uint256"
 					},
 					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
 						"internalType": "uint256",
-						"name": "quantity",
+						"name": "marks",
 						"type": "uint256"
 					}
 				],
-				"name": "addProduct",
+				"name": "addStudent",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -34,31 +34,24 @@
 						"internalType": "uint256",
 						"name": "id",
 						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "quantity",
-						"type": "uint256"
 					}
 				],
-				"name": "buyProduct",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "getFullDetails",
+				"name": "getStudent",
 				"outputs": [
 					{
-						"internalType": "uint256[]",
+						"internalType": "uint256",
 						"name": "",
-						"type": "uint256[]"
+						"type": "uint256"
 					},
 					{
-						"internalType": "uint256[]",
+						"internalType": "string",
 						"name": "",
-						"type": "uint256[]"
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -73,11 +66,11 @@
 					},
 					{
 						"internalType": "uint256",
-						"name": "quantity",
+						"name": "marks",
 						"type": "uint256"
 					}
 				],
-				"name": "updateProduct",
+				"name": "updateMarks",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -96,7 +89,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"Practice/Stock.sol": "Inventory_Management"
+			"Practice/Student_MNG.sol": "Student_MNG"
 		},
 		"evmVersion": "istanbul",
 		"libraries": {},
@@ -110,12 +103,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"Practice/Stock.sol": {
-			"keccak256": "0xd76d5698d22db9248ba4b97aff4b1f8b4aecc3a24e92516486ec3e06da9befda",
+		"Practice/Student_MNG.sol": {
+			"keccak256": "0xd999d79c4fdd91b54f2e2ae0f82f6390a6a039a3f6ff19495c7a5a4baf84af9b",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://744b1fae93f45743b6ead03ef9313ef5e3e9548577a9ed93ffbcff17eb02de47",
-				"dweb:/ipfs/QmZPJTj5WSQE8DMuD6V9mhqVpQGCXN7doeJaFdAsyXnrWN"
+				"bzz-raw://06218c6e619407ab6ad951e64ca7cfcf87381a7e10812e7dbef2de43be1f4bd6",
+				"dweb:/ipfs/QmbKNNgZPXWWkauPuJzPRPN1GC72e8pF2Z8qqud9NLS5jR"
 			]
 		}
 	},
