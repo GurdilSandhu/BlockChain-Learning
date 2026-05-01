@@ -32,7 +32,7 @@ contract Inventory_Management{
     }
 
     function updateProduct(uint id,uint quantity) public checkOwner{
-        require(!isExisted[id],"Id already exist");
+        require(!isExisted[id],"Id does not exist");
        
         productID.push(id);
         product_stock[id]=quantity;
