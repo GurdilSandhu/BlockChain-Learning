@@ -183,14 +183,6 @@
       }
     }
   },
-  "learning/addArray.sol": {
-    "__sources__": {
-      "learning/addArray.sol": {
-        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract addArray{\r\n    uint[] public num = [1,2,3];\r\n\r\n    function addElement(uint value) public{\r\n        num.push(value);\r\n    }\r\n\r\n     function getAll() public view returns(uint[] memory){\r\n        return num;\r\n     } \r\n}",
-        "file": "learning/addArray.sol"
-      }
-    }
-  },
   "learning/simpleWallet.sol": {
     "__sources__": {
       "learning/simpleWallet.sol": {
@@ -393,6 +385,14 @@
       "learning/CourseSelling.sol": {
         "content": "// teacher can add course duration fee\n// import link send to student\n// add student names\n// student can add offer price\n\n// SPDX-License-Identifier: MIT\npragma solidity ^0.8.0;\n\ncontract CourseSelling {\n    address owner;\n    constructor() {\n        owner = msg.sender;\n    }\n    modifier checkOwner() {\n        require(owner == msg.sender, \"Access Denied\");\n        _;\n    }\n\n    struct course {\n        string courseName;\n        string courseDuration;\n        uint fees;\n    }\n    mapping(uint => course) public courses;\n    uint[] allCourseIds;\n\n    function addCourse(\n        uint id,\n        string memory name,\n        string memory duration,\n        uint fees\n    ) external checkOwner {\n        allCourseIds.push(id);\n        courses[id] = course(name, duration, fees);\n    }\n\n    struct student {\n        uint id;\n        string studentName;\n        uint demandFees;\n        address wallet;\n    }\n\n    mapping(uint => student) public students;\n    uint[] allStudentsIds;\n\n    function addStudent(\n        uint id,\n        string memory name,\n        uint demandfees\n    ) external returns (uint) {\n        allStudentsIds.push(id);\n        students[id] = student(id, name, demandfees, msg.sender);\n        return courses[id].fees;\n    }\n}\n",
         "file": "learning/CourseSelling.sol"
+      }
+    }
+  },
+  "learning/addArray.sol": {
+    "__sources__": {
+      "learning/addArray.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract addArray{\r\n    uint[] public num = [1,2,3];\r\n\r\n    function addElement(uint value) public{\r\n        num.push(value);\r\n    }\r\n\r\n     function getAll() public view returns(uint[] memory){\r\n        return num;\r\n     } \r\n}  ",
+        "file": "learning/addArray.sol"
       }
     }
   }
