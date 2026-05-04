@@ -11,4 +11,4 @@ contract addArray{
      function getAll() public view returns(uint[] memory){
         return num;
      } 
-}
+}  
