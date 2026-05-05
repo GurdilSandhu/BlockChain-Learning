@@ -63,8 +63,8 @@ contract Ecommerce {
         // Transfer ETH to seller
         product.seller.transfer(msg.value);
 
-        
 
+ 
         emit ProductPurchased(orderCount, _productId, msg.sender, msg.value);
     }
 
