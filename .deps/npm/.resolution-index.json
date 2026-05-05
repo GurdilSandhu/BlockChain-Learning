@@ -72,14 +72,6 @@
       }
     }
   },
-  "Practice/TicketBooking.sol": {
-    "__sources__": {
-      "Practice/TicketBooking.sol": {
-        "content": "// Design a contract for booking event tickets with limited availability.\r\n\r\n// Requirements:\r\n// Total tickets are fixed\r\n// Users can book tickets\r\n// Track total tickets sold\r\n\r\n// Conditions:\r\n// Cannot book zero tickets\r\n// Cannot book more tickets than available\r\n// Total sold tickets should never exceed the maximum limit\r\n\r\n// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract TicketBooking{\r\n    uint Total_tickets = 100;\r\n    uint Tickets_sold;\r\n\r\n    function book(uint tickets) public{\r\n        require(tickets>0,\"Insufficient Tickets\");\r\n        require(tickets<=100,\"Limited Tickets only 100\");\r\n\r\n        Total_tickets-=tickets;\r\n        Tickets_sold += tickets;\r\n\r\n        assert(Total_tickets>=0);\r\n    }\r\n\r\n    function Total_tickets_sold() view public returns(uint){\r\n        return Tickets_sold;\r\n    }\r\n}",
-        "file": "Practice/TicketBooking.sol"
-      }
-    }
-  },
   "Practice/Bank.sol": {
     "__sources__": {
       "Practice/Bank.sol": {
@@ -207,27 +199,11 @@
       }
     }
   },
-  "Practice/BankDepositeSystem.sol": {
-    "__sources__": {
-      "Practice/BankDepositeSystem.sol": {
-        "content": "// 4. Bank Deposit System\n\n// Requirements:\n\n// Mapping for balances (address => uint)\n// Array to store all users who deposited\n// Function to deposit:\n// Use require to ensure deposit > 0\n// Add user to array if first-time deposit\n// Function to withdraw:\n// Use require to check sufficient balance\n\n// Expected Output:\n\n// Tracks balances correctly\n// Prevents zero deposits\n// Prevents over-withdrawal\n\n// SPDX-License-Identifier: MIT\npragma solidity ^0.8.0;\n\ncontract Bank_Deposite_System {\n    mapping(address => uint) balance;\n    address[] users;\n    mapping(address => bool) isUserAdded;\n\n    function Deposit(uint amount) public {\n        require(amount > 0, \"amount should be greater than 0\");\n        balance[msg.sender] += amount;\n        if (!isUserAdded[msg.sender]) {\n            users.push(msg.sender);\n            isUserAdded[msg.sender] = true;\n        }\n    }\n\n    function Withdraw(uint amount) public {\n        require(\n            amount > 0 && amount < balance[msg.sender],\n            \"amount should be greater than 0 and must be in bank\"\n        );\n        balance[msg.sender] -= amount;\n    }\n\n    function getAllUsers() public view returns (address[] memory, uint[] memory) {\n        uint[] memory all_balances=new uint[](users.length);\n        for (uint i = 0; i < users.length; i++) {\n            all_balances[i]= balance[users[i]];\n        }\n\n        return (users, all_balances);\n    }\n\n     function checkBalance() public view returns(uint){\n        return balance[msg.sender];\n    }\n}\n",
-        "file": "Practice/BankDepositeSystem.sol"
-      }
-    }
-  },
   "Practice/calculator.sol": {
     "__sources__": {
       "Practice/calculator.sol": {
         "content": "// SPDX-License-Identifier: MIT\r\n\r\npragma solidity ^0.8.0;\r\n\r\ncontract Calculator{\r\n\r\n    uint public result;\r\n\r\n    event Calculation(string operation, uint value, uint result);\r\n\r\n    function Addvalue(uint _value) public{\r\n        result += _value;\r\n        emit Calculation(\"ADD\", _value, result);\r\n    }\r\n\r\n    function Multiplyvalue(uint _value) public{\r\n        result *= _value;\r\n        emit Calculation(\"MULTI\", _value, result);\r\n    }\r\n\r\n    function Dividevalue(uint _value) public{\r\n        result/= _value;\r\n        emit Calculation(\"DIV\", _value, result);\r\n    }\r\n\r\n    function Subvalue(uint _value) public{\r\n        result-= _value;\r\n        emit Calculation(\"SUB\", _value, result);\r\n    }\r\n} ",
         "file": "Practice/calculator.sol"
-      }
-    }
-  },
-  "Practice/ControlRegistration.sol": {
-    "__sources__": {
-      "Practice/ControlRegistration.sol": {
-        "content": "//  Controlled User Registration with Capacity Limit\r\n\r\n// Problem Statement:\r\n// Create a contract where users can register themselves, \r\n//but only up to a fixed maximum limit defined during deployment. \r\n//Store all registered users in a list and track their registration status. \r\n//Ensure a user cannot register more than once. Only valid registrations should be accepted, \r\n//and once the limit is reached, no further entries should be allowed.\r\n\r\n// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract Registration_Management{\r\n    mapping (uint => string) registrations;\r\n    mapping (uint => bool) isRegistered;\r\n    uint[] Total_Reg;\r\n\r\n    modifier checkTotalRegistrations{\r\n        require(Total_Reg.length<10,\"Entries are Full now\");\r\n        _;\r\n    }\r\n    \r\n    function addUser(uint id, string memory name) public checkTotalRegistrations{\r\n       require(!isRegistered[id],\"user already registered\");\r\n       Total_Reg.push(id);\r\n       registrations[id]= name;\r\n       isRegistered[id]=true;\r\n    }\r\n\r\n    function getFullDetails() public view returns (uint[] memory, string[] memory) {\r\n        string[] memory all_users = new string[](Total_Reg.length);\r\n        for (uint i = 0; i < Total_Reg.length; i++) {\r\n            all_users[i]= registrations[Total_Reg[i]];\r\n        }\r\n\r\n        return (Total_Reg, all_users);\r\n    }\r\n}",
-        "file": "Practice/ControlRegistration.sol"
       }
     }
   },
@@ -279,14 +255,6 @@
       }
     }
   },
-  "Practice/Voting_Struct.sol": {
-    "__sources__": {
-      "Practice/Voting_Struct.sol": {
-        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract Voting_Struct{\r\n    address owner;\r\n    constructor(){\r\n        owner=msg.sender;\r\n    }\r\n    modifier checkOwner{\r\n        require(owner==msg.sender,\"Access Denied\");\r\n        _;\r\n    }\r\n    \r\n    //parties\r\n    struct Party{\r\n        uint id;\r\n        string name;\r\n        uint voteCount;\r\n    }\r\n    mapping (uint => Party) parties;\r\n    mapping (uint => bool) isPartyExist;\r\n    uint[] allPartyIds;\r\n\r\n    function addParty(uint id, string memory name) public checkOwner{\r\n        require(!isPartyExist[id],\"Party already existed\");\r\n        allPartyIds.push(id);\r\n        isPartyExist[id]=true;\r\n        parties[id] = Party(id,name,0);\r\n    }\r\n\r\n    //Voters\r\n     struct Voter{\r\n        uint id;\r\n        string name;\r\n        bool isVoted;\r\n        address wallet;\r\n    }    \r\n    mapping (uint => Voter) Voters;\r\n    mapping (uint => bool) isVoterExisted;\r\n    mapping (address => bool) hasRegistered;\r\n    mapping (address => bool) hasVoted;\r\n    uint[] allVoters;\r\n\r\n    function addVoter(uint id, string memory name) public{\r\n        require(!isVoterExisted[id],\"Voter already existed\");\r\n        require(!hasRegistered[msg.sender], \"Voter already existed\");\r\n        allVoters.push(id);\r\n        isVoterExisted[id]=true;\r\n        hasRegistered[msg.sender]=true;\r\n        Voters[id] = Voter(id,name,false,msg.sender);\r\n    }\r\n\r\n    //Voting\r\n    function vote(uint partyId) public {\r\n        require(hasRegistered[msg.sender], \"Not registered as voter\");\r\n        require(!hasVoted[msg.sender], \"Already voted\");\r\n        require(isPartyExist[partyId], \"Invalid party\");\r\n\r\n        parties[partyId].voteCount++;\r\n        hasVoted[msg.sender] = true;\r\n    }\r\n\r\n    //getVotingDetails\r\n     function getPartyVotes(uint partyId) public view returns (string memory, uint){\r\n        require(isPartyExist[partyId], \"Party not found\");\r\n\r\n        Party memory p = parties[partyId];\r\n        return (p.name, p.voteCount);\r\n    }\r\n\r\n}",
-        "file": "Practice/Voting_Struct.sol"
-      }
-    }
-  },
   "learning/array.sol": {
     "__sources__": {
       "learning/array.sol": {
@@ -303,27 +271,11 @@
       }
     }
   },
-  "Practice/passwordChecker.sol": {
-    "__sources__": {
-      "Practice/passwordChecker.sol": {
-        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract passwordChecker{\r\n    string private password = \"gurdilsingh10@gmail.com\";\r\n\r\n    function checkPassword(string memory input) public view returns(string memory){\r\n        if(keccak256(bytes(input))==keccak256(bytes(password))){\r\n           return \"Access Granted\";\r\n        }\r\n        return \"Access Denied\";\r\n    }\r\n\r\n    function password_in_bytes(string memory _input) public pure returns(bytes memory){\r\n        return bytes(_input);\r\n    }\r\n\r\n    \r\n    function password_length(string memory _input) public pure returns(uint){\r\n        uint strLength = bytes(_input).length;\r\n        return strLength;\r\n    }\r\n\r\n    function getFirstByte(string memory _input) public pure returns(bytes1){\r\n        bytes memory Bytes = bytes(_input);\r\n        bytes1 firstByte = Bytes[5];\r\n        return firstByte;\r\n    }\r\n\r\n    function bytestoString(bytes memory _input) public pure returns(string memory){\r\n        return string(_input);\r\n    }\r\n\r\n    function concat()public pure returns(bytes memory){\r\n       bytes memory a = \"Hello\"; \r\n       bytes memory b = \"World!\";\r\n    //    bytes memory combined = bytes.concat(a,b);\r\n       return  abi.encodePacked(a,b);\r\n\r\n    }\r\n\r\n    function toUppercase(string memory _input) public pure returns(string memory){\r\n        bytes memory strByte = bytes(_input);\r\n        uint strLength = strByte.length;\r\n        bytes memory resStr= new bytes(strLength);\r\n\r\n        for(uint i=0;i<strLength;i++){\r\n            if(uint8(strByte[i])>=97 && uint8(strByte[i])<=122){\r\n              resStr[i] = bytes1(uint8(strByte[i])-32);\r\n            }else{\r\n            resStr[i] = strByte[i];\r\n        }\r\n        }\r\n\r\n        return string(resStr);\r\n    }\r\n\r\n    function toLowercase(string memory _input) public pure returns(string memory){\r\n        bytes memory strByte = bytes(_input);\r\n        uint strLength = strByte.length;\r\n        bytes memory resStr= new bytes(strLength);\r\n\r\n        for(uint i=0;i<strLength;i++){\r\n            if(uint8(strByte[i])>=65 && uint8(strByte[i])<=90){\r\n              resStr[i] = bytes1(uint8(strByte[i])+32);\r\n            }else{\r\n            resStr[i] = strByte[i];\r\n        }\r\n        }\r\n\r\n        return string(resStr);\r\n    }\r\n\r\n    function countWords(string memory _input) public pure returns(uint){\r\n        bytes memory bStr = bytes(_input);\r\n        uint strLength = bStr.length;\r\n\r\n        if (strLength == 0) {\r\n            return 0;\r\n        }\r\n\r\n        uint count = 0;\r\n        bool inWord = false;\r\n\r\n        for (uint i = 0; i < strLength; i++) {\r\n            if (bStr[i] != 0x20 && !inWord) {\r\n                inWord = true;\r\n                count++;\r\n            } else if (bStr[i] == 0x20) {\r\n                inWord = false;\r\n            }\r\n    }\r\n    return count;\r\n}\r\n\r\nfunction compareString(string memory a, string memory b) public pure returns(bool){\r\n    bytes memory bStr1 = bytes(a);\r\n    bytes memory bStr2 = bytes(b);\r\n    uint strLength1 = bStr1.length;\r\n    uint strLength2 = bStr2.length;\r\n        if (strLength1 != strLength2) {\r\n            return false;\r\n        }\r\n\r\n        for (uint i = 0; i < strLength1; i++) {\r\n            if (bStr1[i] != bStr2[i]) {\r\n                return false;\r\n            }\r\n    }\r\n    return true;\r\n}\r\n\r\nfunction reverseString(string memory input) public pure returns(string memory){\r\n    bytes memory bStr = bytes(input);\r\n    bytes memory rStr = new bytes(bStr.length);\r\n\r\n    for(uint i=0;i<bStr.length;i++){\r\n        rStr[i] = bStr[bStr.length-1-i];\r\n    }\r\n    return string(rStr);\r\n}\r\n}",
-        "file": "Practice/passwordChecker.sol"
-      }
-    }
-  },
   "Practice/Stock.sol": {
     "__sources__": {
       "Practice/Stock.sol": {
         "content": "//  Inventory Management with Access Restrictions\n\n// Created a contract to manage product stock. The contract owner is able to add \n// and update product quantities. Each product have a valid stock value. \n// Maintained list of all product identifiers and prevent duplicate entries. \n// Users are able to reduce stock when purchasing, ensuring stock never goes negative.\n\n// SPDX-License-Identifier: MIT\npragma solidity ^0.8.0;\n\ncontract Inventory_Management{\n    address owner;\n    uint[] productID;\n    mapping (uint => uint) product_stock;\n    mapping (uint => bool) isExisted;\n\n    constructor(){\n        owner=msg.sender;\n    }\n\n    modifier checkOwner{\n        require(owner==msg.sender,\"Access Denied\");\n        _;\n    }\n\n    function addProduct(uint id,uint quantity) public checkOwner{\n        require(!isExisted[id],\"Id already exist\");\n       \n        productID.push(id);\n        product_stock[id]=quantity;\n        isExisted[id]=true;\n    }\n\n    function updateProduct(uint id,uint quantity) public checkOwner{\n        require(!isExisted[id],\"Id does not exist\");\n       \n        productID.push(id);\n        product_stock[id]=quantity;\n        isExisted[id]=true;\n    }\n\n    function buyProduct(uint id, uint quantity) public {\n        require(isExisted[id],\"Invalid Id\");\n        require(product_stock[id]>=quantity,\"Invalid quantity\");\n     \n        product_stock[id]-=quantity;\n\n        assert(product_stock[id]>=0);\n    }\n\n     function getFullDetails() public view returns (uint[] memory, uint[] memory) {\n        uint[] memory all_products=new uint[](productID.length);\n        for (uint i = 0; i < productID.length; i++) {\n            all_products[i]= product_stock[productID[i]];\n        }\n\n        return (productID, all_products);\n    }\n}",
         "file": "Practice/Stock.sol"
-      }
-    }
-  },
-  "learning/payable.sol": {
-    "__sources__": {
-      "learning/payable.sol": {
-        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract receive_Ether{\r\n    address private owner;\r\n\r\n    constructor(){\r\n        owner = msg.sender;\r\n    }\r\n\r\n    modifier checkOwner{\r\n        require(owner == msg.sender,\"Access Denied\");\r\n        _;\r\n    }\r\n\r\n    mapping (address => uint) public balances;\r\n    uint newBalance;\r\n\r\n    function deposit() public payable {\r\n         require(msg.value > 0,\"add some funds\");\r\n         balances[msg.sender] += msg.value;\r\n    }\r\n\r\n    function getMyBalance() public view returns(uint){\r\n        return balances[msg.sender];\r\n    }\r\n\r\n    function withdraw(uint amount) public payable{\r\n        require(balances[msg.sender] >= amount ,\"No Funds\");\r\n        balances[msg.sender] -= amount;\r\n        payable(msg.sender).transfer(amount);\r\n    }\r\n\r\n    function getAllBalances() public view checkOwner returns(uint){\r\n        return address(this).balance;\r\n    }\r\n}",
-        "file": "learning/payable.sol"
       }
     }
   },
@@ -364,14 +316,6 @@
       }
     }
   },
-  "learning/Orders.sol": {
-    "__sources__": {
-      "learning/Orders.sol": {
-        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract Orders{\r\n\r\n    address owner;\r\n\r\n    constructor(){\r\n        owner=msg.sender;\r\n    }\r\n\r\n    modifier checkOwner{\r\n        require(owner==msg.sender,\"Access Denied\");\r\n        _;\r\n    }\r\n\r\n    enum Status{Pending,Prepared,Shipped,Delivered,Cancelled}\r\n \r\n    struct Order{\r\n        uint id;\r\n        string deliveryPartner;\r\n        Status status;\r\n    }\r\n    \r\n    mapping (uint => Order) public orders;\r\n    mapping (uint => bool) isOrdered;\r\n\r\n    struct User{\r\n        uint id;\r\n        string name;\r\n        address wallet;\r\n    }\r\n    \r\n    mapping (uint => User) public users;\r\n    mapping (address => bool) isRegistered;\r\n    uint[] allUserIds;\r\n\r\n    function addUser(uint _id, string memory name) public {\r\n         require(!isRegistered[msg.sender],\"user already registered\");\r\n           allUserIds.push(_id);\r\n           users[_id] = User(_id,name,msg.sender);\r\n           isRegistered[msg.sender] = true;\r\n    }\r\n\r\n\r\n    function addOrder(uint _id, string memory deliveryPartner) public{\r\n         orders[_id] = Order(_id, deliveryPartner,Status.Pending);\r\n    }\r\n\r\n    function updateOrder(uint _id, Status _status) public checkOwner{\r\n         orders[_id]= Order(_id, orders[_id].deliveryPartner, _status);\r\n    }\r\n\r\n}",
-        "file": "learning/Orders.sol"
-      }
-    }
-  },
   "Practice/Student_MNG.sol": {
     "__sources__": {
       "Practice/Student_MNG.sol": {
@@ -393,6 +337,86 @@
       "learning/addArray.sol": {
         "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract addArray{\r\n    uint[] public num = [1,2,3];\r\n\r\n    function addElement(uint value) public{\r\n        num.push(value);\r\n    }\r\n\r\n     function getAll() public view returns(uint[] memory){\r\n        return num;\r\n     } \r\n}  ",
         "file": "learning/addArray.sol"
+      }
+    }
+  },
+  "learning/Orders.sol": {
+    "__sources__": {
+      "learning/Orders.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract Orders{\r\n\r\n    address owner;\r\n\r\n    constructor(){\r\n        owner=msg.sender;\r\n    }\r\n\r\n    modifier checkOwner{\r\n        require(owner==msg.sender,\"Access Denied\");\r\n        _;\r\n    }\r\n\r\n    enum Status{Pending,Prepared,Shipped,Delivered,Cancelled}\r\n \r\n    struct Order{\r\n        uint id;\r\n        string deliveryPartner;\r\n        Status status;\r\n    }\r\n    \r\n    mapping (uint => Order) public orders;\r\n    mapping (uint => bool) isOrdered;\r\n\r\n    struct User{\r\n        uint id;\r\n        string name;\r\n        address wallet;\r\n    }\r\n    \r\n    mapping (uint => User) public users;\r\n    mapping (address => bool) isRegistered;\r\n    uint[] allUserIds;\r\n\r\n    function addUser(uint _id, string memory name) public {\r\n         require(!isRegistered[msg.sender],\"user already registered\");\r\n           allUserIds.push(_id);\r\n           users[_id] = User(_id,name,msg.sender);\r\n           isRegistered[msg.sender] = true;\r\n    }\r\n\r\n\r\n    function addOrder(uint _id, string memory deliveryPartner) public{\r\n         orders[_id] = Order(_id, deliveryPartner,Status.Pending);\r\n    }\r\n\r\n    function updateOrder(uint _id, Status _status) public checkOwner{\r\n         orders[_id]= Order(_id, orders[_id].deliveryPartner, _status);\r\n    }\r\n\r\n}",
+        "file": "learning/Orders.sol"
+      }
+    }
+  },
+  "Practice/passwordChecker.sol": {
+    "__sources__": {
+      "Practice/passwordChecker.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract passwordChecker{\r\n    string private password = \"gurdil\";\r\n\r\n    function checkPassword(string memory input) public view returns(string memory){\r\n        if(keccak256(bytes(input))==keccak256(bytes(password))){\r\n           return \"Access Granted\";\r\n        }\r\n        return \"Access Denied\";\r\n    }\r\n\r\n    function password_in_bytes(string memory _input) public pure returns(bytes memory){\r\n        return bytes(_input);\r\n    }\r\n\r\n    \r\n    function password_length(string memory _input) public pure returns(uint){\r\n        uint strLength = bytes(_input).length;\r\n        return strLength;\r\n    }\r\n\r\n    function getFirstByte(string memory _input) public pure returns(bytes1){\r\n        bytes memory Bytes = bytes(_input);\r\n        bytes1 firstByte = Bytes[5];\r\n        return firstByte;\r\n    }\r\n\r\n    function bytestoString(bytes memory _input) public pure returns(string memory){\r\n        return string(_input);\r\n    }\r\n\r\n    function concat()public pure returns(bytes memory){\r\n       bytes memory a = \"Hello\"; \r\n       bytes memory b = \"World!\";\r\n       return  abi.encodePacked(a,b);\r\n\r\n    }\r\n\r\n    function toUppercase(string memory _input) public pure returns(string memory){\r\n        bytes memory strByte = bytes(_input);\r\n        uint strLength = strByte.length;\r\n        bytes memory resStr= new bytes(strLength);\r\n\r\n        for(uint i=0;i<strLength;i++){\r\n            if(uint8(strByte[i])>=97 && uint8(strByte[i])<=122){\r\n              resStr[i] = bytes1(uint8(strByte[i])-32);\r\n            }else{\r\n            resStr[i] = strByte[i];\r\n        }\r\n        }\r\n\r\n        return string(resStr);\r\n    }\r\n\r\n    function toLowercase(string memory _input) public pure returns(string memory){\r\n        bytes memory strByte = bytes(_input);\r\n        uint strLength = strByte.length;\r\n        bytes memory resStr= new bytes(strLength);\r\n\r\n        for(uint i=0;i<strLength;i++){\r\n            if(uint8(strByte[i])>=65 && uint8(strByte[i])<=90){\r\n              resStr[i] = bytes1(uint8(strByte[i])+32);\r\n            }else{\r\n            resStr[i] = strByte[i];\r\n        }\r\n        }\r\n\r\n        return string(resStr);\r\n    }\r\n\r\n    function countWords(string memory _input) public pure returns(uint){\r\n        bytes memory bStr = bytes(_input);\r\n        uint strLength = bStr.length;\r\n\r\n        if (strLength == 0) {\r\n            return 0;\r\n        }\r\n\r\n        uint count = 0;\r\n        bool inWord = false;\r\n\r\n        for (uint i = 0; i < strLength; i++) {\r\n            if (bStr[i] != 0x20 && !inWord) {\r\n                inWord = true;\r\n                count++;\r\n            } else if (bStr[i] == 0x20) {\r\n                inWord = false;\r\n            }\r\n    }\r\n    return count;\r\n}\r\n\r\nfunction compareString(string memory a, string memory b) public pure returns(bool){\r\n    bytes memory bStr1 = bytes(a);\r\n    bytes memory bStr2 = bytes(b);\r\n    uint strLength1 = bStr1.length;\r\n    uint strLength2 = bStr2.length;\r\n        if (strLength1 != strLength2) {\r\n            return false;\r\n        }\r\n\r\n        for (uint i = 0; i < strLength1; i++) {\r\n            if (bStr1[i] != bStr2[i]) {\r\n                return false;\r\n            }\r\n    }\r\n    return true;\r\n}\r\n\r\nfunction reverseString(string memory input) public pure returns(string memory){\r\n    bytes memory bStr = bytes(input);\r\n    bytes memory rStr = new bytes(bStr.length);\r\n\r\n    for(uint i=0;i<bStr.length;i++){\r\n        rStr[i] = bStr[bStr.length-1-i];\r\n    }\r\n    return string(rStr);\r\n}\r\n}",
+        "file": "Practice/passwordChecker.sol"
+      }
+    }
+  },
+  "learning/payable.sol": {
+    "__sources__": {
+      "learning/payable.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract receive_Ether{\r\n    address private owner;\r\n\r\n    constructor(){\r\n        owner = msg.sender;\r\n    }\r\n\r\n    modifier checkOwner{\r\n        require(owner == msg.sender,\"Access Denied\");\r\n        _;\r\n    }\r\n\r\n    mapping (address => uint) public balances;\r\n    uint newBalance;\r\n\r\n    function deposit() public payable {\r\n         require(msg.value > 0,\"add some funds\");\r\n         balances[msg.sender] += msg.value;\r\n    }\r\n\r\n    function getMyBalance() public view returns(uint){\r\n        return balances[msg.sender];\r\n    }\r\n\r\n    function withdraw(uint amount) public payable{\r\n        require(balances[msg.sender] >= amount ,\"No Funds\");\r\n        balances[msg.sender] -= amount;\r\n        payable(msg.sender).transfer(amount);\r\n    }\r\n\r\n    function getAllBalances() public view checkOwner returns(uint){\r\n        return address(this).balance;\r\n    }\r\n}",
+        "file": "learning/payable.sol"
+      }
+    }
+  },
+  "Practice/userRegister.sol": {
+    "__sources__": {
+      "Practice/userRegister.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract userRegister{\r\n    mapping(address=> string) public accounts;\r\n\r\n    event registerUser(address account, string name);\r\n\r\n    function addUser(string memory _name) public {\r\n        accounts[msg.sender] = _name;\r\n        emit registerUser(msg.sender, _name);\r\n    }\r\n\r\n}",
+        "file": "Practice/userRegister.sol"
+      }
+    }
+  },
+  "Practice/eventBalances.sol": {
+    "__sources__": {
+      "Practice/eventBalances.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract BankEvents{\r\n    \r\n    mapping(address=> uint) public balances;\r\n\r\n    event Balance(address account, uint balance);\r\n\r\n    function deposit() public payable {\r\n        balances[msg.sender] += msg.value;\r\n        emit Balance(msg.sender, msg.value);\r\n    }\r\n\r\n    function withdraw(uint amount) public payable {\r\n        balances[msg.sender] -= amount;\r\n        emit Balance(msg.sender, amount);\r\n    }\r\n\r\n}",
+        "file": "Practice/eventBalances.sol"
+      }
+    }
+  },
+  "Practice/crowdFunding.sol": {
+    "__sources__": {
+      "Practice/crowdFunding.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract crowdFunding{\r\n\r\n        address owner;\r\n        uint public goal;\r\n        uint public totalFunds;\r\n        uint deadline;\r\n\r\n        event addingFunds(address sender,uint amount);\r\n        event remaining_time(uint time);\r\n        event withdraw_funds(uint amount);\r\n        event refund_funds(address receiver, uint amount); \r\n\r\n\r\n        constructor(uint _goal, uint _min){\r\n            owner = msg.sender;\r\n            goal = _goal;\r\n            deadline = block.timestamp + _min * 1 minutes;\r\n        }\r\n       \r\n        mapping (address => uint) public contributions;\r\n        event startCrowdFunding(address Owner, uint goal);\r\n\r\n        function addFunds() public payable {\r\n            require(totalFunds <= goal,\"Goal Reached\");\r\n            require(deadline >= block.timestamp,\"Campaign is over\");\r\n            contributions[msg.sender] += msg.value;\r\n            totalFunds += msg.value;\r\n\r\n            emit addingFunds(msg.sender, msg.value);\r\n        }\r\n\r\n        function timeleft() public returns(uint){\r\n            if(deadline > block.timestamp){\r\n                emit remaining_time(deadline-block.timestamp);\r\n               return (deadline-block.timestamp);\r\n            }else{\r\n                emit remaining_time(0);\r\n            return 0;\r\n            }\r\n            \r\n        } \r\n\r\n        function withdraw() public payable {\r\n            require(msg.sender==owner,\"Access Denied\");\r\n            require(goal <= totalFunds,\"Goal not reached\");\r\n            emit withdraw_funds(address(this).balance);\r\n            payable(owner).transfer(address(this).balance);\r\n        }\r\n\r\n        function refund() public payable{\r\n            require(deadline < block.timestamp,\"Campaign still active\");\r\n            uint amount = contributions[msg.sender];\r\n            contributions[msg.sender]=0;\r\n            payable(msg.sender).transfer(amount);\r\n            totalFunds -= amount;\r\n\r\n            emit refund_funds(msg.sender,amount);\r\n        }\r\n        \r\n}",
+        "file": "Practice/crowdFunding.sol"
+      }
+    }
+  },
+  "Practice/BankDepositeSystem.sol": {
+    "__sources__": {
+      "Practice/BankDepositeSystem.sol": {
+        "content": "// 4. Bank Deposit System\n\n// Requirements:\n\n// Mapping for balances (address => uint)\n// Array to store all users who deposited\n// Function to deposit:\n// Use require to ensure deposit > 0\n// Add user to array if first-time deposit\n// Function to withdraw:\n// Use require to check sufficient balance\n\n// Expected Output:\n\n// Tracks balances correctly\n// Prevents zero deposits\n// Prevents over-withdrawal\n\n// SPDX-License-Identifier: MIT\npragma solidity ^0.8.0;\n\ncontract Bank_Deposite_System {\n    mapping(address => uint) balance;\n    address[] users;\n    mapping(address => bool) isUserAdded;\n\n    function Deposit(uint amount) public {\n        require(amount > 0, \"amount should be greater than 0\");\n        balance[msg.sender] += amount;\n        if (!isUserAdded[msg.sender]) {\n            users.push(msg.sender);\n            isUserAdded[msg.sender] = true;\n        }\n    }\n\n    function Withdraw(uint amount) public {\n        require(\n            amount > 0 && amount < balance[msg.sender],\n            \"amount should be greater than 0 and must be in bank\"\n        );\n        balance[msg.sender] -= amount;\n    }\n\n    function getAllUsers() public view returns (address[] memory, uint[] memory) {\n        uint[] memory all_balances=new uint[](users.length);\n        for (uint i = 0; i < users.length; i++) {\n            all_balances[i]= balance[users[i]];\n        }\n\n        return (users, all_balances);\n    }\n\n     function checkBalance() public view returns(uint){\n        return balance[msg.sender];\n    }\n}\n",
+        "file": "Practice/BankDepositeSystem.sol"
+      }
+    }
+  },
+  "Practice/ControlRegistration.sol": {
+    "__sources__": {
+      "Practice/ControlRegistration.sol": {
+        "content": "//  Controlled User Registration with Capacity Limit\r\n\r\n// Problem Statement:\r\n// Create a contract where users can register themselves, \r\n//but only up to a fixed maximum limit defined during deployment. \r\n//Store all registered users in a list and track their registration status. \r\n//Ensure a user cannot register more than once. Only valid registrations should be accepted, \r\n//and once the limit is reached, no further entries should be allowed.\r\n\r\n// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract Registration_Management{\r\n    mapping (uint => string) registrations;\r\n    mapping (uint => bool) isRegistered;\r\n    uint[] Total_Reg;\r\n\r\n    modifier checkTotalRegistrations{\r\n        require(Total_Reg.length<10,\"Entries are Full now\");\r\n        _;\r\n    }\r\n    \r\n    function addUser(uint id, string memory name) public checkTotalRegistrations{\r\n       require(!isRegistered[id],\"user already registered\");\r\n       Total_Reg.push(id);\r\n       registrations[id]= name;\r\n       isRegistered[id]=true;\r\n    }\r\n\r\n    function getFullDetails() public view returns (uint[] memory, string[] memory) {\r\n        string[] memory all_users = new string[](Total_Reg.length);\r\n        for (uint i = 0; i < Total_Reg.length; i++) {\r\n            all_users[i]= registrations[Total_Reg[i]];\r\n        }\r\n\r\n        return (Total_Reg, all_users);\r\n    }\r\n}",
+        "file": "Practice/ControlRegistration.sol"
+      }
+    }
+  },
+  "Practice/TicketBooking.sol": {
+    "__sources__": {
+      "Practice/TicketBooking.sol": {
+        "content": "// Design a contract for booking event tickets with limited availability.\r\n\r\n// Requirements:\r\n// Total tickets are fixed\r\n// Users can book tickets\r\n// Track total tickets sold\r\n\r\n// Conditions:\r\n// Cannot book zero tickets\r\n// Cannot book more tickets than available\r\n// Total sold tickets should never exceed the maximum limit\r\n\r\n// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract TicketBooking{\r\n    uint Total_tickets = 100;\r\n    uint Tickets_sold;\r\n\r\n    function book(uint tickets) public{\r\n        require(tickets>0,\"Insufficient Tickets\");\r\n        require(tickets<=100,\"Limited Tickets only 100\");\r\n\r\n        Total_tickets-=tickets;\r\n        Tickets_sold += tickets;\r\n\r\n        assert(Total_tickets>=0);\r\n    }\r\n\r\n    function Total_tickets_sold() view public returns(uint){\r\n        return Tickets_sold;\r\n    }\r\n}",
+        "file": "Practice/TicketBooking.sol"
+      }
+    }
+  },
+  "Practice/Voting_Struct.sol": {
+    "__sources__": {
+      "Practice/Voting_Struct.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract Voting_Struct{\r\n    address owner;\r\n\r\n    event add_party(uint id,string name,uint voteCount);\r\n    event add_voter(uint id,string name,bool isVoted,address wallet);\r\n    event _vote(uint partyId,address wallet);\r\n    event party_votes(uint partyId,uint votes);\r\n\r\n    constructor(){\r\n        owner=msg.sender;\r\n    }\r\n    modifier checkOwner{\r\n        require(owner==msg.sender,\"Access Denied\");\r\n        _;\r\n    }\r\n    \r\n    //parties\r\n    struct Party{\r\n        uint id;\r\n        string name;\r\n        uint voteCount;\r\n    }\r\n    mapping (uint => Party) parties;\r\n    mapping (uint => bool) isPartyExist;\r\n    uint[] allPartyIds;\r\n\r\n    function addParty(uint id, string memory name) public checkOwner{\r\n        require(!isPartyExist[id],\"Party already existed\");\r\n        allPartyIds.push(id);\r\n        isPartyExist[id]=true;\r\n        parties[id] = Party(id,name,0);\r\n\r\n        emit add_party(id, name, 0);\r\n    }\r\n\r\n    //Voters\r\n     struct Voter{\r\n        uint id;\r\n        string name;\r\n        bool isVoted;\r\n        address wallet;\r\n    }    \r\n    mapping (uint => Voter) Voters;\r\n    mapping (uint => bool) isVoterExisted;\r\n    mapping (address => bool) hasRegistered;\r\n    mapping (address => bool) hasVoted;\r\n    uint[] allVoters;\r\n\r\n    function addVoter(uint id, string memory name) public{\r\n        require(!isVoterExisted[id],\"Voter already existed\");\r\n        require(!hasRegistered[msg.sender], \"Voter already existed\");\r\n        allVoters.push(id);\r\n        isVoterExisted[id]=true;\r\n        hasRegistered[msg.sender]=true;\r\n        Voters[id] = Voter(id,name,false,msg.sender);\r\n\r\n        emit add_voter(id, name, false, msg.sender);\r\n    }\r\n\r\n    //Voting\r\n    function vote(uint partyId) public {\r\n        require(hasRegistered[msg.sender], \"Not registered as voter\");\r\n        require(!hasVoted[msg.sender], \"Already voted\");\r\n        require(isPartyExist[partyId], \"Invalid party\");\r\n\r\n        parties[partyId].voteCount++;\r\n        hasVoted[msg.sender] = true;\r\n\r\n        emit _vote(partyId, msg.sender);\r\n    }\r\n\r\n    //getVotingDetails\r\n     function getPartyVotes(uint partyId) public returns (string memory, uint){\r\n        require(isPartyExist[partyId], \"Party not found\");\r\n\r\n        Party memory p = parties[partyId];\r\n        emit party_votes(partyId, p.voteCount);\r\n        return (p.name, p.voteCount);\r\n    }\r\n\r\n}",
+        "file": "Practice/Voting_Struct.sol"
       }
     }
   }
