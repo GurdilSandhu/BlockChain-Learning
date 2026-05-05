@@ -215,22 +215,6 @@
       }
     }
   },
-  "Practice/MultiModifiers.sol": {
-    "__sources__": {
-      "Practice/MultiModifiers.sol": {
-        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract MutliModifier{\r\n    address owner;\r\n    uint public amount;\r\n\r\n    constructor(){\r\n        owner=msg.sender;\r\n    }\r\n\r\n    modifier checkOwner{\r\n       require(owner==msg.sender,\"Not Owner\");\r\n       _;\r\n    }\r\n\r\n    modifier moneyTransfer(uint value){\r\n       require(value>=100,\"Amount should be greater than or equal to 100\");\r\n       _;\r\n    }\r\n\r\n    function number(uint value) public checkOwner{\r\n          amount+=value;\r\n    }\r\n\r\n    function Transfer(uint value, address reciever) public moneyTransfer(value){\r\n          \r\n          amount-=value;\r\n\r\n       \r\n\r\n    }\r\n}",
-        "file": "Practice/MultiModifiers.sol"
-      }
-    }
-  },
-  "Practice/ProductInventory.sol": {
-    "__sources__": {
-      "Practice/ProductInventory.sol": {
-        "content": "// 5. Product Inventory System\r\n\r\n// Requirements:\r\n\r\n// Array of product IDs\r\n// Mapping for product stock (productId => quantity)\r\n// Function to add product:\r\n// Use require to ensure product doesn't already exist\r\n// Function to buy product:\r\n// Use require to check stock availability\r\n\r\n// Expected Output:\r\n\r\n// No duplicate product IDs\r\n// Stock reduces after purchase\r\n// Cannot buy out-of-stock product\r\n\r\n// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract Product_Inventory{\r\n    uint[] productID;\r\n    mapping (uint => uint) product_stock;\r\n    mapping (uint => bool) isExisted;\r\n\r\n    function addProductID(uint id,uint quantity) public{\r\n        require(!isExisted[id],\"Id already exist\");\r\n       \r\n        productID.push(id);\r\n        product_stock[id]=quantity;\r\n        isExisted[id]=true;\r\n    }\r\n\r\n    function buyProduct(uint id, uint quantity) public{\r\n        require(isExisted[id],\"Invalid Id\");\r\n        require(product_stock[id]>=quantity,\"Invalid quantity\");\r\n     \r\n        product_stock[id]-=quantity;\r\n    }\r\n\r\n     function getFullDetails() public view returns (uint[] memory, uint[] memory) {\r\n        uint[] memory all_products=new uint[](productID.length);\r\n        for (uint i = 0; i < productID.length; i++) {\r\n            all_products[i]= product_stock[productID[i]];\r\n        }\r\n\r\n        return (productID, all_products);\r\n    }\r\n}",
-        "file": "Practice/ProductInventory.sol"
-      }
-    }
-  },
   "Practice/studentAge.sol": {
     "__sources__": {
       "Practice/studentAge.sol": {
@@ -372,22 +356,6 @@
       }
     }
   },
-  "Practice/eventBalances.sol": {
-    "__sources__": {
-      "Practice/eventBalances.sol": {
-        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract BankEvents{\r\n    \r\n    mapping(address=> uint) public balances;\r\n\r\n    event Balance(address account, uint balance);\r\n\r\n    function deposit() public payable {\r\n        balances[msg.sender] += msg.value;\r\n        emit Balance(msg.sender, msg.value);\r\n    }\r\n\r\n    function withdraw(uint amount) public payable {\r\n        balances[msg.sender] -= amount;\r\n        emit Balance(msg.sender, amount);\r\n    }\r\n\r\n}",
-        "file": "Practice/eventBalances.sol"
-      }
-    }
-  },
-  "Practice/crowdFunding.sol": {
-    "__sources__": {
-      "Practice/crowdFunding.sol": {
-        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract crowdFunding{\r\n\r\n        address owner;\r\n        uint public goal;\r\n        uint public totalFunds;\r\n        uint deadline;\r\n\r\n        event addingFunds(address sender,uint amount);\r\n        event remaining_time(uint time);\r\n        event withdraw_funds(uint amount);\r\n        event refund_funds(address receiver, uint amount); \r\n\r\n\r\n        constructor(uint _goal, uint _min){\r\n            owner = msg.sender;\r\n            goal = _goal;\r\n            deadline = block.timestamp + _min * 1 minutes;\r\n        }\r\n       \r\n        mapping (address => uint) public contributions;\r\n        event startCrowdFunding(address Owner, uint goal);\r\n\r\n        function addFunds() public payable {\r\n            require(totalFunds <= goal,\"Goal Reached\");\r\n            require(deadline >= block.timestamp,\"Campaign is over\");\r\n            contributions[msg.sender] += msg.value;\r\n            totalFunds += msg.value;\r\n\r\n            emit addingFunds(msg.sender, msg.value);\r\n        }\r\n\r\n        function timeleft() public returns(uint){\r\n            if(deadline > block.timestamp){\r\n                emit remaining_time(deadline-block.timestamp);\r\n               return (deadline-block.timestamp);\r\n            }else{\r\n                emit remaining_time(0);\r\n            return 0;\r\n            }\r\n            \r\n        } \r\n\r\n        function withdraw() public payable {\r\n            require(msg.sender==owner,\"Access Denied\");\r\n            require(goal <= totalFunds,\"Goal not reached\");\r\n            emit withdraw_funds(address(this).balance);\r\n            payable(owner).transfer(address(this).balance);\r\n        }\r\n\r\n        function refund() public payable{\r\n            require(deadline < block.timestamp,\"Campaign still active\");\r\n            uint amount = contributions[msg.sender];\r\n            contributions[msg.sender]=0;\r\n            payable(msg.sender).transfer(amount);\r\n            totalFunds -= amount;\r\n\r\n            emit refund_funds(msg.sender,amount);\r\n        }\r\n        \r\n}",
-        "file": "Practice/crowdFunding.sol"
-      }
-    }
-  },
   "Practice/BankDepositeSystem.sol": {
     "__sources__": {
       "Practice/BankDepositeSystem.sol": {
@@ -412,11 +380,70 @@
       }
     }
   },
+  "Practice/eventBalances.sol": {
+    "__sources__": {
+      "Practice/eventBalances.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract BankEvents{\r\n    \r\n    mapping(address=> uint) public balances;\r\n\r\n    event Balance(address account, uint balance);\r\n\r\n    function deposit() public payable {\r\n        balances[msg.sender] += msg.value;\r\n        emit Balance(msg.sender, msg.value);\r\n    }\r\n\r\n    function withdraw(uint amount) public payable {\r\n        balances[msg.sender] -= amount;\r\n        emit Balance(msg.sender, amount);\r\n    }\r\n\r\n}",
+        "file": "Practice/eventBalances.sol"
+      }
+    }
+  },
   "Practice/Voting_Struct.sol": {
     "__sources__": {
       "Practice/Voting_Struct.sol": {
         "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract Voting_Struct{\r\n    address owner;\r\n\r\n    event add_party(uint id,string name,uint voteCount);\r\n    event add_voter(uint id,string name,bool isVoted,address wallet);\r\n    event _vote(uint partyId,address wallet);\r\n    event party_votes(uint partyId,uint votes);\r\n\r\n    constructor(){\r\n        owner=msg.sender;\r\n    }\r\n    modifier checkOwner{\r\n        require(owner==msg.sender,\"Access Denied\");\r\n        _;\r\n    }\r\n    \r\n    //parties\r\n    struct Party{\r\n        uint id;\r\n        string name;\r\n        uint voteCount;\r\n    }\r\n    mapping (uint => Party) parties;\r\n    mapping (uint => bool) isPartyExist;\r\n    uint[] allPartyIds;\r\n\r\n    function addParty(uint id, string memory name) public checkOwner{\r\n        require(!isPartyExist[id],\"Party already existed\");\r\n        allPartyIds.push(id);\r\n        isPartyExist[id]=true;\r\n        parties[id] = Party(id,name,0);\r\n\r\n        emit add_party(id, name, 0);\r\n    }\r\n\r\n    //Voters\r\n     struct Voter{\r\n        uint id;\r\n        string name;\r\n        bool isVoted;\r\n        address wallet;\r\n    }    \r\n    mapping (uint => Voter) Voters;\r\n    mapping (uint => bool) isVoterExisted;\r\n    mapping (address => bool) hasRegistered;\r\n    mapping (address => bool) hasVoted;\r\n    uint[] allVoters;\r\n\r\n    function addVoter(uint id, string memory name) public{\r\n        require(!isVoterExisted[id],\"Voter already existed\");\r\n        require(!hasRegistered[msg.sender], \"Voter already existed\");\r\n        allVoters.push(id);\r\n        isVoterExisted[id]=true;\r\n        hasRegistered[msg.sender]=true;\r\n        Voters[id] = Voter(id,name,false,msg.sender);\r\n\r\n        emit add_voter(id, name, false, msg.sender);\r\n    }\r\n\r\n    //Voting\r\n    function vote(uint partyId) public {\r\n        require(hasRegistered[msg.sender], \"Not registered as voter\");\r\n        require(!hasVoted[msg.sender], \"Already voted\");\r\n        require(isPartyExist[partyId], \"Invalid party\");\r\n\r\n        parties[partyId].voteCount++;\r\n        hasVoted[msg.sender] = true;\r\n\r\n        emit _vote(partyId, msg.sender);\r\n    }\r\n\r\n    //getVotingDetails\r\n     function getPartyVotes(uint partyId) public returns (string memory, uint){\r\n        require(isPartyExist[partyId], \"Party not found\");\r\n\r\n        Party memory p = parties[partyId];\r\n        emit party_votes(partyId, p.voteCount);\r\n        return (p.name, p.voteCount);\r\n    }\r\n\r\n}",
         "file": "Practice/Voting_Struct.sol"
+      }
+    }
+  },
+  "Practice/crowdFunding.sol": {
+    "__sources__": {
+      "Practice/crowdFunding.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract crowdFunding{\r\n\r\n        address owner;\r\n        uint public goal;\r\n        uint public totalFunds;\r\n        uint deadline;\r\n\r\n        event addingFunds(address indexed sender,uint amount);\r\n        event remaining_time(uint time);\r\n        event withdraw_funds(uint amount);\r\n        event refund_funds(address receiver, uint amount); \r\n\r\n\r\n        constructor(uint _goal, uint _min){\r\n            owner = msg.sender;\r\n            goal = _goal;\r\n            deadline = block.timestamp + _min * 1 minutes;\r\n        }\r\n       \r\n        mapping (address => uint) public contributions;\r\n        event startCrowdFunding(address Owner, uint goal);\r\n\r\n        function addFunds() public payable {\r\n            require(totalFunds <= goal,\"Goal Reached\");\r\n            require(deadline >= block.timestamp,\"Campaign is over\");\r\n            contributions[msg.sender] += msg.value;\r\n            totalFunds += msg.value;\r\n\r\n            emit addingFunds(msg.sender, msg.value);\r\n        }\r\n\r\n        function timeleft() public returns(uint){\r\n            if(deadline > block.timestamp){\r\n                emit remaining_time(deadline-block.timestamp);\r\n               return (deadline-block.timestamp);\r\n            }else{\r\n                emit remaining_time(0);\r\n            return 0;\r\n            }\r\n            \r\n        } \r\n\r\n        function withdraw() public payable {\r\n            require(msg.sender==owner,\"Access Denied\");\r\n            require(goal <= totalFunds,\"Goal not reached\");\r\n            emit withdraw_funds(address(this).balance);\r\n            payable(owner).transfer(address(this).balance);\r\n        }\r\n\r\n        function refund() public payable{\r\n            require(deadline < block.timestamp,\"Campaign still active\");\r\n            uint amount = contributions[msg.sender];\r\n            contributions[msg.sender]=0;\r\n            payable(msg.sender).transfer(amount);\r\n            totalFunds -= amount;\r\n\r\n            emit refund_funds(msg.sender,amount);\r\n        }\r\n        \r\n}",
+        "file": "Practice/crowdFunding.sol"
+      }
+    }
+  },
+  "Practice/MultiModifiers.sol": {
+    "__sources__": {
+      "Practice/MultiModifiers.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract MutliModifier{\r\n    address owner;\r\n    uint public amount;\r\n\r\n    constructor(){\r\n        owner=msg.sender;\r\n    }\r\n\r\n    modifier checkOwner{\r\n       require(owner==msg.sender,\"Not Owner\");\r\n       _;\r\n    }\r\n\r\n    modifier moneyTransfer(uint value){\r\n       require(value>=100,\"Amount should be greater than or equal to 100\");\r\n       _;\r\n    }\r\n\r\n    function number(uint value) public checkOwner{\r\n          amount+=value;\r\n    }\r\n\r\n    function Transfer(uint value, address reciever) public moneyTransfer(value){\r\n          \r\n          amount-=value;\r\n\r\n       \r\n\r\n    }\r\n}",
+        "file": "Practice/MultiModifiers.sol"
+      }
+    }
+  },
+  "Practice/storeWithItemPRice.sol": {
+    "__sources__": {}
+  },
+  "Practice/ProductInventory.sol": {
+    "__sources__": {
+      "Practice/ProductInventory.sol": {
+        "content": "// 5. Product Inventory System\r\n\r\n// Requirements:\r\n\r\n// Array of product IDs\r\n// Mapping for product stock (productId => quantity)\r\n// Function to add product:\r\n// Use require to ensure product doesn't already exist\r\n// Function to buy product:\r\n// Use require to check stock availability\r\n\r\n// Expected Output:\r\n\r\n// No duplicate product IDs\r\n// Stock reduces after purchase\r\n// Cannot buy out-of-stock product\r\n\r\n// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract Product_Inventory{\r\n    uint[] productID;\r\n    mapping (uint => uint) product_stock;\r\n    mapping (uint => bool) isExisted;\r\n\r\n    function addProductID(uint id,uint quantity) public{\r\n        require(!isExisted[id],\"Id already exist\");\r\n       \r\n        productID.push(id);\r\n        product_stock[id]=quantity;\r\n        isExisted[id]=true;\r\n    }\r\n\r\n    function buyProduct(uint id, uint quantity) public{\r\n        require(isExisted[id],\"Invalid Id\");\r\n        require(product_stock[id]>=quantity,\"Invalid quantity\");\r\n     \r\n        product_stock[id]-=quantity;\r\n    }\r\n\r\n     function getFullDetails() public view returns (uint[] memory, uint[] memory) {\r\n        uint[] memory all_products=new uint[](productID.length);\r\n        for (uint i = 0; i < productID.length; i++) {\r\n            all_products[i]= product_stock[productID[i]];\r\n        }\r\n\r\n        return (productID, all_products);\r\n    }\r\n}",
+        "file": "Practice/ProductInventory.sol"
+      }
+    }
+  },
+  "Practice/eventPassing.sol": {
+    "__sources__": {
+      "Practice/eventPassing.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract eventPassing{\r\n    uint balance;\r\n    uint wallet;\r\n\r\n    event deposit(uint amount);\r\n    event accounts(address indexed acc, uint amount);\r\n\r\n    function depositAmount(uint amount) public{\r\n        balance += amount;\r\n\r\n        emit deposit(amount);\r\n    }\r\n\r\n    function withdrawAmount(uint amount) public{\r\n        balance -= amount;\r\n    }\r\n\r\n    function account() public payable{\r\n           emit accounts(msg.sender,msg.value);\r\n    }\r\n}",
+        "file": "Practice/eventPassing.sol"
+      }
+    }
+  },
+  "Practice/storeWithItemPrice.sol": {
+    "__sources__": {
+      "Practice/storeWithItemPrice.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract SimpleStore{\r\n    address owner;\r\n\r\n    constructor(){\r\n        owner = msg.sender;\r\n    }\r\n\r\n    event ProductBought(address buyer, uint amount);\r\n\r\n    function buy() public payable {\r\n        require(msg.value==1 ether,\"value not matched\");\r\n        payable(address(this)).transfer(msg.value);\r\n\r\n        emit ProductBought(msg.sender, msg.value);\r\n    }\r\n}",
+        "file": "Practice/storeWithItemPrice.sol"
+      }
+    }
+  },
+  "Practice/eCommerce.sol": {
+    "__sources__": {
+      "Practice/eCommerce.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract Ecommerce {\r\n\r\n    address public owner;\r\n    uint public productCount;\r\n    uint public orderCount;\r\n\r\n    constructor() {\r\n        owner = msg.sender;\r\n    }\r\n\r\n    //  Product structure\r\n    struct Product {\r\n        uint id;\r\n        string name;\r\n        uint price;\r\n        address payable seller;\r\n        bool available;\r\n    }\r\n\r\n    //  Order structure\r\n    struct Order {\r\n        uint id;\r\n        uint productId;\r\n        address buyer;\r\n        uint amount;\r\n    }\r\n\r\n    // Storage\r\n    mapping(uint => Product) public products;\r\n    mapping(uint => Order) public orders;\r\n\r\n    //  Events\r\n    event ProductAdded(uint id, string name, uint price, address seller);\r\n    event ProductPurchased(uint orderId, uint productId, address buyer, uint amount);\r\n    event ProductRemoved(uint productId);\r\n\r\n    //  Add Product\r\n    function addProduct(string memory _name, uint _price) public {\r\n        require(_price > 0, \"Price must be greater than 0\");\r\n\r\n        productCount++;\r\n\r\n        products[productCount] = Product(productCount, _name, _price, payable(msg.sender),true);\r\n\r\n        emit ProductAdded(productCount, _name, _price, msg.sender);\r\n    }\r\n\r\n    //  Buy Product\r\n    function buyProduct(uint _productId) public payable {\r\n        Product storage product = products[_productId];\r\n\r\n        require(product.available, \"Product not available\");\r\n        require(msg.value == product.price, \"Incorrect price\");\r\n\r\n        orderCount++;\r\n\r\n        // Save order\r\n        orders[orderCount] = Order(orderCount,_productId,msg.sender, msg.value);\r\n\r\n        // Transfer ETH to seller\r\n        product.seller.transfer(msg.value);\r\n\r\n        \r\n\r\n        emit ProductPurchased(orderCount, _productId, msg.sender, msg.value);\r\n    }\r\n\r\n    //  Remove Product\r\n    function removeProduct(uint _productId) public {\r\n        Product storage product = products[_productId];\r\n\r\n        require(msg.sender == product.seller, \"Not seller\");\r\n\r\n        product.available = false;\r\n\r\n        emit ProductRemoved(_productId);\r\n    }\r\n}",
+        "file": "Practice/eCommerce.sol"
       }
     }
   }
