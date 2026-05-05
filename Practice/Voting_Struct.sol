@@ -3,6 +3,12 @@ pragma solidity ^0.8.0;
 
 contract Voting_Struct{
     address owner;
+
+    event add_party(uint id,string name,uint voteCount);
+    event add_voter(uint id,string name,bool isVoted,address wallet);
+    event _vote(uint partyId,address wallet);
+    event party_votes(uint partyId,uint votes);
+
     constructor(){
         owner=msg.sender;
     }
@@ -26,6 +32,8 @@ contract Voting_Struct{
         allPartyIds.push(id);
         isPartyExist[id]=true;
         parties[id] = Party(id,name,0);
+
+        emit add_party(id, name, 0);
     }
 
     //Voters
@@ -48,6 +56,8 @@ contract Voting_Struct{
         isVoterExisted[id]=true;
         hasRegistered[msg.sender]=true;
         Voters[id] = Voter(id,name,false,msg.sender);
+
+        emit add_voter(id, name, false, msg.sender);
     }
 
     //Voting
@@ -58,13 +68,16 @@ contract Voting_Struct{
 
         parties[partyId].voteCount++;
         hasVoted[msg.sender] = true;
+
+        emit _vote(partyId, msg.sender);
     }
 
     //getVotingDetails
-     function getPartyVotes(uint partyId) public view returns (string memory, uint){
+     function getPartyVotes(uint partyId) public returns (string memory, uint){
         require(isPartyExist[partyId], "Party not found");
 
         Party memory p = parties[partyId];
+        emit party_votes(partyId, p.voteCount);
         return (p.name, p.voteCount);
     }
 

@@ -6,7 +6,18 @@
 	"output": {
 		"abi": [
 			{
-				"inputs": [],
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_goal",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_min",
+						"type": "uint256"
+					}
+				],
 				"stateMutability": "nonpayable",
 				"type": "constructor"
 			},
@@ -14,19 +25,38 @@
 				"anonymous": false,
 				"inputs": [
 					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "sender",
+						"type": "address"
+					},
+					{
 						"indexed": false,
 						"internalType": "uint256",
-						"name": "partyId",
+						"name": "amount",
 						"type": "uint256"
-					},
+					}
+				],
+				"name": "addingFunds",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
 					{
 						"indexed": false,
 						"internalType": "address",
-						"name": "wallet",
+						"name": "receiver",
 						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
 					}
 				],
-				"name": "_vote",
+				"name": "refund_funds",
 				"type": "event"
 			},
 			{
@@ -35,54 +65,30 @@
 					{
 						"indexed": false,
 						"internalType": "uint256",
-						"name": "id",
-						"type": "uint256"
-					},
-					{
-						"indexed": false,
-						"internalType": "string",
-						"name": "name",
-						"type": "string"
-					},
-					{
-						"indexed": false,
-						"internalType": "uint256",
-						"name": "voteCount",
+						"name": "time",
 						"type": "uint256"
 					}
 				],
-				"name": "add_party",
+				"name": "remaining_time",
 				"type": "event"
 			},
 			{
 				"anonymous": false,
 				"inputs": [
-					{
-						"indexed": false,
-						"internalType": "uint256",
-						"name": "id",
-						"type": "uint256"
-					},
-					{
-						"indexed": false,
-						"internalType": "string",
-						"name": "name",
-						"type": "string"
-					},
-					{
-						"indexed": false,
-						"internalType": "bool",
-						"name": "isVoted",
-						"type": "bool"
-					},
 					{
 						"indexed": false,
 						"internalType": "address",
-						"name": "wallet",
+						"name": "Owner",
 						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "goal",
+						"type": "uint256"
 					}
 				],
-				"name": "add_voter",
+				"name": "startCrowdFunding",
 				"type": "event"
 			},
 			{
@@ -91,70 +97,63 @@
 					{
 						"indexed": false,
 						"internalType": "uint256",
-						"name": "partyId",
-						"type": "uint256"
-					},
-					{
-						"indexed": false,
-						"internalType": "uint256",
-						"name": "votes",
+						"name": "amount",
 						"type": "uint256"
 					}
 				],
-				"name": "party_votes",
+				"name": "withdraw_funds",
 				"type": "event"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "id",
-						"type": "uint256"
-					},
-					{
-						"internalType": "string",
-						"name": "name",
-						"type": "string"
-					}
-				],
-				"name": "addParty",
+				"inputs": [],
+				"name": "addFunds",
 				"outputs": [],
-				"stateMutability": "nonpayable",
+				"stateMutability": "payable",
 				"type": "function"
 			},
 			{
 				"inputs": [
 					{
-						"internalType": "uint256",
-						"name": "id",
-						"type": "uint256"
-					},
-					{
-						"internalType": "string",
-						"name": "name",
-						"type": "string"
+						"internalType": "address",
+						"name": "",
+						"type": "address"
 					}
 				],
-				"name": "addVoter",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "partyId",
-						"type": "uint256"
-					}
-				],
-				"name": "getPartyVotes",
+				"name": "contributions",
 				"outputs": [
 					{
-						"internalType": "string",
+						"internalType": "uint256",
 						"name": "",
-						"type": "string"
-					},
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "goal",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "refund",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "timeleft",
+				"outputs": [
 					{
 						"internalType": "uint256",
 						"name": "",
@@ -165,16 +164,23 @@
 				"type": "function"
 			},
 			{
-				"inputs": [
+				"inputs": [],
+				"name": "totalFunds",
+				"outputs": [
 					{
 						"internalType": "uint256",
-						"name": "partyId",
+						"name": "",
 						"type": "uint256"
 					}
 				],
-				"name": "vote",
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "withdraw",
 				"outputs": [],
-				"stateMutability": "nonpayable",
+				"stateMutability": "payable",
 				"type": "function"
 			}
 		],
@@ -191,7 +197,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"Practice/Voting_Struct.sol": "Voting_Struct"
+			"Practice/crowdFunding.sol": "crowdFunding"
 		},
 		"evmVersion": "istanbul",
 		"libraries": {},
@@ -205,12 +211,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"Practice/Voting_Struct.sol": {
-			"keccak256": "0x217f0e17c74ed6e20d02eeb449fbb99b1994fdadab8df42e1384ce12b1b29443",
+		"Practice/crowdFunding.sol": {
+			"keccak256": "0x8ae10748174affc077ec97f1a93b964a2d6e043170e912b292e80b8ad1d45421",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://0fa15b03cb27899658ee66380328c658ea0369741cabe053b468e7a92b05d128",
-				"dweb:/ipfs/QmW5Q8Xu71oATZw6JNw4dvNwGwyUK1rWjSqGNJDjGtoy1E"
+				"bzz-raw://d8fe7178e498f193d9cb4c206c1763b04f70f031336f9ec3ea24439abe73d003",
+				"dweb:/ipfs/QmPSNzttGRK2kJefyKnWncb8DeukpUP1cKVX3hDQjR9Q8o"
 			]
 		}
 	},

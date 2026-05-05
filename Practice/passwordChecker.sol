@@ -2,7 +2,7 @@
 pragma solidity ^0.8.0;
 
 contract passwordChecker{
-    string private password = "gurdilsingh10@gmail.com";
+    string private password = "gurdil";
 
     function checkPassword(string memory input) public view returns(string memory){
         if(keccak256(bytes(input))==keccak256(bytes(password))){
@@ -34,7 +34,6 @@ contract passwordChecker{
     function concat()public pure returns(bytes memory){
        bytes memory a = "Hello"; 
        bytes memory b = "World!";
-    //    bytes memory combined = bytes.concat(a,b);
        return  abi.encodePacked(a,b);
 
     }
