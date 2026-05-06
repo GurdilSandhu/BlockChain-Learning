@@ -335,14 +335,6 @@
       }
     }
   },
-  "Practice/BankDepositeSystem.sol": {
-    "__sources__": {
-      "Practice/BankDepositeSystem.sol": {
-        "content": "// 4. Bank Deposit System\n\n// Requirements:\n\n// Mapping for balances (address => uint)\n// Array to store all users who deposited\n// Function to deposit:\n// Use require to ensure deposit > 0\n// Add user to array if first-time deposit\n// Function to withdraw:\n// Use require to check sufficient balance\n\n// Expected Output:\n\n// Tracks balances correctly\n// Prevents zero deposits\n// Prevents over-withdrawal\n\n// SPDX-License-Identifier: MIT\npragma solidity ^0.8.0;\n\ncontract Bank_Deposite_System {\n    mapping(address => uint) balance;\n    address[] users;\n    mapping(address => bool) isUserAdded;\n\n    function Deposit(uint amount) public {\n        require(amount > 0, \"amount should be greater than 0\");\n        balance[msg.sender] += amount;\n        if (!isUserAdded[msg.sender]) {\n            users.push(msg.sender);\n            isUserAdded[msg.sender] = true;\n        }\n    }\n\n    function Withdraw(uint amount) public {\n        require(\n            amount > 0 && amount < balance[msg.sender],\n            \"amount should be greater than 0 and must be in bank\"\n        );\n        balance[msg.sender] -= amount;\n    }\n\n    function getAllUsers() public view returns (address[] memory, uint[] memory) {\n        uint[] memory all_balances=new uint[](users.length);\n        for (uint i = 0; i < users.length; i++) {\n            all_balances[i]= balance[users[i]];\n        }\n\n        return (users, all_balances);\n    }\n\n     function checkBalance() public view returns(uint){\n        return balance[msg.sender];\n    }\n}\n",
-        "file": "Practice/BankDepositeSystem.sol"
-      }
-    }
-  },
   "Practice/ControlRegistration.sol": {
     "__sources__": {
       "Practice/ControlRegistration.sol": {
@@ -460,6 +452,14 @@
       "Practice/Inheritence.sol": {
         "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\n//single Inheritence\r\n\r\n// contract Student{\r\n//     string name;\r\n//     uint age;\r\n\r\n//     function details(string memory _name, uint _age) public{\r\n//           name= _name;\r\n//           age= _age;\r\n//     }\r\n// }\r\n\r\n// contract Result is Student{\r\n//     uint marks;\r\n\r\n//     function Marks(uint _marks) public{\r\n//         marks = _marks;\r\n//         //details(\"Sam\", 19);\r\n\r\n//     }\r\n\r\n//     function getAll() public view returns(string memory, uint, uint){\r\n//          return(name,age,marks);\r\n//     }\r\n// }\r\n\r\ncontract father{\r\n    uint number_of_rooms;\r\n    string houseName;\r\n\r\n    function houseDetails(string memory _name, uint _number_of_rooms) public{\r\n         houseName = _name;\r\n         number_of_rooms = _number_of_rooms;\r\n    }\r\n}\r\n\r\ncontract mother{\r\n    uint amount;\r\n\r\n    function jewelry(uint _amount) public{\r\n         amount = _amount;\r\n    }\r\n}\r\n\r\ncontract child is father, mother{\r\n    string studentName;\r\n\r\n    function StudentName(string memory _name) public{\r\n         studentName = _name;\r\n    }\r\n\r\n    function getDetails() public view returns(string memory, string memory, uint, uint){\r\n         return(studentName,houseName, number_of_rooms,amount);\r\n    }\r\n}",
         "file": "Practice/Inheritence.sol"
+      }
+    }
+  },
+  "Practice/BankDepositeSystem.sol": {
+    "__sources__": {
+      "Practice/BankDepositeSystem.sol": {
+        "content": "// 4. Bank Deposit System\n\n// Requirements:\n\n// Mapping for balances (address => uint)\n// Array to store all users who deposited\n// Function to deposit:\n// Use require to ensure deposit > 0\n// Add user to array if first-time deposit\n// Function to withdraw:\n// Use require to check sufficient balance\n\n// Expected Output:\n\n// Tracks balances correctly\n// Prevents zero deposits\n// Prevents over-withdrawal\n\n// SPDX-License-Identifier: MIT\npragma solidity ^0.8.0;\n\ncontract Bank_Deposite_System {\n    mapping(address => uint) balance;\n    address[] users;\n    mapping(address => bool) isUserAdded;\n\n    function Deposit(uint amount) public {\n        require(amount > 0, \"amount should be greater than 0\");\n        balance[msg.sender] += amount;\n        if (!isUserAdded[msg.sender]) {\n            users.push(msg.sender);\n            isUserAdded[msg.sender] = true;\n        }\n    }\n\n    function Withdraw(uint amount) public {\n        require(\n            amount > 0 && amount < balance[msg.sender],\n            \"amount should be greater than 0 and must be in bank\"\n        );\n        balance[msg.sender] -= amount;\n    }\n\n    function getAllUsers() public view returns (address[] memory, uint[] memory) {\n        uint[] memory all_balances=new uint[](users.length);\n        for (uint i = 0; i < users.length; i++) {\n            all_balances[i]= balance[users[i]];\n        }\n\n        return (users, all_balances);\n    }\n\n     function checkBalance() public view returns(uint){\n        return balance[msg.sender];\n    }\n}\n",
+        "file": "Practice/BankDepositeSystem.sol"
       }
     }
   }
