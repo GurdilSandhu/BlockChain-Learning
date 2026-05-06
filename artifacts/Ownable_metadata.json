@@ -1,0 +1,51 @@
+{
+	"compiler": {
+		"version": "0.8.0+commit.c7dfd78e"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"Practice/Crowdfunding_Governance.sol": "Ownable"
+		},
+		"evmVersion": "istanbul",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"Practice/Crowdfunding_Governance.sol": {
+			"keccak256": "0x08f5c9f860565634c3865b067ad6fe5c8e073207311b7fdf97fb5ca76e6dcef8",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://041e447f3792766aa60ec727f390a1a7198a0476159a17c4d04731cda830ae92",
+				"dweb:/ipfs/QmcN8LwYHW3wMQ3i9AgFQjbioi4xeFwiUSUdUrApXomnUE"
+			]
+		}
+	},
+	"version": 1
+}

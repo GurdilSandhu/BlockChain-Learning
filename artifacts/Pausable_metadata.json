@@ -1,0 +1,73 @@
+{
+	"compiler": {
+		"version": "0.8.0+commit.c7dfd78e"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "pause",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "paused",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "unpause",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"Practice/Crowdfunding_Governance.sol": "Pausable"
+		},
+		"evmVersion": "istanbul",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"Practice/Crowdfunding_Governance.sol": {
+			"keccak256": "0xc8d37037c113e270317b671ee74d3885fbb3a4d0a434519d1fbd981e91199192",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://80f02538c348884ff053a0ea1603282459e2b2d370a0a10489d061a03fff1cfb",
+				"dweb:/ipfs/QmXVsjMiJAK15m1cndN71arcNuppeeguBLL1SCaf6pMPkX"
+			]
+		}
+	},
+	"version": 1
+}
