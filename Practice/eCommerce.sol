@@ -16,8 +16,9 @@ contract Ecommerce {
         uint id;
         string name;
         uint price;
-        address payable seller;
+        address payable seller;    
         bool available;
+        uint quantity;
     }
 
     //  Order structure
@@ -38,22 +39,23 @@ contract Ecommerce {
     event ProductRemoved(uint productId);
 
     //  Add Product
-    function addProduct(string memory _name, uint _price) public {
+    function addProduct(string memory _name, uint _price, uint _quantity) public {
         require(_price > 0, "Price must be greater than 0");
 
         productCount++;
 
-        products[productCount] = Product(productCount, _name, _price, payable(msg.sender),true);
+        products[productCount] = Product(productCount, _name, _price, payable(msg.sender),true,_quantity);
 
         emit ProductAdded(productCount, _name, _price, msg.sender);
     }
 
     //  Buy Product
-    function buyProduct(uint _productId) public payable {
+    function buyProduct(uint _productId,uint _quantity) public payable {
         Product storage product = products[_productId];
 
         require(product.available, "Product not available");
         require(msg.value == product.price, "Incorrect price");
+        require(products[_productId].quantity-_quantity >= 0,"not enough quantity");
 
         orderCount++;
 
@@ -62,6 +64,8 @@ contract Ecommerce {
 
         // Transfer ETH to seller
         product.seller.transfer(msg.value);
+        
+        products[_productId] = Product(_productId, products[_productId].name , products[_productId].price, payable(products[_productId].seller),true,products[_productId].quantity-_quantity);
 
 
  

@@ -1,3 +1,4 @@
 {
-  "hardhat@3.4.3/console.sol": ".deps/npm/hardhat@3.4.3/console.sol"
+  "hardhat@3.4.3/console.sol": ".deps/npm/hardhat@3.4.3/console.sol",
+  "hardhat@3.4.4/console.sol": ".deps/npm/hardhat@3.4.4/console.sol"
 }

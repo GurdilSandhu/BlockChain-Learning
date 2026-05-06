@@ -1,0 +1,59 @@
+{
+	"compiler": {
+		"version": "0.8.0+commit.c7dfd78e"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					}
+				],
+				"name": "jewelry",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"Practice/Inheritence.sol": "mother"
+		},
+		"evmVersion": "istanbul",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"Practice/Inheritence.sol": {
+			"keccak256": "0x0840cddcc058011f1ab76124316feec3e0faf53b39c5d54f34ca20c6859ef405",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://18e98acde33d2c084ad7ec030449b22d2656e5b2c6ca38392162a82390432f53",
+				"dweb:/ipfs/QmRVKBZnZEXqPEpLvbQTpHP5xqxPHCGhEroAbHRc7jBjAF"
+			]
+		}
+	},
+	"version": 1
+}

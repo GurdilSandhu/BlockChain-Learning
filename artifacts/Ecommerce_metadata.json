@@ -96,6 +96,11 @@
 						"internalType": "uint256",
 						"name": "_price",
 						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_quantity",
+						"type": "uint256"
 					}
 				],
 				"name": "addProduct",
@@ -108,6 +113,11 @@
 					{
 						"internalType": "uint256",
 						"name": "_productId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_quantity",
 						"type": "uint256"
 					}
 				],
@@ -223,6 +233,11 @@
 						"internalType": "bool",
 						"name": "available",
 						"type": "bool"
+					},
+					{
+						"internalType": "uint256",
+						"name": "quantity",
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -270,11 +285,11 @@
 	},
 	"sources": {
 		"Practice/eCommerce.sol": {
-			"keccak256": "0x8d590849971350fd7fc1905ad61def55477dec009db6cba1e04b6f8c47555e6e",
+			"keccak256": "0x59f3710f92b3aeb006672ba56a2e3ef52967ab3b0771a98629553b827b7a9c29",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://417d1826fbb9e434e081233a3066b38bde11adde7b8c28cb0344fc60d4e23e0f",
-				"dweb:/ipfs/QmT4WRZHC7RVYYTMtQE7D9CtxEyi9c7s6kFfkKtoEm2Unx"
+				"bzz-raw://4ed322a83662ad4d41015f8228fcf6c8736ee02200e5fa5bdba3b279ef711dd1",
+				"dweb:/ipfs/QmTMugxDLDhp7Lr9wkigzaNFPpXWW48BA6SyPhMP7Wzt2t"
 			]
 		}
 	},

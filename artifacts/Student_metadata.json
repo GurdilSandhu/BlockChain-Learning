@@ -1,0 +1,64 @@
+{
+	"compiler": {
+		"version": "0.8.0+commit.c7dfd78e"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_name",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_age",
+						"type": "uint256"
+					}
+				],
+				"name": "details",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"Practice/Inheritence.sol": "Student"
+		},
+		"evmVersion": "istanbul",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"Practice/Inheritence.sol": {
+			"keccak256": "0x977c72f704e9145ad69dbd1eb3fa254c0e0eaf595281ece94c21d97509c35d46",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://f5d85c81ec9d0f9983e6a65dbb64e4d650b7f79596c0e28eaf95bbff201ed652",
+				"dweb:/ipfs/QmdePytC3hyHXCXqH15BkFrxWh7oZrUVh8Gew2Ttwoy7RF"
+			]
+		}
+	},
+	"version": 1
+}
