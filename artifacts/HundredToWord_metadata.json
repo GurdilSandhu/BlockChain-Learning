@@ -53,11 +53,11 @@
 	},
 	"sources": {
 		"learning/20may/thousandToword.sol": {
-			"keccak256": "0x19386786470fd5b6cfd4ad79c41e7c5ed68a7d0dab49dfe0cfae48c68502f0de",
+			"keccak256": "0xc2070592c9ada545792afe80703ee9ae2f893599212284fc628f28a46b4aeb75",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://ded4466cd4c3897be208cf7b1a4c1a84d77bfe7846018d74f9feed1c3655007a",
-				"dweb:/ipfs/QmfLocBaSjpRywiHgPbcH4y4AjLKEPfZHNSpxBGha44wbc"
+				"bzz-raw://90ca5a39671cd3425d19f819c4b7965050ee60cd1d270f091f60975aeca33f77",
+				"dweb:/ipfs/QmPkWMDUTgyzMLiUcRpUFWiRbeRzz4iVkcmnsrHBnQ7SxR"
 			]
 		}
 	},

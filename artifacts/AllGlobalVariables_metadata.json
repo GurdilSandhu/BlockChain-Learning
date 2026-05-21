@@ -1,0 +1,210 @@
+{
+	"compiler": {
+		"version": "0.8.31+commit.fd3a2265"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "contractDetails",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "_this",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_balance",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getBlockchainData",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_blockNumber",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_timestamp",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_baseFee",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_prevRandao",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "_coinbase",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_gasLimit",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_chainId",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getTransactionData",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "_sender",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_value",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bytes4",
+						"name": "_sig",
+						"type": "bytes4"
+					},
+					{
+						"internalType": "bytes",
+						"name": "_data",
+						"type": "bytes"
+					},
+					{
+						"internalType": "address",
+						"name": "_origin",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_gasPrice",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_gasLeft",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "lastSender",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "lastTimestamp",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "x",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "y",
+						"type": "uint256"
+					}
+				],
+				"name": "utilityExamples",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "_hash",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "bytes",
+						"name": "_encoded",
+						"type": "bytes"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_modSum",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"learning/21 May/GlobalVar/practice.sol": "AllGlobalVariables"
+		},
+		"evmVersion": "osaka",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"learning/21 May/GlobalVar/practice.sol": {
+			"keccak256": "0x0f903ad02bf2ae98caca3798cf05a7122fdd1e46860e0a2b07fab86935e7a1eb",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://a2a2e649c7ea05da8c785124602fb03f4895385f21dd0bc23037ba0e46821eee",
+				"dweb:/ipfs/QmYncWSJYCpjujLfzvbZNbaibb5S8LoMGpJB562rMonPgL"
+			]
+		}
+	},
+	"version": 1
+}

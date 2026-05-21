@@ -1,0 +1,115 @@
+{
+	"compiler": {
+		"version": "0.8.31+commit.fd3a2265"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_courseAddress",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [],
+				"name": "getMyOffer",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "offers",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "offeredPrice",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "exists",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_price",
+						"type": "uint256"
+					}
+				],
+				"name": "submitOffer",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"learning/21 May/course/StudentOffer.sol": "StudentOffer"
+		},
+		"evmVersion": "osaka",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"learning/21 May/course/StudentOffer.sol": {
+			"keccak256": "0xcd08f618668d8f280d9be4a2130c9db15981dfae288273da410b8fdb1217568d",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://b755ca15109a8dd38fd8f6cac7c233855f1bf0bfb69826e0eac3900bfda3c5ec",
+				"dweb:/ipfs/QmYKCHhY48Z4Gd1mn6nL3nWBFH6wNFjPhFfWggcvYRqWk5"
+			]
+		},
+		"learning/21 May/course/TeacherCourse.sol": {
+			"keccak256": "0x669aa0f6068f4350ef9b04f084d1d13025bc78ccda04a133827835372565b15b",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://7169b8cc68b3580a94fd2ba278a3780f7656d9466d653f33b6c4a9f1e3674777",
+				"dweb:/ipfs/QmNajUwLVCkpX217r5TUn7Ww5f87TQwghUM6pVxe4b83eH"
+			]
+		}
+	},
+	"version": 1
+}

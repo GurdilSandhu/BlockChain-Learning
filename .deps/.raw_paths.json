@@ -11,5 +11,15 @@
   "@openzeppelin/contracts@5.6.1/utils/Panic.sol": ".deps/npm/@openzeppelin/contracts@5.6.1/utils/Panic.sol",
   "@openzeppelin/contracts@5.6.1/utils/math/SafeCast.sol": ".deps/npm/@openzeppelin/contracts@5.6.1/utils/math/SafeCast.sol",
   "@openzeppelin/contracts@5.6.1/utils/math/SignedMath.sol": ".deps/npm/@openzeppelin/contracts@5.6.1/utils/math/SignedMath.sol",
-  "@openzeppelin/contracts@5.6.1/utils/Bytes.sol": ".deps/npm/@openzeppelin/contracts@5.6.1/utils/Bytes.sol"
+  "@openzeppelin/contracts@5.6.1/utils/Bytes.sol": ".deps/npm/@openzeppelin/contracts@5.6.1/utils/Bytes.sol",
+  "learning@1.0.0/21 May/course/TeacherCourse.sol": ".deps/npm/learning@1.0.0/21 May/course/TeacherCourse.sol",
+  "learning@1.0.0/21 May/course/T.sol": ".deps/npm/learning@1.0.0/21 May/course/T.sol",
+  "learning@1.0.0/21 May/course/.sol": ".deps/npm/learning@1.0.0/21 May/course/.sol",
+  "learning@1.0.0/21 May/course/t.sol": ".deps/npm/learning@1.0.0/21 May/course/t.sol",
+  "learning@1.0.0/21 May/course/te.sol": ".deps/npm/learning@1.0.0/21 May/course/te.sol",
+  "learning@1.0.0/21 May/course/tea.sol": ".deps/npm/learning@1.0.0/21 May/course/tea.sol",
+  "learning@1.0.0/21 May/course/teac.sol": ".deps/npm/learning@1.0.0/21 May/course/teac.sol",
+  "learning@1.0.0/21 May/course/teach.sol": ".deps/npm/learning@1.0.0/21 May/course/teach.sol",
+  "learning@1.0.0/21 May/course/teache.sol": ".deps/npm/learning@1.0.0/21 May/course/teache.sol",
+  "learning@1.0.0/21 May/course/teacher.sol": ".deps/npm/learning@1.0.0/21 May/course/teacher.sol"
 }
