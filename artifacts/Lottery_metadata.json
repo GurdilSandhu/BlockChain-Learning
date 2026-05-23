@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.31+commit.fd3a2265"
+		"version": "0.8.0+commit.c7dfd78e"
 	},
 	"language": "Solidity",
 	"output": {
@@ -87,7 +87,7 @@
 		"compilationTarget": {
 			"learning/21 May/lottery.sol": "Lottery"
 		},
-		"evmVersion": "osaka",
+		"evmVersion": "istanbul",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -100,11 +100,11 @@
 	},
 	"sources": {
 		"learning/21 May/lottery.sol": {
-			"keccak256": "0x9cfc6e525339fe3b055f9509b3d4a0faddf37f4031453d291396355a95f91e60",
+			"keccak256": "0xcbb09c1c9d423e48a791a48001c33a94a932bc41880ed4686cb1dc021aaaf38c",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://583486a5437b9961b95181bbb0b4a082cf9f6a47d5e4951a1c749e42fa9fa321",
-				"dweb:/ipfs/QmemDTrmLA7qU4vHDT2pjkfhBs8XNWepaEy8sXHjKQcGeH"
+				"bzz-raw://5c38b12bff7af52fd3d6f2d4de0606cefdc24021cb0210a38f9bcdc55d57b662",
+				"dweb:/ipfs/QmV2PdLDD8BvpYdBH64MQKSfnDvUPncmpRx8pgtNBcrBqB"
 			]
 		}
 	},
