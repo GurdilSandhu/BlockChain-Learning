@@ -6,7 +6,7 @@ contract Lottery{
     address owner;
 
     constructor(){
-        owner=msg.sender;
+        owner=msg.sender; 
     }
 
     struct Participant{
@@ -32,11 +32,13 @@ contract Lottery{
     function selectWinner() public{
            require(msg.sender == owner,"Access Denied");
 
-            uint index = block.timestamp % totalParti.length;
+           uint index = (block.timestamp % totalParti.length)%2;
+    
             winner = participants[totalParti[index]].user;
             participants[totalParti[index]].winner = true;
             uint winningAmount = address(this).balance;
             participants[totalParti[index]].amount += winningAmount;
-            payable(winner).call{value: address(this).balance};
+            (bool success, ) = payable(winner).call{value: winningAmount}("");
+             require(success, "Transfer failed");
     }
 }
