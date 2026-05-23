@@ -149,14 +149,6 @@
       }
     }
   },
-  "learning/addArray.sol": {
-    "__sources__": {
-      "learning/addArray.sol": {
-        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract addArray{\r\n    uint[] public num = [1,2,3];\r\n\r\n    function addElement(uint value) public{\r\n        num.push(value);\r\n    }\r\n\r\n     function getAll() public view returns(uint[] memory){\r\n        return num;\r\n     } \r\n}  ",
-        "file": "learning/addArray.sol"
-      }
-    }
-  },
   "Practice/ControlRegistration.sol": {
     "__sources__": {
       "Practice/ControlRegistration.sol": {
@@ -560,14 +552,6 @@
       }
     }
   },
-  "Practice/VotingSystem.sol": {
-    "__sources__": {
-      "Practice/VotingSystem.sol": {
-        "content": "// 2. Voting System\r\n\r\n// Requirements:\r\n\r\n// Mapping to track if a user has voted (address => bool)\r\n// Array to store candidates\r\n// Mapping for vote count (candidate => uint)\r\n// Function to vote:\r\n// Use require to ensure user votes only once\r\n// Candidate must exist (validate using array)\r\n\r\n// Expected Output:\r\n\r\n// Each address votes only once\r\n// Vote count increases correctly\r\n// Invalid candidates rejected\r\n\r\n// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\n\r\ncontract votingSystem{\r\n    mapping(address => bool) isVoted;\r\n    string[] candidates;\r\n    mapping(string => uint) voteCount;\r\n\r\n    function addCandidate(string memory name) public{\r\n        require(bytes(name).length>0,\"name can not be empty\");\r\n        candidates.push(name);\r\n    }\r\n\r\n    function addVote(uint candidate) public{\r\n        require(!isVoted[msg.sender],\"vote only once\");\r\n        require(candidate<candidates.length,\"invalid candidate\");\r\n        \r\n        string memory candidateName = candidates[candidate];\r\n        voteCount[candidateName] += 1;\r\n        isVoted[msg.sender]= true;\r\n    }\r\n\r\n     function getCandidate(uint256 index) public view returns (string memory, uint256) {\r\n        require(index < candidates.length, \"Invalid candidate index\");\r\n        string memory name = candidates[index];\r\n        return (name, voteCount[name]);\r\n    }\r\n\r\n\r\n}",
-        "file": "Practice/VotingSystem.sol"
-      }
-    }
-  },
   "Practice/Voting_Struct.sol": {
     "__sources__": {
       "Practice/Voting_Struct.sol": {
@@ -745,14 +729,6 @@
       }
     }
   },
-  "learning/21 May/lottery.sol": {
-    "__sources__": {
-      "learning/21 May/lottery.sol": {
-        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract Lottery{\r\n\r\n    address owner;\r\n\r\n    constructor(){\r\n        owner=msg.sender;\r\n    }\r\n\r\n    struct Participant{\r\n        uint id;\r\n        address user;\r\n        uint amount;\r\n        bool winner;\r\n    }\r\n\r\n    mapping(uint => Participant) public participants;\r\n    uint[] totalParti;\r\n    uint Ids;\r\n\r\n    function addLottery() public payable{\r\n        uint amount = msg.value;\r\n        require(amount == 1 ether, \"You can only send 1 ether\");\r\n        Ids++;\r\n        participants[Ids] = Participant(Ids, msg.sender, amount, false);\r\n        totalParti.push(Ids);\r\n    }\r\n    address public winner;\r\n\r\n    function selectWinner() public{\r\n           require(msg.sender == owner,\"Access Denied\");\r\n\r\n            uint index = block.timestamp % totalParti.length;\r\n            winner = participants[totalParti[index]].user;\r\n            participants[totalParti[index]].winner = true;\r\n            uint winningAmount = address(this).balance;\r\n            participants[totalParti[index]].amount += winningAmount;\r\n            payable(winner).call{value: address(this).balance};\r\n    }\r\n}",
-        "file": "learning/21 May/lottery.sol"
-      }
-    }
-  },
   "learning/21 May/course/teacher.sol": {
     "__sources__": {
       "learning/21 May/course/teacher.sol": {
@@ -813,6 +789,38 @@
       "learning/21 May/GlobalVar/practice.sol": {
         "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract AllGlobalVariables {\r\n    // State variables to store results for demonstration\r\n    uint256 public lastTimestamp;\r\n    address public lastSender;\r\n\r\n    function getBlockchainData() public payable returns (\r\n        uint _blockNumber,\r\n        uint _timestamp,\r\n        uint _baseFee,\r\n        uint _prevRandao,\r\n        address _coinbase,\r\n        uint _gasLimit,\r\n        uint _chainId\r\n    ) {\r\n        // --- 1. Block Properties ---\r\n        _blockNumber = block.number;       // Current block number\r\n        _timestamp = block.timestamp;     // Current block timestamp (Unix epoch)\r\n        _baseFee = block.basefee;         // Current block's base fee (EIP-1559)\r\n        _prevRandao = block.prevrandao;   // Randomness from beacon chain (Post-Merge)\r\n        _coinbase = block.coinbase;       // Address of the current block miner/validator\r\n        _gasLimit = block.gaslimit;       // Block gas limit\r\n        _chainId = block.chainid;         // Current network chain ID\r\n        \r\n        lastTimestamp = _timestamp;\r\n    }\r\n\r\n    function getTransactionData() public payable returns (\r\n        address _sender,\r\n        uint _value,\r\n        bytes4 _sig,\r\n        bytes calldata _data,\r\n        address _origin,\r\n        uint _gasPrice,\r\n        uint _gasLeft\r\n    ) {\r\n        // --- 2. Message (msg) and Transaction (tx) Properties ---\r\n        _sender = msg.sender;             // Immediate caller of this function\r\n        _value = msg.value;               // Amount of wei sent with the call\r\n        _sig = msg.sig;                   // First 4 bytes of calldata (function selector)\r\n        _data = msg.data;                 // Complete calldata\r\n        \r\n        _origin = tx.origin;               // Wallet that originally started the transaction\r\n        _gasPrice = tx.gasprice;           // Gas price of the transaction\r\n        _gasLeft = gasleft();              // Remaining gas left in this execution\r\n        \r\n        lastSender = _sender;\r\n    }\r\n\r\n    function utilityExamples(uint x, uint y) public pure returns (\r\n        bytes32 _hash,\r\n        bytes memory _encoded,\r\n        uint _modSum\r\n    ) {\r\n        // --- 3. Cryptographic and Math Functions ---\r\n        // Computes Keccak-256 hash\r\n        _hash = keccak256(abi.encodePacked(x, y)); \r\n        \r\n        // --- 4. ABI Encoding ---\r\n        // Encodes data for low-level calls\r\n        _encoded = abi.encode(x, y); \r\n        \r\n        // --- 5. High-precision Math ---\r\n        // (x + y) % 10 without intermediate overflow\r\n        _modSum = addmod(x, y, 10); \r\n    }\r\n\r\n    function contractDetails() public view returns (address _this, uint _balance) {\r\n        // --- 6. Contract Info ---\r\n        _this = address(this);             // The address of this contract\r\n        _balance = address(this).balance;  // The Ether balance of this contract\r\n    }\r\n}\r\n",
         "file": "learning/21 May/GlobalVar/practice.sol"
+      }
+    }
+  },
+  "learning/addArray.sol": {
+    "__sources__": {
+      "learning/addArray.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract addArray{\r\n    uint[] public num = [1,2,3];\r\n\r\n    function addElement(uint value) public{\r\n        num.push(value);\r\n    }\r\n\r\n     function getAll() public view returns(uint[] memory){\r\n        return num;\r\n     } \r\n}  ",
+        "file": "learning/addArray.sol"
+      }
+    }
+  },
+  "Practice/VotingSystem.sol": {
+    "__sources__": {
+      "Practice/VotingSystem.sol": {
+        "content": "// 2. Voting System\r\n\r\n// Requirements:\r\n\r\n// Mapping to track if a user has voted (address => bool)\r\n// Array to store candidates\r\n// Mapping for vote count (candidate => uint)\r\n// Function to vote:\r\n// Use require to ensure user votes only once\r\n// Candidate must exist (validate using array)\r\n\r\n// Expected Output:\r\n\r\n// Each address votes only once\r\n// Vote count increases correctly\r\n// Invalid candidates rejected\r\n\r\n// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\n\r\ncontract votingSystem{\r\n    mapping(address => bool) isVoted;\r\n    string[] candidates;\r\n    mapping(string => uint) voteCount;\r\n\r\n    function addCandidate(string memory name) public{\r\n        require(bytes(name).length>0,\"name can not be empty\");\r\n        candidates.push(name);\r\n    }\r\n\r\n    function addVote(uint candidate) public{\r\n        require(!isVoted[msg.sender],\"vote only once\");\r\n        require(candidate<candidates.length,\"invalid candidate\");\r\n        \r\n        string memory candidateName = candidates[candidate];\r\n        voteCount[candidateName] += 1;\r\n        isVoted[msg.sender]= true;\r\n    }\r\n\r\n     function getCandidate(uint256 index) public view returns (string memory, uint256) {\r\n        require(index < candidates.length, \"Invalid candidate index\");\r\n        string memory name = candidates[index];\r\n        return (name, voteCount[name]);\r\n    }\r\n\r\n\r\n}",
+        "file": "Practice/VotingSystem.sol"
+      }
+    }
+  },
+  "learning/22 may/lottery.sol": {
+    "__sources__": {
+      "learning/22 may/lottery.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract lottery{\r\n    address owner;\r\n\r\n    constructor(){\r\n        owner = msg.sender;\r\n    }\r\n\r\n    struct Participants{\r\n        uint id;\r\n        address user;\r\n        uint amount;\r\n        bool winner;\r\n    }\r\n\r\n    \r\n}",
+        "file": "learning/22 may/lottery.sol"
+      }
+    }
+  },
+  "learning/21 May/lottery.sol": {
+    "__sources__": {
+      "learning/21 May/lottery.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract Lottery{\r\n\r\n    address owner;\r\n\r\n    constructor(){\r\n        owner=msg.sender; \r\n    }\r\n\r\n    struct Participant{\r\n        uint id;\r\n        address user;\r\n        uint amount;\r\n        bool winner;\r\n    }\r\n\r\n    mapping(uint => Participant) public participants;\r\n    uint[] totalParti;\r\n    uint Ids;\r\n\r\n    function addLottery() public payable{\r\n        uint amount = msg.value;\r\n        require(amount == 1 ether, \"You can only send 1 ether\");\r\n        Ids++;\r\n        participants[Ids] = Participant(Ids, msg.sender, amount, false);\r\n        totalParti.push(Ids);\r\n    }\r\n    address public winner;\r\n\r\n    function selectWinner() public{\r\n           require(msg.sender == owner,\"Access Denied\");\r\n\r\n           uint index = (block.timestamp % totalParti.length)%2;\r\n    \r\n            winner = participants[totalParti[index]].user;\r\n            participants[totalParti[index]].winner = true;\r\n            uint winningAmount = address(this).balance;\r\n            participants[totalParti[index]].amount += winningAmount;\r\n            (bool success, ) = payable(winner).call{value: winningAmount}(\"\");\r\n             require(success, \"Transfer failed\");\r\n    }\r\n}",
+        "file": "learning/21 May/lottery.sol"
       }
     }
   }
