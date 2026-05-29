@@ -125,14 +125,6 @@
       }
     }
   },
-  "learning/array.sol": {
-    "__sources__": {
-      "learning/array.sol": {
-        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract Array{ \r\n   //   uint[][] public numbers;\r\n   //   uint selected_index;\r\n\r\n   //   constructor(uint initialSize) {\r\n   //      for (uint i = 0; i < initialSize; i++) {\r\n   //          numbers.push();\r\n   //      }\r\n   //   }\r\n\r\n   //  function selectIndex(uint index) public{\r\n   //    require(index < numbers.length, \"Index out of bounds\");\r\n   //     selected_index = index;\r\n   //  }\r\n\r\n   //  function addNumber(uint value) public{\r\n   //     require(numbers.length > 0, \"No array selected yet\");\r\n   //       numbers[selected_index].push(value);\r\n   //  }\r\n\r\n   //   function getAll() public view returns(uint[][] memory){\r\n   //      return numbers;\r\n   //   } \r\n\r\n\r\n\r\n   uint[] public number;\r\n   function addNumber(uint value) public{\r\n      number.push(value);\r\n   }\r\n\r\n   function removeNumber() public{\r\n      number.pop();\r\n   }\r\n\r\n   function total()public view returns(uint sum){\r\n      for(uint i=0;i<number.length;i++){\r\n         sum += number[i];\r\n      }\r\n      return sum;\r\n   }\r\n\r\n   function getAll() public view returns(uint[] memory){\r\n      return number;\r\n   }\r\n}\r\n\r\n",
-        "file": "learning/array.sol"
-      }
-    }
-  },
   "learning/function.sol": {
     "__sources__": {
       "learning/function.sol": {
@@ -759,22 +751,6 @@
       }
     }
   },
-  "learning/22 may/lottery.sol": {
-    "__sources__": {
-      "learning/22 may/lottery.sol": {
-        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract lottery{\r\n    address owner;\r\n\r\n    constructor(){\r\n        owner = msg.sender;\r\n    }\r\n\r\n    struct Participants{\r\n        uint id;\r\n        address user;\r\n        uint amount;\r\n        bool winner;\r\n    }\r\n\r\n    \r\n}",
-        "file": "learning/22 may/lottery.sol"
-      }
-    }
-  },
-  "learning/21 May/lottery.sol": {
-    "__sources__": {
-      "learning/21 May/lottery.sol": {
-        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract Lottery{\r\n\r\n    address owner;\r\n\r\n    constructor(){\r\n        owner=msg.sender; \r\n    }\r\n\r\n    struct Participant{\r\n        uint id;\r\n        address user;\r\n        uint amount;\r\n        bool winner;\r\n    }\r\n\r\n    mapping(uint => Participant) public participants;\r\n    uint[] totalParti;\r\n    uint Ids;\r\n\r\n    function addLottery() public payable{\r\n        uint amount = msg.value;\r\n        require(amount == 1 ether, \"You can only send 1 ether\");\r\n        Ids++;\r\n        participants[Ids] = Participant(Ids, msg.sender, amount, false);\r\n        totalParti.push(Ids);\r\n    }\r\n    address public winner;\r\n\r\n    function selectWinner() public{\r\n           require(msg.sender == owner,\"Access Denied\");\r\n\r\n           uint index = (block.timestamp % totalParti.length)%2;\r\n    \r\n            winner = participants[totalParti[index]].user;\r\n            participants[totalParti[index]].winner = true;\r\n            uint winningAmount = address(this).balance;\r\n            participants[totalParti[index]].amount += winningAmount;\r\n            (bool success, ) = payable(winner).call{value: winningAmount}(\"\");\r\n             require(success, \"Transfer failed\");\r\n    }\r\n}",
-        "file": "learning/21 May/lottery.sol"
-      }
-    }
-  },
   "@openzeppelin/contracts@5.6.1/utils/math/Math.sol": {
     "../Panic.sol": ".deps/npm/@openzeppelin/contracts@5.6.1/utils/Panic.sol",
     "./SafeCast.sol": ".deps/npm/@openzeppelin/contracts@5.6.1/utils/math/SafeCast.sol"
@@ -824,11 +800,51 @@
       }
     }
   },
-  "learning/25 may/lottey.sol": {
+  "learning/26 may/Dapp.sol": {
     "__sources__": {
-      "learning/25 may/lottey.sol": {
-        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract LotteryWinner{\r\n   //winner will be 1-10\r\n    function findWinner()public view returns(uint){\r\n        uint winner = uint256(keccak256(abi.encodePacked(msg.sender, block.timestamp))) % 10 + 1;\r\n\r\n        return winner;\r\n    }\r\n\r\n    function hash_nums(uint num1, uint num2, uint num3)public pure returns(bytes32){\r\n        return keccak256(abi.encodePacked(num1,num2,num3));\r\n    }\r\n\r\n    string name;\r\n\r\n    function enter_name(string memory _name)public{\r\n        name = _name;\r\n    }\r\n\r\n    function check_name(string memory _name)public view returns(bool){\r\n        if(keccak256(abi.encodePacked(name)) == keccak256(abi.encodePacked(_name))){\r\n        return true;\r\n        }\r\n        return false;\r\n    }\r\n\r\n    mapping (string => bool) public userNames;\r\n    \r\n    function registerUserName(string memory _userName)public{\r\n       require(userNames[_userName]==false,\"Not Available\");\r\n       userNames[_userName] = true;\r\n    }\r\n\r\n    function checkAvailability(string memory _userName)public view returns(bool){\r\n        if(userNames[_userName] == true){\r\n        return false;\r\n        }\r\n        return true;\r\n    }\r\n}",
-        "file": "learning/25 may/lottey.sol"
+      "learning/26 may/Dapp.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract Voting {\r\n\r\n    struct Candidate {\r\n        uint id;\r\n        string name;\r\n        uint voteCount;\r\n    }\r\n\r\n    address public owner;\r\n\r\n    mapping(uint => Candidate) private candidates;\r\n    mapping(address => bool) private hasVoted;\r\n\r\n    uint public candidatesCount;\r\n    uint private totalVoters;\r\n\r\n    // 🏆 NEW STATE VARIABLES\r\n    bool public resultDeclared;\r\n    Candidate[3] private topWinners;\r\n\r\n    event Voted(uint indexed candidateId);\r\n    event ResultDeclared(\r\n        string first,\r\n        string second,\r\n        string third\r\n    );\r\n\r\n    modifier onlyOwner() {\r\n        require(msg.sender == owner, \"Only owner can perform this action\");\r\n        _;\r\n    }\r\n\r\n    modifier resultNotDeclared() {\r\n        require(!resultDeclared, \"Result already declared\");\r\n        _;\r\n    }\r\n\r\n    constructor() {\r\n        owner = msg.sender;\r\n        addCandidate(\"Bengaluru (Bangalore)\");\r\n        addCandidate(\"Hyderabad\");\r\n        addCandidate(\"Delhi-NCR (Gurugram & Noida)\");\r\n    }\r\n\r\n    function addCandidate(string memory _name) private {\r\n        candidatesCount++;\r\n        candidates[candidatesCount] = Candidate(candidatesCount, _name, 0);\r\n    }\r\n\r\n    function vote(uint _candidateId) public resultNotDeclared {\r\n        require(!hasVoted[msg.sender], \"You have already voted\");\r\n        require(_candidateId > 0 && _candidateId <= candidatesCount, \"Invalid candidate ID\");\r\n\r\n        hasVoted[msg.sender] = true;\r\n        candidates[_candidateId].voteCount++;\r\n        totalVoters++;\r\n\r\n        emit Voted(_candidateId);\r\n    }\r\n\r\n    //  DECLARE RESULT (TOP 3 STORED ON BLOCKCHAIN)\r\n    function declareResult() public onlyOwner resultNotDeclared {\r\n\r\n        Candidate memory first;\r\n        Candidate memory second;\r\n        Candidate memory third;\r\n\r\n        for (uint i = 1; i <= candidatesCount; i++) {\r\n\r\n            Candidate memory current = candidates[i];\r\n\r\n            if (current.voteCount > first.voteCount) {\r\n                third = second;\r\n                second = first;\r\n                first = current;\r\n\r\n            } else if (current.voteCount > second.voteCount) {\r\n                third = second;\r\n                second = current;\r\n\r\n            } else if (current.voteCount > third.voteCount) {\r\n                third = current;\r\n            }\r\n        }\r\n\r\n        topWinners[0] = first;\r\n        topWinners[1] = second;\r\n        topWinners[2] = third;\r\n\r\n        resultDeclared = true;\r\n\r\n        emit ResultDeclared(\r\n            first.name,\r\n            second.name,\r\n            third.name\r\n        );\r\n    }\r\n\r\n    //  GET TOP 3 WINNERS (BLOCKCHAIN STORED)\r\n    function getTopWinners()\r\n        public\r\n        view\r\n        returns (\r\n            uint, string memory, uint,\r\n            uint, string memory, uint,\r\n            uint, string memory, uint\r\n        )\r\n    {\r\n        require(resultDeclared, \"Result not declared yet\");\r\n\r\n        Candidate memory first = topWinners[0];\r\n        Candidate memory second = topWinners[1];\r\n        Candidate memory third = topWinners[2];\r\n\r\n        return (\r\n            first.id, first.name, first.voteCount,\r\n            second.id, second.name, second.voteCount,\r\n            third.id, third.name, third.voteCount\r\n        );\r\n    }\r\n\r\n    // Only owner can see total voters\r\n    function getTotalVoters() public view onlyOwner returns (uint) {\r\n        return totalVoters;\r\n    }\r\n\r\n    // Only owner can see vote count\r\n    function getCandidate(uint _candidateId)\r\n        public\r\n        view\r\n        onlyOwner\r\n        returns (uint, string memory, uint)\r\n    {\r\n        require(_candidateId > 0 && _candidateId <= candidatesCount, \"Invalid ID\");\r\n\r\n        Candidate memory c = candidates[_candidateId];\r\n        return (c.id, c.name, c.voteCount);\r\n    }\r\n\r\n    // Public function for normal users (NO vote count)\r\n    function getCandidateBasic(uint _candidateId)\r\n        public\r\n        view\r\n        returns (uint, string memory)\r\n    {\r\n        require(_candidateId > 0 && _candidateId <= candidatesCount, \"Invalid ID\");\r\n\r\n        Candidate memory c = candidates[_candidateId];\r\n        return (c.id, c.name);\r\n    }\r\n}",
+        "file": "learning/26 may/Dapp.sol"
+      }
+    }
+  },
+  "learning/26 may/Voting_Dapp.sol": {
+    "__sources__": {
+      "learning/26 may/Voting_Dapp.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract Voting {\r\n\r\n    struct Candidate {\r\n        uint id;\r\n        string name;\r\n        uint voteCount;\r\n    }\r\n\r\n    address public owner;\r\n\r\n    mapping(uint => Candidate) private candidates;   // CHANGED\r\n    mapping(address => bool) private hasVoted;\r\n\r\n    uint public candidatesCount;\r\n    uint private totalVoters;\r\n\r\n    event Voted(uint indexed candidateId);\r\n\r\n    modifier onlyOwner() {\r\n        require(msg.sender == owner, \"Only owner can perform this action\");\r\n        _;\r\n    }\r\n\r\n    constructor() {\r\n        owner = msg.sender;\r\n        addCandidate(\"Guddu Pandit\");\r\n        addCandidate(\"Munna Bhaiya\");\r\n        addCandidate(\"Golu Gupta\");\r\n    }\r\n\r\n    function addCandidate(string memory _name) private {\r\n        candidatesCount++;\r\n        candidates[candidatesCount] = Candidate(candidatesCount, _name, 0);\r\n    }\r\n\r\n    function vote(uint _candidateId) public {\r\n        require(!hasVoted[msg.sender], \"You have already voted\");\r\n        require(_candidateId > 0 && _candidateId <= candidatesCount, \"Invalid candidate ID\");\r\n\r\n        hasVoted[msg.sender] = true;\r\n        candidates[_candidateId].voteCount++;\r\n        totalVoters++;\r\n\r\n        emit Voted(_candidateId);\r\n    }\r\n\r\n    //  Only owner can see total voters\r\n    function getTotalVoters() public view onlyOwner returns (uint) {\r\n        return totalVoters;\r\n    }\r\n\r\n    //  Only owner can see vote count\r\n    function getCandidate(uint _candidateId)\r\n        public\r\n        view\r\n        onlyOwner\r\n        returns (uint, string memory, uint)\r\n    {\r\n        require(_candidateId > 0 && _candidateId <= candidatesCount, \"Invalid ID\");\r\n\r\n        Candidate memory c = candidates[_candidateId];\r\n        return (c.id, c.name, c.voteCount);\r\n    }\r\n\r\n    //  Public function for normal users (NO vote count)\r\n    function getCandidateBasic(uint _candidateId)\r\n        public\r\n        view\r\n        returns (uint, string memory)\r\n    {\r\n        require(_candidateId > 0 && _candidateId <= candidatesCount, \"Invalid ID\");\r\n\r\n        Candidate memory c = candidates[_candidateId];\r\n        return (c.id, c.name);\r\n    }\r\n}",
+        "file": "learning/26 may/Voting_Dapp.sol"
+      }
+    }
+  },
+  "learning/26 may/tweet_Dapp.sol": {
+    "__sources__": {
+      "learning/26 may/tweet_Dapp.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract Twitter {\r\n\r\n    uint16 public MAX_TWEET_LENGTH = 280;\r\n\r\n    struct Tweet {\r\n        uint id;\r\n        address author;\r\n        string content;\r\n        uint256 timestamp;\r\n        uint256 likes;\r\n    }\r\n\r\n    mapping(address => Tweet[]) public tweets;\r\n\r\n\r\n    function createTweet(string memory _tweet) public {\r\n        require(bytes(_tweet).length <= MAX_TWEET_LENGTH, \"Tweet too long!\");\r\n\r\n        uint tweetId = tweets[msg.sender].length;\r\n\r\n        tweets[msg.sender].push(\r\n            Tweet({\r\n                id: tweetId,\r\n                author: msg.sender,\r\n                content: _tweet,\r\n                timestamp: block.timestamp,\r\n                likes: 0\r\n            })\r\n        );\r\n    }\r\n\r\n    function likeTweet(address _author, uint _id) public {\r\n        require(_id < tweets[_author].length, \"Tweet does not exist\");\r\n        tweets[_author][_id].likes++;\r\n    }\r\n\r\n    function dislikeTweet(address _author, uint _id) public {\r\n        require(_id < tweets[_author].length, \"Tweet does not exist\");\r\n        require(tweets[_author][_id].likes > 0, \"No likes to remove\");\r\n        tweets[_author][_id].likes--;\r\n    }\r\n\r\n    function getAllTweets(address _owner)\r\n        public\r\n        view\r\n        returns (Tweet[] memory)\r\n    {\r\n        return tweets[_owner];\r\n    }\r\n}",
+        "file": "learning/26 may/tweet_Dapp.sol"
+      }
+    }
+  },
+  "learning/array.sol": {
+    "__sources__": {
+      "learning/array.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract Array{ \r\n   //   uint[][] public numbers;\r\n   //   uint selected_index;\r\n\r\n   //   constructor(uint initialSize) {\r\n   //      for (uint i = 0; i < initialSize; i++) {\r\n   //          numbers.push();\r\n   //      }\r\n   //   }\r\n\r\n   //  function selectIndex(uint index) public{\r\n   //    require(index < numbers.length, \"Index out of bounds\");\r\n   //     selected_index = index;\r\n   //  }\r\n\r\n   //  function addNumber(uint value) public{\r\n   //     require(numbers.length > 0, \"No array selected yet\");\r\n   //       numbers[selected_index].push(value);\r\n   //  }\r\n\r\n   //   function getAll() public view returns(uint[][] memory){\r\n   //      return numbers;\r\n   //   } \r\n\r\n\r\n\r\n   uint[] public number;\r\n   function addNumber(uint value) public{\r\n      number.push(value);\r\n   }\r\n\r\n   function removeNumber() public{\r\n      number.pop();\r\n   }\r\n\r\n   function total()public view returns(uint sum){\r\n      for(uint i=0;i<number.length;i++){\r\n         sum += number[i];\r\n      }\r\n      return sum;\r\n   }\r\n\r\n   function getAll() public view returns(uint[] memory){\r\n      return number;\r\n   }\r\n}\r\n\r\n",
+        "file": "learning/array.sol"
+      }
+    }
+  },
+  "learning/21 May/lottery.sol": {
+    "__sources__": {
+      "learning/21 May/lottery.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract Lottery{\r\n\r\n    address owner;\r\n\r\n    constructor(){\r\n        owner=msg.sender; \r\n    }\r\n\r\n    struct Participant{\r\n        uint id;\r\n        address user;\r\n        uint amount;\r\n        bool winner;\r\n    }\r\n\r\n    mapping(uint => Participant) public participants;\r\n    uint[] totalParti;\r\n    uint Ids;\r\n\r\n    function addLottery() public payable{\r\n        uint amount = msg.value;\r\n        require(amount == 1 ether, \"You can only send 1 ether\");\r\n        Ids++;\r\n        participants[Ids] = Participant(Ids, msg.sender, amount, false);\r\n        totalParti.push(Ids);\r\n    }\r\n    address public winner;\r\n\r\n    function selectWinner() public{\r\n           require(msg.sender == owner,\"Access Denied\");\r\n\r\n           uint index = (block.timestamp % totalParti.length)%2;\r\n    \r\n            winner = participants[totalParti[index]].user;\r\n            participants[totalParti[index]].winner = true;\r\n            uint winningAmount = address(this).balance;\r\n            participants[totalParti[index]].amount += winningAmount;\r\n            (bool success, ) = payable(winner).call{value: winningAmount}(\"\");\r\n             require(success, \"Transfer failed\");\r\n    }\r\n}",
+        "file": "learning/21 May/lottery.sol"
+      }
+    }
+  },
+  "learning/22 may/lottery.sol": {
+    "__sources__": {
+      "learning/22 may/lottery.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract lottery{\r\n    address owner;\r\n\r\n    constructor(){\r\n        owner = msg.sender;\r\n    }\r\n\r\n    struct Participants{\r\n        uint id;\r\n        address user;\r\n        uint amount;\r\n        bool winner;\r\n    }\r\n\r\n    \r\n}",
+        "file": "learning/22 may/lottery.sol"
       }
     }
   },
@@ -837,6 +853,38 @@
       "learning/25 may/Hashing.sol": {
         "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract Hashing{\r\n\r\n    mapping(address => bytes32) public coupons;\r\n    mapping(address => bool) public isCouponGenerated;\r\n    function generateCouponHash() public returns(bytes32){\r\n        require(isCouponGenerated[msg.sender] == false, \"Already Generated\");\r\n           coupons[msg.sender] = keccak256(abi.encodePacked(msg.sender, block.timestamp));\r\n           isCouponGenerated[msg.sender]= true;\r\n           return keccak256(abi.encodePacked(msg.sender, block.timestamp));\r\n    }\r\n\r\n    mapping(string => bytes32) public attendence;\r\n    mapping(string => bool) public isAttendenceMarked;\r\n    function studentAttendence(string memory name, string memory className) public {\r\n        require(isAttendenceMarked[name]==false,\"Already Marked\");\r\n        attendence[name] = keccak256(abi.encodePacked(name,block.timestamp,className));\r\n        isAttendenceMarked[name] = true;\r\n    }\r\n\r\n}",
         "file": "learning/25 may/Hashing.sol"
+      }
+    }
+  },
+  "learning/28 may/lottery.sol": {
+    "__sources__": {
+      "learning/28 may/lottery.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract lottery{\r\n    address manager;\r\n\r\n    constructor(){\r\n        manager = msg.sender;\r\n    }\r\n\r\n    address[] players;\r\n    mapping (address => bool) isEntered;\r\n    address winner;\r\n\r\n    function addLottery()public payable {\r\n        require(!isEntered[msg.sender],\"Already Entered\");\r\n        require(msg.value >= 1 ether,\"atleast 1 ether required\");\r\n       players.push(msg.sender);\r\n       isEntered[msg.sender] = true;\r\n    }\r\n\r\n    function random()private view returns(uint){\r\n        require(players.length>0,\"No entry yet!!\");\r\n        return  block.timestamp % players.length;\r\n    }\r\n\r\n    function pickWinner()public returns(address){\r\n        require(msg.sender == manager,\"Access only to manager\");\r\n        require(players.length>0,\"Not enough enteries\");\r\n        winner = players[random()];\r\n        for(uint i = 0; i < players.length; i++) {\r\n            isEntered[players[i]] = false;\r\n        }\r\n        players = new address[](0);\r\n        (bool success, ) = payable(winner).call{value: address(this).balance}(\"\");\r\n        require(success, \"Transfer failed\");\r\n        return winner;\r\n    }\r\n\r\n    function showPlayers() public view returns(address[] memory){\r\n        // require(players.length > 0,\"No Entry yet\");\r\n        return players;\r\n    }\r\n\r\n    function showWinner() public view returns(address){\r\n        return winner;\r\n    }\r\n\r\n}",
+        "file": "learning/28 may/lottery.sol"
+      }
+    }
+  },
+  "learning/25 may/DigitalSignature.sol": {
+    "__sources__": {
+      "learning/25 may/DigitalSignature.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract DigitalSignature {\r\n    \r\n    bytes32 message;\r\n    // Create hash of message\r\n    function getMessageHash(string memory _message) public returns(bytes32) {\r\n        message = keccak256(abi.encodePacked(_message));\r\n        return message;\r\n    }\r\n\r\n     bytes32 ethMessage;\r\n    // Ethereum signed message hash\r\n    function getEthSignedMessageHash() public returns(bytes32) {\r\n        ethMessage = keccak256(abi.encodePacked(\"\\x19Ethereum Signed Message:\\n32\",message));\r\n        return ethMessage;\r\n    }\r\n\r\n}",
+        "file": "learning/25 may/DigitalSignature.sol"
+      }
+    }
+  },
+  "learning/25 may/lottey.sol": {
+    "__sources__": {
+      "learning/25 may/lottey.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract LotteryWinner{\r\n   //winner will be 1-10\r\n    function findWinner()public view returns(uint){\r\n        uint winner = uint256(keccak256(abi.encodePacked(msg.sender, block.timestamp))) % 10 + 1;\r\n\r\n        return winner;\r\n    }\r\n\r\n    function hash_nums(uint num1, uint num2, uint num3)public pure returns(bytes32){\r\n        return keccak256(abi.encodePacked(num1,num2,num3));\r\n    }\r\n\r\n    string name;\r\n\r\n    function enter_name(string memory _name)public{\r\n        name = _name;\r\n    }\r\n\r\n    function check_name(string memory _name)public view returns(bool){\r\n        if(keccak256(abi.encodePacked(name)) == keccak256(abi.encodePacked(_name))){\r\n        return true;\r\n        }\r\n        return false;\r\n    }\r\n\r\n    mapping (string => bool) public userNames;\r\n    \r\n    function registerUserName(string memory _userName)public{\r\n       require(userNames[_userName]==false,\"Not Available\");\r\n       userNames[_userName] = true;\r\n    }\r\n\r\n    function checkAvailability(string memory _userName)public view returns(bool){\r\n        if(userNames[_userName] == true){\r\n        return false;\r\n        }\r\n        return true;\r\n    }\r\n}",
+        "file": "learning/25 may/lottey.sol"
+      }
+    }
+  },
+  "learning/28 may/messageBoard.sol": {
+    "__sources__": {
+      "learning/28 may/messageBoard.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract MessageBoard {\r\n\r\n    struct User {\r\n        uint id;\r\n        string userName;\r\n        address userAddress;\r\n    }\r\n\r\n    struct Message {\r\n        string userName;\r\n        string message;\r\n    }\r\n\r\n    // Events\r\n    event UserRegistered(\r\n        uint indexed id,\r\n        address indexed userAddress,\r\n        string userName\r\n    );\r\n\r\n    event MessagePosted(\r\n        address indexed userAddress,\r\n        string userName,\r\n        string message\r\n    );\r\n\r\n    uint public totalUsers;\r\n\r\n    mapping(address => User) public userDetails;\r\n    mapping(string => bool) public userNames;\r\n    mapping(address => bool) public isExisted;\r\n\r\n    Message[] private allMessages;\r\n\r\n    function addUser(string memory _name) public {\r\n        require(!isExisted[msg.sender], \"Already Existed\");\r\n\r\n        checkAvailability(_name);\r\n\r\n        totalUsers++;\r\n\r\n        isExisted[msg.sender] = true;\r\n\r\n        userDetails[msg.sender] = User(totalUsers,_name,msg.sender);\r\n\r\n        emit UserRegistered(\r\n            totalUsers,\r\n            msg.sender,\r\n            _name\r\n        );\r\n    }\r\n\r\n    function checkAvailability( string memory _userName) private {\r\n        require(!userNames[_userName],\"Not Available\");\r\n        userNames[_userName] = true;\r\n    }\r\n\r\n    function addMessage( string memory _message ) public {\r\n        require( isExisted[msg.sender], \"Not Registered\");\r\n        allMessages.push(Message(userDetails[msg.sender].userName,_message));\r\n\r\n        emit MessagePosted(\r\n            msg.sender,\r\n            userDetails[msg.sender].userName,\r\n            _message\r\n        );\r\n    }\r\n\r\n    function getMessage(uint index)\r\n    public\r\n    view\r\n    returns(\r\n        string memory,\r\n        string memory\r\n    )\r\n{\r\n    Message memory m = allMessages[index];\r\n\r\n    return (\r\n        m.userName,\r\n        m.message\r\n    );\r\n}\r\n\r\nfunction getTotalMessages()\r\n    public\r\n    view\r\n    returns(uint)\r\n{\r\n    return allMessages.length;\r\n}\r\n}",
+        "file": "learning/28 may/messageBoard.sol"
       }
     }
   }
