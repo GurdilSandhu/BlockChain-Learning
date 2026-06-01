@@ -1,0 +1,72 @@
+{
+	"compiler": {
+		"version": "0.8.0+commit.c7dfd78e"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_cId",
+						"type": "string"
+					}
+				],
+				"name": "addCid",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "geturl",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"learning/1 june/IPFS.sol": "IPFS"
+		},
+		"evmVersion": "istanbul",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"learning/1 june/IPFS.sol": {
+			"keccak256": "0x87bca3f26b4ec4dac5527e56728a6103805e483b918fd09ff45cc96d3e2fae58",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://ebd6f81faca7c29ada52439b7a099e2e380a61df4016f5596e079515921d54b1",
+				"dweb:/ipfs/Qmd7ke1osXBSMBfVktvcpNa5gqaaYfewpPNSVK9gwzTd4w"
+			]
+		}
+	},
+	"version": 1
+}
