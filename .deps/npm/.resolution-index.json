@@ -109,14 +109,6 @@
       }
     }
   },
-  "Practice/Access-Based.sol": {
-    "__sources__": {
-      "Practice/Access-Based.sol": {
-        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract RoleControl {\r\n\r\n\r\n    enum Role { Admin, Manager, User }\r\n\r\n    mapping(address => Role) public roles;\r\n\r\n    constructor(){\r\n        roles[msg.sender]= Role.Admin;\r\n    }\r\n\r\n    modifier onlyAdmin() {\r\n        require(roles[msg.sender]== Role.Admin,\"Access Denied\");\r\n        _;\r\n    }\r\n\r\n    modifier onlyManager() {\r\n        require(Role.Manager==roles[msg.sender],\"Access Denied\");\r\n        _;\r\n    } \r\n\r\n    function assignRole(address _user, Role _role) public onlyAdmin{\r\n        // only admin\r\n        roles[_user]= _role;\r\n\r\n    } \r\n\r\n    struct Task{\r\n        uint id;\r\n        string Description;\r\n        bool isCompleted;\r\n    }\r\n\r\n    mapping (uint => Task) public tasks;\r\n    uint[] alltaskIds;\r\n\r\n    function createTask(uint _id, string memory _description) public onlyManager{\r\n        // only manager\r\n        alltaskIds.push(_id);\r\n        tasks[_id] = Task(_id, _description, false);\r\n    }\r\n\r\n    function completeTask(uint _id ,bool _isCompleted) public {\r\n        // only user\r\n        tasks[_id] = Task(_id, tasks[_id].Description, _isCompleted);\r\n    }\r\n}",
-        "file": "Practice/Access-Based.sol"
-      }
-    }
-  },
   "Practice/calculator.sol": {
     "__sources__": {
       "Practice/calculator.sol": {
@@ -274,14 +266,6 @@
       }
     }
   },
-  "learning/Orders.sol": {
-    "__sources__": {
-      "learning/Orders.sol": {
-        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract Orders{\r\n\r\n    address owner;\r\n\r\n    constructor(){\r\n        owner=msg.sender;\r\n    }\r\n\r\n    modifier checkOwner{\r\n        require(owner==msg.sender,\"Access Denied\");\r\n        _;\r\n    }\r\n\r\n    enum Status{Pending,Prepared,Shipped,Delivered,Cancelled}\r\n \r\n    struct Order{\r\n        uint id;\r\n        string deliveryPartner;\r\n        Status status;\r\n    }\r\n    \r\n    mapping (uint => Order) public orders;\r\n    mapping (uint => bool) isOrdered;\r\n\r\n    struct User{\r\n        uint id;\r\n        string name;\r\n        address wallet;\r\n    }\r\n    \r\n    mapping (uint => User) public users;\r\n    mapping (address => bool) isRegistered;\r\n    uint[] allUserIds;\r\n\r\n    function addUser(uint _id, string memory name) public {\r\n         require(!isRegistered[msg.sender],\"user already registered\");\r\n           allUserIds.push(_id);\r\n           users[_id] = User(_id,name,msg.sender);\r\n           isRegistered[msg.sender] = true;\r\n    }\r\n\r\n\r\n    function addOrder(uint _id, string memory deliveryPartner) public{\r\n         orders[_id] = Order(_id, deliveryPartner,Status.Pending);\r\n    }\r\n\r\n    function updateOrder(uint _id, Status _status) public checkOwner{\r\n         orders[_id]= Order(_id, orders[_id].deliveryPartner, _status);\r\n    }\r\n\r\n}",
-        "file": "learning/Orders.sol"
-      }
-    }
-  },
   "learning/ProductSellBy.sol": {
     "__sources__": {
       "learning/ProductSellBy.sol": {
@@ -407,19 +391,6 @@
       }
     }
   },
-  "learning/Interface/atm.sol": {
-    "./bank.sol": "learning/Interface/bank.sol",
-    "__sources__": {
-      "learning/Interface/atm.sol": {
-        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\nimport \"./bank.sol\";\r\n\r\ninterface UserBank {\r\n\r\n     function deposit() external payable;\r\n     function withdraw(uint amount) external payable;\r\n     function getMyBalance() external view returns(uint);\r\n    \r\n}\r\n\r\ncontract atm{\r\n    UserBank public bank1;\r\n    \r\n    constructor(address bank_address){\r\n        bank1 = UserBank(bank_address);\r\n    }\r\n\r\n    function deposit() external payable {\r\n         require(msg.value > 0,\"add some funds\");\r\n         bank1.deposit();\r\n    }\r\n\r\n    function getMyBalance() external view returns(uint){\r\n        return bank1.getMyBalance();\r\n    }\r\n\r\n    function withdraw(uint amount) external payable{\r\n        // require(bank.[msg.sender] >= amount ,\"No Funds\");\r\n        bank1.withdraw(amount);\r\n    }\r\n\r\n}",
-        "file": "learning/Interface/atm.sol"
-      },
-      "learning/Interface/bank.sol": {
-        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract bank{\r\n\r\n    mapping (address => uint) balances;\r\n\r\n    function deposit() external payable {\r\n         require(msg.value > 0,\"add some funds\");\r\n         balances[msg.sender] += msg.value;\r\n    }\r\n\r\n    function getMyBalance() external view returns(uint){\r\n        return balances[msg.sender];\r\n    }\r\n\r\n    function withdraw(uint amount) external payable{\r\n        require(balances[msg.sender] >= amount ,\"No Funds\");\r\n        balances[msg.sender] -= amount;\r\n        payable(msg.sender).transfer(amount);\r\n    }\r\n}",
-        "file": "learning/Interface/bank.sol"
-      }
-    }
-  },
   "learning/array_mapping.sol": {
     "__sources__": {
       "learning/array_mapping.sol": {
@@ -449,14 +420,6 @@
       "learning/bank/bank.sol": {
         "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract BankAccount {\r\n\r\n    struct Account {\r\n        string name;\r\n        uint balance;\r\n    }\r\n\r\n    mapping(address => Account) public accounts;\r\n\r\n    // Create Account\r\n    function createAccount(string memory _name) public payable {\r\n\r\n        accounts[msg.sender] = Account(_name, msg.value);\r\n    }\r\n\r\n \r\n    function getDetails() public view returns(string memory, uint, uint) {\r\n\r\n        Account memory acc = accounts[msg.sender];\r\n\r\n        uint interest = (acc.balance * 5) / 100;\r\n\r\n        return (acc.name, acc.balance, interest);\r\n    }\r\n\r\n    \r\n    function deposit() public payable {\r\n\r\n        Account storage acc = accounts[msg.sender];\r\n\r\n        acc.balance += msg.value;\r\n    }\r\n\r\n    // STORAGE Example\r\n    // Permanently adds interest to balance\r\n    function addInterest() public {\r\n\r\n        Account storage acc = accounts[msg.sender];\r\n\r\n        uint interest = (acc.balance * 5) / 100;\r\n\r\n        acc.balance += interest;\r\n    }\r\n}",
         "file": "learning/bank/bank.sol"
-      }
-    }
-  },
-  "learning/bank_interest.sol": {
-    "__sources__": {
-      "learning/bank_interest.sol": {
-        "content": "// Create a Bank Account smart contract where:\r\n// User can store account details\r\n// One function should only read account data and calculate interest using memory\r\n// Another function should update account balance using storage\r\n\r\n// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract Bank_Account{\r\n    \r\n    struct Account_Details{\r\n        string Uname;\r\n        address Uaddress;\r\n        uint balance;\r\n        uint interest;\r\n    }\r\n\r\n    mapping (address => Account_Details) public users;\r\n\r\n    function addAccount(string memory name, uint interest) public payable {\r\n        require(msg.value>0,\"Deposit some amount!!\");\r\n        require(msg.sender != users[msg.sender].Uaddress,\"already exist\");\r\n        users[msg.sender] = Account_Details(name, msg.sender, msg.value , interest);\r\n    }\r\n\r\n    function deposit()public payable {\r\n        require(msg.sender == users[msg.sender].Uaddress,\"Not exist\");\r\n        require(msg.value>0,\"Deposit some amount!!\");\r\n        users[msg.sender].balance += msg.value;\r\n    }\r\n\r\n\r\n    function updateAccount() public {\r\n         require(msg.sender == users[msg.sender].Uaddress,\"Command Rejected\");\r\n        Account_Details storage user = users[msg.sender];\r\n        user.balance += (user.balance * user.interest) / 100;\r\n    }\r\n\r\n     function getDetails() public view returns (string memory Uname, uint balance, uint interest) {\r\n        Account_Details memory user = users[msg.sender];\r\n        return (user.Uname, user.balance , user.interest);\r\n    }\r\n\r\n    function withdraw(uint amount) public payable{\r\n        users[msg.sender].balance -= amount;\r\n\r\n        (bool success, ) = msg.sender.call{value: amount}(\"\");\r\n        require(success, \"Transfer failed\");\r\n    }\r\n}",
-        "file": "learning/bank_interest.sol"
       }
     }
   },
@@ -743,14 +706,6 @@
       }
     }
   },
-  "Practice/passwordChecker.sol": {
-    "__sources__": {
-      "Practice/passwordChecker.sol": {
-        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract passwordChecker{\r\n    string private password = \"gurdil\";\r\n\r\n    function checkPassword(string memory input) public view returns(string memory){\r\n        if(keccak256(bytes(input))==keccak256(bytes(password))){\r\n           return \"Access Granted\";\r\n        }\r\n        return \"Access Denied\";\r\n    }\r\n\r\n    function password_in_bytes(string memory _input) public pure returns(bytes memory){\r\n        return bytes(_input);\r\n    }\r\n\r\n    \r\n    function password_length(string memory _input) public pure returns(uint){\r\n        uint strLength = bytes(_input).length;\r\n        return strLength;\r\n    }\r\n\r\n    function getFirstByte(string memory _input) public pure returns(bytes1){\r\n        bytes memory Bytes = bytes(_input);\r\n        bytes1 firstByte = Bytes[5];\r\n        return firstByte;\r\n    }\r\n\r\n    function bytestoString(bytes memory _input) public pure returns(string memory){\r\n        return string(_input);\r\n    }\r\n\r\n    function concat()public pure returns(bytes memory){\r\n       bytes memory a = \"Hello\"; \r\n       bytes memory b = \"World!\";\r\n       return  abi.encodePacked(a,b);\r\n\r\n    }\r\n\r\n    function toUppercase(string memory _input) public pure returns(string memory){\r\n        bytes memory strByte = bytes(_input);\r\n        uint strLength = strByte.length;\r\n        bytes memory resStr= new bytes(strLength);\r\n\r\n        for(uint i=0;i<strLength;i++){\r\n            if(uint8(strByte[i])>=97 && uint8(strByte[i])<=122){\r\n              resStr[i] = bytes1(uint8(strByte[i])-32);\r\n            }else{\r\n            resStr[i] = strByte[i];\r\n        }\r\n        }\r\n\r\n        return string(resStr);\r\n    }\r\n\r\n    function toLowercase(string memory _input) public pure returns(string memory){\r\n        bytes memory strByte = bytes(_input);\r\n        uint strLength = strByte.length;\r\n        bytes memory resStr= new bytes(strLength);\r\n\r\n        for(uint i=0;i<strLength;i++){\r\n            if(uint8(strByte[i])>=65 && uint8(strByte[i])<=90){\r\n              resStr[i] = bytes1(uint8(strByte[i])+32);\r\n            }else{\r\n            resStr[i] = strByte[i];\r\n        }\r\n        }\r\n\r\n        return string(resStr);\r\n    }\r\n\r\n    function countWords(string memory _input) public pure returns(uint){\r\n        bytes memory bStr = bytes(_input);\r\n        uint strLength = bStr.length;\r\n\r\n        if (strLength == 0) {\r\n            return 0;\r\n        }\r\n\r\n        uint count = 0;\r\n        bool inWord = false;\r\n\r\n        for (uint i = 0; i < strLength; i++) {\r\n            if (bStr[i] != 0x20 && !inWord) {\r\n                inWord = true;\r\n                count++;\r\n            } else if (bStr[i] == 0x20) {\r\n                inWord = false;\r\n            }\r\n    }\r\n    return count;\r\n}\r\n\r\nfunction compareString(string memory a, string memory b) public pure returns(bool){\r\n    bytes memory bStr1 = bytes(a);\r\n    bytes memory bStr2 = bytes(b);\r\n    uint strLength1 = bStr1.length;\r\n    uint strLength2 = bStr2.length;\r\n        if (strLength1 != strLength2) {\r\n            return false;\r\n        }\r\n\r\n        for (uint i = 0; i < strLength1; i++) {\r\n            if (bStr1[i] != bStr2[i]) {\r\n                return false;\r\n            }\r\n    }\r\n    return true;\r\n}\r\n\r\nfunction reverseString(string memory input) public pure returns(string memory){\r\n    bytes memory bStr = bytes(input);\r\n    bytes memory rStr = new bytes(bStr.length);\r\n\r\n    for(uint i=0;i<bStr.length;i++){\r\n        rStr[i] = bStr[bStr.length-1-i];\r\n    }\r\n    return string(rStr);\r\n}\r\n}",
-        "file": "Practice/passwordChecker.sol"
-      }
-    }
-  },
   "@openzeppelin/contracts@5.6.1/utils/math/Math.sol": {
     "../Panic.sol": ".deps/npm/@openzeppelin/contracts@5.6.1/utils/Panic.sol",
     "./SafeCast.sol": ".deps/npm/@openzeppelin/contracts@5.6.1/utils/math/SafeCast.sol"
@@ -885,6 +840,83 @@
       "learning/28 may/messageBoard.sol": {
         "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract MessageBoard {\r\n\r\n    struct User {\r\n        uint id;\r\n        string userName;\r\n        address userAddress;\r\n    }\r\n\r\n    struct Message {\r\n        string userName;\r\n        string message;\r\n    }\r\n\r\n    // Events\r\n    event UserRegistered(\r\n        uint indexed id,\r\n        address indexed userAddress,\r\n        string userName\r\n    );\r\n\r\n    event MessagePosted(\r\n        address indexed userAddress,\r\n        string userName,\r\n        string message\r\n    );\r\n\r\n    uint public totalUsers;\r\n\r\n    mapping(address => User) public userDetails;\r\n    mapping(string => bool) public userNames;\r\n    mapping(address => bool) public isExisted;\r\n\r\n    Message[] private allMessages;\r\n\r\n    function addUser(string memory _name) public {\r\n        require(!isExisted[msg.sender], \"Already Existed\");\r\n\r\n        checkAvailability(_name);\r\n\r\n        totalUsers++;\r\n\r\n        isExisted[msg.sender] = true;\r\n\r\n        userDetails[msg.sender] = User(totalUsers,_name,msg.sender);\r\n\r\n        emit UserRegistered(\r\n            totalUsers,\r\n            msg.sender,\r\n            _name\r\n        );\r\n    }\r\n\r\n    function checkAvailability( string memory _userName) private {\r\n        require(!userNames[_userName],\"Not Available\");\r\n        userNames[_userName] = true;\r\n    }\r\n\r\n    function addMessage( string memory _message ) public {\r\n        require( isExisted[msg.sender], \"Not Registered\");\r\n        allMessages.push(Message(userDetails[msg.sender].userName,_message));\r\n\r\n        emit MessagePosted(\r\n            msg.sender,\r\n            userDetails[msg.sender].userName,\r\n            _message\r\n        );\r\n    }\r\n\r\n    function getMessage(uint index)\r\n    public\r\n    view\r\n    returns(\r\n        string memory,\r\n        string memory\r\n    )\r\n{\r\n    Message memory m = allMessages[index];\r\n\r\n    return (\r\n        m.userName,\r\n        m.message\r\n    );\r\n}\r\n\r\nfunction getTotalMessages()\r\n    public\r\n    view\r\n    returns(uint)\r\n{\r\n    return allMessages.length;\r\n}\r\n}",
         "file": "learning/28 may/messageBoard.sol"
+      }
+    }
+  },
+  "learning/Interface/atm.sol": {
+    "./bank.sol": "learning/Interface/bank.sol",
+    "__sources__": {
+      "learning/Interface/atm.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\nimport \"./bank.sol\";\r\n\r\ninterface UserBank {\r\n\r\n     function deposit() external payable;\r\n     function withdraw(uint amount) external payable;\r\n     function getMyBalance() external view returns(uint);\r\n    \r\n}\r\n\r\ncontract atm{\r\n    UserBank public bank1;\r\n    \r\n    constructor(address bank_address){\r\n        bank1 = UserBank(bank_address);\r\n    }\r\n\r\n    function deposit() external payable {\r\n         require(msg.value > 0,\"add some funds\");\r\n         bank1.deposit();\r\n    }\r\n\r\n    function getMyBalance() external view returns(uint){\r\n        return bank1.getMyBalance();\r\n    }\r\n\r\n    function withdraw(uint amount) external payable{\r\n        // require(bank.[msg.sender] >= amount ,\"No Funds\");\r\n        bank1.withdraw(amount);\r\n    }\r\n\r\n}",
+        "file": "learning/Interface/atm.sol"
+      },
+      "learning/Interface/bank.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract bank{\r\n\r\n    mapping (address => uint) balances;\r\n\r\n    function deposit() external payable {\r\n         require(msg.value > 0,\"add some funds\");\r\n         balances[msg.sender] += msg.value;\r\n    }\r\n\r\n    function getMyBalance() external view returns(uint){\r\n        return balances[msg.sender];\r\n    }\r\n\r\n    function withdraw(uint amount) external payable{\r\n        require(balances[msg.sender] >= amount ,\"No Funds\");\r\n        balances[msg.sender] -= amount;\r\n        payable(msg.sender).transfer(amount);\r\n    }\r\n}",
+        "file": "learning/Interface/bank.sol"
+      }
+    }
+  },
+  "learning/bank_interest.sol": {
+    "__sources__": {
+      "learning/bank_interest.sol": {
+        "content": "// Create a Bank Account smart contract where:\r\n// User can store account details\r\n// One function should only read account data and calculate interest using memory\r\n// Another function should update account balance using storage\r\n\r\n// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract Bank_Account{\r\n    \r\n    struct Account_Details{\r\n        string Uname;\r\n        address Uaddress;\r\n        uint balance;\r\n        uint interest;\r\n    }\r\n\r\n    mapping (address => Account_Details) public users;\r\n\r\n    function addAccount(string memory name, uint interest) public payable {\r\n        require(msg.value>0,\"Deposit some amount!!\");\r\n        require(msg.sender != users[msg.sender].Uaddress,\"already exist\");\r\n        users[msg.sender] = Account_Details(name, msg.sender, msg.value , interest);\r\n    }\r\n\r\n    function deposit()public payable {\r\n        require(msg.sender == users[msg.sender].Uaddress,\"Not exist\");\r\n        require(msg.value>0,\"Deposit some amount!!\");\r\n        users[msg.sender].balance += msg.value;\r\n    }\r\n\r\n\r\n    function updateAccount() public {\r\n         require(msg.sender == users[msg.sender].Uaddress,\"Command Rejected\");\r\n        Account_Details storage user = users[msg.sender];\r\n        user.balance += (user.balance * user.interest) / 100;\r\n    }\r\n\r\n     function getDetails() public view returns (string memory Uname, uint balance, uint interest) {\r\n        Account_Details memory user = users[msg.sender];\r\n        return (user.Uname, user.balance , user.interest);\r\n    }\r\n\r\n    function withdraw(uint amount) public payable{\r\n        users[msg.sender].balance -= amount;\r\n\r\n        (bool success, ) = msg.sender.call{value: amount}(\"\");\r\n        require(success, \"Transfer failed\");\r\n    }\r\n}",
+        "file": "learning/bank_interest.sol"
+      }
+    }
+  },
+  "learning/Orders.sol": {
+    "__sources__": {
+      "learning/Orders.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract Orders{\r\n\r\n    address owner;\r\n\r\n    constructor(){\r\n        owner=msg.sender;\r\n    }\r\n\r\n    modifier checkOwner{\r\n        require(owner==msg.sender,\"Access Denied\");\r\n        _;\r\n    }\r\n\r\n    enum Status{Pending,Prepared,Shipped,Delivered,Cancelled}\r\n \r\n    struct Order{\r\n        uint id;\r\n        string deliveryPartner;\r\n        Status status;\r\n    }\r\n    \r\n    mapping (uint => Order) public orders;\r\n    mapping (uint => bool) isOrdered;\r\n\r\n    struct User{\r\n        uint id;\r\n        string name;\r\n        address wallet;\r\n    }\r\n    \r\n    mapping (uint => User) public users;\r\n    mapping (address => bool) isRegistered;\r\n    uint[] allUserIds;\r\n\r\n    function addUser(uint _id, string memory name) public {\r\n         require(!isRegistered[msg.sender],\"user already registered\");\r\n           allUserIds.push(_id);\r\n           users[_id] = User(_id,name,msg.sender);\r\n           isRegistered[msg.sender] = true;\r\n    }\r\n\r\n\r\n    function addOrder(uint _id, string memory deliveryPartner) public{\r\n         orders[_id] = Order(_id, deliveryPartner,Status.Pending);\r\n    }\r\n\r\n    function updateOrder(uint _id, Status _status) public checkOwner{\r\n         orders[_id]= Order(_id, orders[_id].deliveryPartner, _status);\r\n    }\r\n\r\n}",
+        "file": "learning/Orders.sol"
+      }
+    }
+  },
+  "Practice/Access-Based.sol": {
+    "__sources__": {
+      "Practice/Access-Based.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract RoleControl {\r\n\r\n\r\n    enum Role { Admin, Manager, User }\r\n\r\n    mapping(address => Role) public roles;\r\n\r\n    constructor(){\r\n        roles[msg.sender]= Role.Admin;\r\n    }\r\n\r\n    modifier onlyAdmin() {\r\n        require(roles[msg.sender]== Role.Admin,\"Access Denied\");\r\n        _;\r\n    }\r\n\r\n    modifier onlyManager() {\r\n        require(Role.Manager==roles[msg.sender],\"Access Denied\");\r\n        _;\r\n    } \r\n\r\n    function assignRole(address _user, Role _role) public onlyAdmin{\r\n        // only admin\r\n        roles[_user]= _role;\r\n\r\n    } \r\n\r\n    struct Task{\r\n        uint id;\r\n        string Description;\r\n        bool isCompleted;\r\n    }\r\n\r\n    mapping (uint => Task) public tasks;\r\n    uint[] alltaskIds;\r\n\r\n    function createTask(uint _id, string memory _description) public onlyManager{\r\n        // only manager\r\n        alltaskIds.push(_id);\r\n        tasks[_id] = Task(_id, _description, false);\r\n    }\r\n\r\n    function completeTask(uint _id ,bool _isCompleted) public {\r\n        // only user\r\n        tasks[_id] = Task(_id, tasks[_id].Description, _isCompleted);\r\n    }\r\n}",
+        "file": "Practice/Access-Based.sol"
+      }
+    }
+  },
+  "Practice/passwordChecker.sol": {
+    "__sources__": {
+      "Practice/passwordChecker.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract passwordChecker{\r\n    string private password = \"gurdil\";\r\n\r\n    function checkPassword(string memory input) public view returns(string memory){\r\n        if(keccak256(bytes(input))==keccak256(bytes(password))){\r\n           return \"Access Granted\";\r\n        }\r\n        return \"Access Denied\";\r\n    }\r\n\r\n    function password_in_bytes(string memory _input) public pure returns(bytes memory){\r\n        return bytes(_input);\r\n    }\r\n\r\n    \r\n    function password_length(string memory _input) public pure returns(uint){\r\n        uint strLength = bytes(_input).length;\r\n        return strLength;\r\n    }\r\n\r\n    function getFirstByte(string memory _input) public pure returns(bytes1){\r\n        bytes memory Bytes = bytes(_input);\r\n        bytes1 firstByte = Bytes[5];\r\n        return firstByte;\r\n    }\r\n\r\n    function bytestoString(bytes memory _input) public pure returns(string memory){\r\n        return string(_input);\r\n    }\r\n\r\n    function concat()public pure returns(bytes memory){\r\n       bytes memory a = \"Hello\"; \r\n       bytes memory b = \"World!\";\r\n       return  abi.encodePacked(a,b);\r\n\r\n    }\r\n\r\n    function toUppercase(string memory _input) public pure returns(string memory){\r\n        bytes memory strByte = bytes(_input);\r\n        uint strLength = strByte.length;\r\n        bytes memory resStr= new bytes(strLength);\r\n\r\n        for(uint i=0;i<strLength;i++){\r\n            if(uint8(strByte[i])>=97 && uint8(strByte[i])<=122){\r\n              resStr[i] = bytes1(uint8(strByte[i])-32);\r\n            }else{\r\n            resStr[i] = strByte[i];\r\n        }\r\n        }\r\n\r\n        return string(resStr);\r\n    }\r\n\r\n    function toLowercase(string memory _input) public pure returns(string memory){\r\n        bytes memory strByte = bytes(_input);\r\n        uint strLength = strByte.length;\r\n        bytes memory resStr= new bytes(strLength);\r\n\r\n        for(uint i=0;i<strLength;i++){\r\n            if(uint8(strByte[i])>=65 && uint8(strByte[i])<=90){\r\n              resStr[i] = bytes1(uint8(strByte[i])+32);\r\n            }else{\r\n            resStr[i] = strByte[i];\r\n        }\r\n        }\r\n\r\n        return string(resStr);\r\n    }\r\n\r\n    function countWords(string memory _input) public pure returns(uint){\r\n        bytes memory bStr = bytes(_input);\r\n        uint strLength = bStr.length;\r\n\r\n        if (strLength == 0) {\r\n            return 0;\r\n        }\r\n\r\n        uint count = 0;\r\n        bool inWord = false;\r\n\r\n        for (uint i = 0; i < strLength; i++) {\r\n            if (bStr[i] != 0x20 && !inWord) {\r\n                inWord = true;\r\n                count++;\r\n            } else if (bStr[i] == 0x20) {\r\n                inWord = false;\r\n            }\r\n    }\r\n    return count;\r\n}\r\n\r\nfunction compareString(string memory a, string memory b) public pure returns(bool){\r\n    bytes memory bStr1 = bytes(a);\r\n    bytes memory bStr2 = bytes(b);\r\n    uint strLength1 = bStr1.length;\r\n    uint strLength2 = bStr2.length;\r\n        if (strLength1 != strLength2) {\r\n            return false;\r\n        }\r\n\r\n        for (uint i = 0; i < strLength1; i++) {\r\n            if (bStr1[i] != bStr2[i]) {\r\n                return false;\r\n            }\r\n    }\r\n    return true;\r\n}\r\n\r\nfunction reverseString(string memory input) public pure returns(string memory){\r\n    bytes memory bStr = bytes(input);\r\n    bytes memory rStr = new bytes(bStr.length);\r\n\r\n    for(uint i=0;i<bStr.length;i++){\r\n        rStr[i] = bStr[bStr.length-1-i];\r\n    }\r\n    return string(rStr);\r\n}\r\n}",
+        "file": "Practice/passwordChecker.sol"
+      }
+    }
+  },
+  "learning/1 june/NFT.sol": {
+    "__sources__": {
+      "learning/1 june/NFT.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract StudentNFTMetadata {\r\n\r\n    struct NFT {\r\n        uint256 tokenId;\r\n        string metadataCID;\r\n        address owner;\r\n    }\r\n\r\n    uint256 public nextTokenId;\r\n\r\n    mapping(uint256 => NFT) public nfts;\r\n\r\n    function createNFT(string memory _metadataCID) public {\r\n\r\n        nextTokenId++;\r\n\r\n        nfts[nextTokenId] = NFT({\r\n            tokenId: nextTokenId,\r\n            metadataCID: _metadataCID,\r\n            owner: msg.sender\r\n        });\r\n    }\r\n\r\n    function getMetadataURI(uint256 _tokenId) public view returns (string memory) {\r\n\r\n        return string(\r\n            abi.encodePacked(\r\n                \"https://ipfs.io/ipfs/\",\r\n                nfts[_tokenId].metadataCID\r\n            )\r\n        );\r\n    }\r\n}",
+        "file": "learning/1 june/NFT.sol"
+      }
+    }
+  },
+  "learning/1 june/landRegistration.sol": {
+    "__sources__": {
+      "learning/1 june/landRegistration.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract landRegistration{\r\n    struct Land{\r\n        uint landNumber;\r\n        uint landSize;\r\n        string landUrl ;\r\n        uint landPrice; \r\n        address owner;\r\n    }\r\n    \r\n    mapping(uint => Land) public lands;\r\n    mapping(address => bool) public isOwned;\r\n    function addOwner(uint _landNumber, uint _landSize, string memory _landCid, uint _landPrice, address _owner) public{\r\n         require(!isOwned[lands[_landNumber].owner], \"Owner already exists\");\r\n         lands[_landNumber] = Land(_landNumber, _landSize, string(abi.encodePacked(\"https://ipfs.io/ipfs/\",_landCid)), _landPrice, _owner);\r\n         isOwned[lands[_landNumber].owner] = true;\r\n    }\r\n\r\n    function transferOwnership(uint _landNumber, address _newOwner) public payable{\r\n        require(isOwned[lands[_landNumber].owner], \"Owner does not exist\");\r\n        require(lands[_landNumber].owner != _newOwner, \"Does not sell to same owner\");\r\n        require(msg.value == lands[_landNumber].landPrice, \"Insufficient funds\");\r\n        isOwned[lands[_landNumber].owner] = false;\r\n        lands[_landNumber].owner = _newOwner;\r\n        isOwned[lands[_landNumber].owner] = true;\r\n    }\r\n    \r\n    function getLandDetails(uint _landNumber) public view returns (uint, uint, string memory, uint, address){\r\n        return (lands[_landNumber].landNumber, lands[_landNumber].landSize, lands[_landNumber].landUrl, lands[_landNumber].landPrice, lands[_landNumber].owner);\r\n    }\r\n\r\n\r\n\r\n}",
+        "file": "learning/1 june/landRegistration.sol"
+      }
+    }
+  },
+  "learning/1 june/landRegS.sol": {
+    "__sources__": {
+      "learning/1 june/landRegS.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract LandRegistry {\r\n\r\n    uint256 public propertyCount;\r\n\r\n    struct Property {\r\n        uint256 propertyId;\r\n        string location;\r\n        uint256 area;\r\n        string documentCID;\r\n        address owner;\r\n        bool exists;\r\n    }\r\n\r\n    mapping(uint256 => Property) public properties;\r\n\r\n    modifier onlyOwner(uint256 _propertyId) {\r\n        require(\r\n            properties[_propertyId].owner == msg.sender,\r\n            \"Not property owner\"\r\n        );\r\n        _;\r\n    }\r\n\r\n    function registerProperty(string memory _location,uint256 _area,string memory _documentCID) public {\r\n\r\n        propertyCount++;\r\n\r\n        properties[propertyCount] = Property({\r\n            propertyId: propertyCount,\r\n            location: _location,\r\n            area: _area,\r\n            documentCID: _documentCID,\r\n            owner: msg.sender,\r\n            exists: true\r\n        });\r\n    }\r\n\r\n    function transferOwnership(uint256 _propertyId, address _newOwner) public onlyOwner(_propertyId) {\r\n\r\n        require(\r\n            properties[_propertyId].exists,\r\n            \"Property does not exist\"\r\n        );\r\n\r\n        properties[_propertyId].owner = _newOwner;\r\n    }\r\n\r\n    function getProperty(uint256 _propertyId) public view returns (\r\n            uint256,\r\n            string memory,\r\n            uint256,\r\n            string memory,\r\n            address\r\n        )\r\n    {\r\n        Property memory p = properties[_propertyId];\r\n\r\n        return (\r\n            p.propertyId,\r\n            p.location,\r\n            p.area,\r\n            p.documentCID,\r\n            p.owner\r\n        );\r\n    }\r\n\r\n    function getDocumentURL(uint256 _propertyId) public view returns (string memory){\r\n        require(\r\n            properties[_propertyId].exists,\r\n            \"Property does not exist\"\r\n        );\r\n\r\n        return string(\r\n            abi.encodePacked(\r\n                \"https://ipfs.io/ipfs/\",\r\n                properties[_propertyId].documentCID\r\n            )\r\n        );\r\n    }\r\n}",
+        "file": "learning/1 june/landRegS.sol"
+      }
+    }
+  },
+  "learning/1 june/IPFS.sol": {
+    "__sources__": {
+      "learning/1 june/IPFS.sol": {
+        "content": "// cid store in variable\r\n// get file url\r\n\r\n\r\n// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract IPFS{\r\n    string cId;\r\n\r\n    function addCid(string memory _cId)public {\r\n        cId = _cId;\r\n    }\r\n    function geturl()public view returns(string memory){\r\n        string memory mainURL = string(abi.encodePacked(\"https://ipfs.io/ipfs/\",cId));\r\n    \r\n        return mainURL;\r\n    }\r\n}\r\n",
+        "file": "learning/1 june/IPFS.sol"
       }
     }
   }
