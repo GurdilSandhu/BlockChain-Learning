@@ -24,6 +24,64 @@
 				"type": "function"
 			},
 			{
+				"inputs": [],
+				"name": "getAllLandIds",
+				"outputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "",
+						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getAllLands",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "landNumber",
+								"type": "uint256"
+							},
+							{
+								"internalType": "string",
+								"name": "name",
+								"type": "string"
+							},
+							{
+								"internalType": "uint256",
+								"name": "totalTokens",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "availableTokens",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "tokenPrice",
+								"type": "uint256"
+							},
+							{
+								"internalType": "address",
+								"name": "owner",
+								"type": "address"
+							}
+						],
+						"internalType": "struct TokenLand.Land[]",
+						"name": "",
+						"type": "tuple[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "uint256",
@@ -117,6 +175,25 @@
 						"internalType": "bool",
 						"name": "",
 						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "landIds",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -252,11 +329,11 @@
 	},
 	"sources": {
 		"Practice/4 june/tokenLand.sol": {
-			"keccak256": "0x13d3542e4f16816e2f008f86df06bf3e7804ef0cb53630d9f5eb9900372d1035",
+			"keccak256": "0x0e18732fe850f0bd6000c9bae333020c8076d2f46dd06889a338f6af55e32bc7",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://1cc9b46ecdfa30a63e31f7dce47725ee84ef89efb5cd8c2bb34b9408f5fc34e8",
-				"dweb:/ipfs/QmRwPhi55TthhcgwDAQ92NWhQNmT9P1rVdKEewBXNBEmU6"
+				"bzz-raw://363315ac080bb43cdec6df7dc938e1899c009795a3709b29cd1867837017db6d",
+				"dweb:/ipfs/QmZnPxwv3AuojkPsJMi6Fb2pc85kA6Mn7uMRZmKnvNFSm9"
 			]
 		}
 	},

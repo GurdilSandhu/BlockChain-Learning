@@ -16,7 +16,8 @@ contract TokenLand {
         uint totalTokens;
         uint ownershipPercentage;
     }
-
+    
+    uint[] public landIds;
     mapping(uint => Land) public lands;
     mapping(uint => bool) public isExist;
     mapping(uint => mapping(address => landOwnership)) public tokenBalances;
@@ -27,7 +28,7 @@ contract TokenLand {
         require(_totalTokens > 0,"Invalid token amount");
         require(_landPrice > 0,"Invalid land price");
 
-        uint tokenPrice =(_landPrice * 1 ether) / _totalTokens;
+        uint tokenPrice = _landPrice  / _totalTokens;
 
         lands[_landNumber] = Land({
             landNumber: _landNumber,
@@ -37,7 +38,7 @@ contract TokenLand {
             tokenPrice: tokenPrice,
             owner: msg.sender
         });
-
+        landIds.push(_landNumber);
         isExist[_landNumber] = true;
     }
 
@@ -55,7 +56,9 @@ contract TokenLand {
         require(msg.value >= totalCost,"Insufficient ETH sent");
 
         tokenBalances[_landNumber][msg.sender].totalTokens += _tokenAmount;
-        tokenBalances[_landNumber][msg.sender].ownershipPercentage = (tokenBalances[_landNumber][msg.sender].totalTokens* 100)/ lands[_landNumber].totalTokens ;
+        tokenBalances[_landNumber][msg.sender].ownershipPercentage = (tokenBalances[_landNumber]
+                                                                     [msg.sender].totalTokens* 100)/ 
+                                                                     lands[_landNumber].totalTokens ;
         land.availableTokens -= _tokenAmount;
         payable(land.owner).transfer(totalCost);
         if (msg.value > totalCost) {
@@ -73,4 +76,25 @@ contract TokenLand {
     {   
         return tokenBalances[_landNumber][_user];
     }
+
+    function getAllLandIds()  public view returns(uint[] memory)
+{
+    return landIds;
+}
+
+function getAllLands()
+    public
+    view
+    returns(Land[] memory)
+{
+    Land[] memory allLands =
+        new Land[](landIds.length);
+
+    for(uint i=0; i<landIds.length; i++){
+        allLands[i] =
+            lands[landIds[i]];
+    }
+
+    return allLands;
+}
 }
