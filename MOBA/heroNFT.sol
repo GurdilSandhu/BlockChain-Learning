@@ -17,5 +17,5 @@ contract HeroNFT is ERC721URIStorage {
         _setTokenURI(tokenId, tokenURI);
 
         nextTokenId++;
-    }
+    } 
 }
