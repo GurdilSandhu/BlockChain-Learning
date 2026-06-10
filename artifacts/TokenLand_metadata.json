@@ -329,11 +329,11 @@
 	},
 	"sources": {
 		"Practice/4 june/tokenLand.sol": {
-			"keccak256": "0x0e18732fe850f0bd6000c9bae333020c8076d2f46dd06889a338f6af55e32bc7",
+			"keccak256": "0x335f0192f2db84db0743a3a5ed9d0f643a8458b9f7ad6e0cfaa6bd5611ac5e94",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://363315ac080bb43cdec6df7dc938e1899c009795a3709b29cd1867837017db6d",
-				"dweb:/ipfs/QmZnPxwv3AuojkPsJMi6Fb2pc85kA6Mn7uMRZmKnvNFSm9"
+				"bzz-raw://df5ef1edf90cabd603a63de1ce56c51cec59d2af9bc7b7ec43259a00e1cf7e04",
+				"dweb:/ipfs/QmeSQ8RMW3jAVhH1bRNCpL4AUQCoKfkp5KTThF18ACPSE7"
 			]
 		}
 	},

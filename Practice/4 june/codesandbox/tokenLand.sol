@@ -28,7 +28,7 @@ contract TokenLand {
         require(_totalTokens > 0,"Invalid token amount");
         require(_landPrice > 0,"Invalid land price");
 
-        uint tokenPrice = _landPrice  / _totalTokens;
+        uint tokenPrice = (_landPrice * 1 ether)/ _totalTokens;
 
         lands[_landNumber] = Land({
             landNumber: _landNumber,
@@ -37,6 +37,10 @@ contract TokenLand {
             availableTokens: _totalTokens,
             tokenPrice: tokenPrice,
             owner: msg.sender
+        });
+        tokenBalances[_landNumber][lands[_landNumber].owner] = landOwnership({
+            totalTokens : _totalTokens,
+            ownershipPercentage : 100
         });
         landIds.push(_landNumber);
         isExist[_landNumber] = true;
@@ -54,7 +58,10 @@ contract TokenLand {
         uint totalCost = land.tokenPrice * _tokenAmount;
 
         require(msg.value >= totalCost,"Insufficient ETH sent");
-
+        tokenBalances[_landNumber][lands[_landNumber].owner].totalTokens-= _tokenAmount;
+        tokenBalances[_landNumber][lands[_landNumber].owner].ownershipPercentage = (tokenBalances[_landNumber]
+                                                                                 [lands[_landNumber].owner].totalTokens * 100)/
+                                                                                 lands[_landNumber].totalTokens;
         tokenBalances[_landNumber][msg.sender].totalTokens += _tokenAmount;
         tokenBalances[_landNumber][msg.sender].ownershipPercentage = (tokenBalances[_landNumber]
                                                                      [msg.sender].totalTokens* 100)/ 
