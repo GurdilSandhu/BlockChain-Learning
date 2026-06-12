@@ -14,11 +14,12 @@ contract TokenLand {
         uint tokenAmount
     );
 
-    event OwnershipTransferred(
+    event ListingCreated(
+        uint indexed listingId,
         uint indexed landNumber,
-        address indexed from,
-        address indexed to,
-        uint tokenAmount
+        address indexed seller,
+        uint amount,
+        uint price
     );
 
     struct Land {
@@ -36,6 +37,7 @@ contract TokenLand {
 
     struct landOwnership {
         uint totalTokens;
+        uint lockedTokens;
         uint ownershipPercentage;
     }
 
@@ -73,8 +75,12 @@ contract TokenLand {
         require(_totalTokens > 0, "Invalid token amount");
         require(_landPrice > 0, "Invalid land price");
         require(_reservedTokens <= _totalTokens, "Invalid reserve");
+        require(bytes(_name).length > 0, "Name required");
+        require(bytes(_location).length > 0, "Location required");
+        require(bytes(_documentCID).length > 0, "CID required");
+        require(_area > 0, "Invalid area");
 
-        uint tokenPrice = _landPrice / _totalTokens;
+        uint tokenPrice = (_landPrice * 1 ether) / _totalTokens;
 
         lands[_landNumber] = Land({
             landNumber: _landNumber,
@@ -90,6 +96,7 @@ contract TokenLand {
         });
         tokenBalances[_landNumber][msg.sender] = landOwnership({
             totalTokens: _reservedTokens,
+            lockedTokens: 0,
             ownershipPercentage: (_reservedTokens * 100) / _totalTokens
         });
         landIds.push(_landNumber);
@@ -146,10 +153,6 @@ contract TokenLand {
             "Not enough tokens"
         );
         createListing(_landNumber, _tokenAmount, _pricePerToken);
-
-        if (tokenBalances[_landNumber][msg.sender].totalTokens == 0) {
-            removeShareholder(_landNumber, msg.sender);
-        }
     }
 
     function removeShareholder(uint _landNumber, address _holder) internal {
@@ -174,10 +177,15 @@ contract TokenLand {
         uint _pricePerToken
     ) internal {
         require(
-            tokenBalances[_landNumber][msg.sender].totalTokens >= _tokenAmount,
-            "Insufficient balance"
+            tokenBalances[_landNumber][msg.sender].totalTokens -
+                tokenBalances[_landNumber][msg.sender].lockedTokens >=
+                _tokenAmount,
+            "Insufficient free tokens"
         );
-        nextListingId++;
+        require(_pricePerToken > 0, "Invalid price");
+        require(_tokenAmount > 0, "Invalid tokens");
+
+        tokenBalances[_landNumber][msg.sender].lockedTokens += _tokenAmount;
 
         listings[nextListingId] = Listing({
             landNumber: _landNumber,
@@ -187,11 +195,25 @@ contract TokenLand {
             pricePerToken: _pricePerToken,
             active: true
         });
+
+        emit ListingCreated(
+            nextListingId,
+            _landNumber,
+            msg.sender,
+            _tokenAmount,
+            _pricePerToken
+        );
+        nextListingId++;
     }
 
     function buyListedTokens(uint listingId, uint _tokenAmount) public payable {
         Listing storage listing = listings[listingId];
-
+        require(
+            listing.availableTokens >= _tokenAmount,
+            "Not enough listed tokens"
+        );
+        require(listing.seller != msg.sender, "Cannot buy your own listing");
+        require(_tokenAmount > 0, "Invalid amount");
         require(listing.active, "Listing inactive");
         require(
             tokenBalances[listing.landNumber][listing.seller].totalTokens >=
@@ -209,18 +231,26 @@ contract TokenLand {
             (tokenBalances[listing.landNumber][listing.seller].totalTokens *
                 100) / lands[listing.landNumber].totalTokens;
 
+        tokenBalances[listing.landNumber][listing.seller]
+            .lockedTokens -= _tokenAmount;
+
         tokenBalances[listing.landNumber][msg.sender]
             .totalTokens += _tokenAmount;
 
         tokenBalances[listing.landNumber][msg.sender].ownershipPercentage =
             (tokenBalances[listing.landNumber][msg.sender].totalTokens * 100) /
             lands[listing.landNumber].totalTokens;
-        listing.availableTokens -=_tokenAmount;
+        listing.availableTokens -= _tokenAmount;
 
         if (msg.value > cost) {
             payable(msg.sender).transfer(msg.value - cost);
         }
         payable(listing.seller).transfer(cost);
+        if (
+            tokenBalances[listing.landNumber][listing.seller].totalTokens == 0
+        ) {
+            removeShareholder(listing.landNumber, listing.seller);
+        }
 
         if (listing.availableTokens == 0) {
             listing.active = false;
@@ -230,6 +260,29 @@ contract TokenLand {
             shareholders[listing.landNumber].push(msg.sender);
             isShareholder[listing.landNumber][msg.sender] = true;
         }
+    }
+
+    function cancelListing(uint listingId) public {
+        Listing storage listing = listings[listingId];
+
+        require(listing.seller == msg.sender, "Not seller");
+        require(listing.active, "Already inactive");
+
+        tokenBalances[listing.landNumber][msg.sender].lockedTokens -= listing
+            .availableTokens;
+
+        listing.availableTokens = 0;
+        listing.active = false;
+    }
+
+    function getListing(uint listingId) public view returns (Listing memory) {
+        return listings[listingId];
+    }
+
+    function getShareholders(
+        uint _landNumber
+    ) public view returns (address[] memory) {
+        return shareholders[_landNumber];
     }
 
     function getLandDetails(
@@ -279,6 +332,15 @@ contract TokenLand {
         require(msg.sender == lands[_landNumber].issuer, "Only owner");
 
         lands[_landNumber].documentCID = _newCID;
+    }
+
+    function getTokenBalance(
+        uint _landNumber,
+        address _user
+    ) public view returns (uint totalTokens, uint lockedTokens) {
+        landOwnership memory balance = tokenBalances[_landNumber][_user];
+
+        return (balance.totalTokens, balance.lockedTokens);
     }
 
     function getAllLandIds() public view returns (uint[] memory) {

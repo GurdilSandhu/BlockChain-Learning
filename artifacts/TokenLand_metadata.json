@@ -36,29 +36,35 @@
 					{
 						"indexed": true,
 						"internalType": "uint256",
+						"name": "listingId",
+						"type": "uint256"
+					},
+					{
+						"indexed": true,
+						"internalType": "uint256",
 						"name": "landNumber",
 						"type": "uint256"
 					},
 					{
 						"indexed": true,
 						"internalType": "address",
-						"name": "from",
-						"type": "address"
-					},
-					{
-						"indexed": true,
-						"internalType": "address",
-						"name": "to",
+						"name": "seller",
 						"type": "address"
 					},
 					{
 						"indexed": false,
 						"internalType": "uint256",
-						"name": "tokenAmount",
+						"name": "amount",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "price",
 						"type": "uint256"
 					}
 				],
-				"name": "OwnershipTransferred",
+				"name": "ListingCreated",
 				"type": "event"
 			},
 			{
@@ -120,6 +126,19 @@
 				"name": "buyToken",
 				"outputs": [],
 				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "listingId",
+						"type": "uint256"
+					}
+				],
+				"name": "cancelListing",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -268,6 +287,57 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
+						"name": "listingId",
+						"type": "uint256"
+					}
+				],
+				"name": "getListing",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "landNumber",
+								"type": "uint256"
+							},
+							{
+								"internalType": "address",
+								"name": "seller",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "listedTokens",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "availableTokens",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "pricePerToken",
+								"type": "uint256"
+							},
+							{
+								"internalType": "bool",
+								"name": "active",
+								"type": "bool"
+							}
+						],
+						"internalType": "struct TokenLand.Listing",
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
 						"name": "_landNumber",
 						"type": "uint256"
 					},
@@ -282,6 +352,54 @@
 					{
 						"internalType": "uint256",
 						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_landNumber",
+						"type": "uint256"
+					}
+				],
+				"name": "getShareholders",
+				"outputs": [
+					{
+						"internalType": "address[]",
+						"name": "",
+						"type": "address[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_landNumber",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "_user",
+						"type": "address"
+					}
+				],
+				"name": "getTokenBalance",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "totalTokens",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "lockedTokens",
 						"type": "uint256"
 					}
 				],
@@ -508,6 +626,11 @@
 					},
 					{
 						"internalType": "uint256",
+						"name": "lockedTokens",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
 						"name": "ownershipPercentage",
 						"type": "uint256"
 					}
@@ -610,11 +733,11 @@
 	},
 	"sources": {
 		"Practice/12 june/codesandbox/tokenLand.sol": {
-			"keccak256": "0x5645e5345c6c48eabb47709ef700502dc3b4692dee776fd33bd305320e0e6695",
+			"keccak256": "0xd0c16e1c5995c19846ca5681190c760f07e589e495f6837f2da3a87ca493901a",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://63f5c48d1422cbb8de3ed901e866f76a3f8c47543ca931effda621f3d577182a",
-				"dweb:/ipfs/QmXpc2NK3k4gtLrG3jCdL51unZ8e1xooVKhtiHo4PW1XbU"
+				"bzz-raw://e0b3bffb350d1ac1c938803e9cb7a9ed4553993ad8fb7c5fbb13e4e81eee7ab9",
+				"dweb:/ipfs/QmWmDDNsxiCCeuRsLYCQeL4LrovXcUE41K4K7UCLUmUxum"
 			]
 		}
 	},
