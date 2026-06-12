@@ -4,13 +4,16 @@ pragma solidity ^0.8.0;
 contract TokenLand {
 
     struct Land {
-        uint landNumber;
-        string name;
-        uint totalTokens;
-        uint availableTokens;
-        uint tokenPrice; 
-        address owner;
-    }
+    uint landNumber;
+    string name;
+    string location;
+    uint area;
+    string documentCID;
+    uint totalTokens;
+    uint availableTokens;
+    uint tokenPrice;
+    address owner;
+}
 
     struct landOwnership{
         uint totalTokens;
@@ -22,7 +25,15 @@ contract TokenLand {
     mapping(uint => bool) public isExist;
     mapping(uint => mapping(address => landOwnership)) public tokenBalances;
 
-    function tokenizeLand(uint _landNumber,string memory _name, uint _totalTokens,uint _landPrice) public {
+    function tokenizeLand(
+    uint _landNumber,
+    string memory _name,
+    string memory _location,
+    uint _area,
+    string memory _documentCID,
+    uint _totalTokens,
+    uint _landPrice
+    ) public {
 
         require(!isExist[_landNumber],"Land already tokenized");
         require(_totalTokens > 0,"Invalid token amount");
@@ -33,6 +44,9 @@ contract TokenLand {
         lands[_landNumber] = Land({
             landNumber: _landNumber,
             name: _name,
+            location: _location,
+            area: _area,
+            documentCID: _documentCID,
             totalTokens: _totalTokens,
             availableTokens: _totalTokens,
             tokenPrice: tokenPrice,
