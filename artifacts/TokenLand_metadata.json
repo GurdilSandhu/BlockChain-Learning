@@ -595,7 +595,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"Practice/4 june/codesandbox/tokenLand.sol": "TokenLand"
+			"Practice/12 june/codesandbox/tokenLand.sol": "TokenLand"
 		},
 		"evmVersion": "istanbul",
 		"libraries": {},
@@ -609,12 +609,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"Practice/4 june/codesandbox/tokenLand.sol": {
-			"keccak256": "0x3af2e14cec54d278ae0bce0ac6016584d9a0eddec116323f57878550780660a8",
+		"Practice/12 june/codesandbox/tokenLand.sol": {
+			"keccak256": "0x5645e5345c6c48eabb47709ef700502dc3b4692dee776fd33bd305320e0e6695",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://0471486f5105866b8c9e4f36973cb2fb580e983c3e0b46f1d6ad275dc46731dc",
-				"dweb:/ipfs/QmaWtm5nb7batDNZ9EYb7JksoEAqkcDWsjMEDdC2pFCgKH"
+				"bzz-raw://63f5c48d1422cbb8de3ed901e866f76a3f8c47543ca931effda621f3d577182a",
+				"dweb:/ipfs/QmXpc2NK3k4gtLrG3jCdL51unZ8e1xooVKhtiHo4PW1XbU"
 			]
 		}
 	},

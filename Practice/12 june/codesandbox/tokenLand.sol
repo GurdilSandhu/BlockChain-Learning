@@ -74,7 +74,7 @@ contract TokenLand {
         require(_landPrice > 0, "Invalid land price");
         require(_reservedTokens <= _totalTokens, "Invalid reserve");
 
-        uint tokenPrice = (_landPrice * 1 ether) / _totalTokens;
+        uint tokenPrice = _landPrice / _totalTokens;
 
         lands[_landNumber] = Land({
             landNumber: _landNumber,
