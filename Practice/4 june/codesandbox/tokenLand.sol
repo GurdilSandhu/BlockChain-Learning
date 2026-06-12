@@ -42,16 +42,17 @@ contract TokenLand {
     struct Listing {
         uint landNumber;
         address seller;
-        uint tokenAmount;
+        uint listedTokens;
+        uint availableTokens;
         uint pricePerToken;
         bool active;
     }
 
-    uint public nextListingId;
+    uint nextListingId;
 
     mapping(uint => Listing) public listings;
 
-    uint[] public landIds;
+    uint[] landIds;
     mapping(uint => Land) public lands;
     mapping(uint => bool) public isExist;
     mapping(uint => address[]) public shareholders;
@@ -176,16 +177,16 @@ contract TokenLand {
             tokenBalances[_landNumber][msg.sender].totalTokens >= _tokenAmount,
             "Insufficient balance"
         );
+        nextListingId++;
 
         listings[nextListingId] = Listing({
             landNumber: _landNumber,
             seller: msg.sender,
-            tokenAmount: _tokenAmount,
+            listedTokens: _tokenAmount,
+            availableTokens: _tokenAmount,
             pricePerToken: _pricePerToken,
             active: true
         });
-
-        nextListingId++;
     }
 
     function buyListedTokens(uint listingId, uint _tokenAmount) public payable {
@@ -204,23 +205,24 @@ contract TokenLand {
 
         tokenBalances[listing.landNumber][listing.seller]
             .totalTokens -= _tokenAmount;
-             tokenBalances[listing.landNumber][listing.seller].ownershipPercentage =
-            (tokenBalances[listing.landNumber][listing.seller].totalTokens * 100) /
-            lands[listing.landNumber].totalTokens;
+        tokenBalances[listing.landNumber][listing.seller].ownershipPercentage =
+            (tokenBalances[listing.landNumber][listing.seller].totalTokens *
+                100) / lands[listing.landNumber].totalTokens;
 
-        tokenBalances[listing.landNumber][msg.sender].totalTokens += listing
-            .tokenAmount;
+        tokenBalances[listing.landNumber][msg.sender]
+            .totalTokens += _tokenAmount;
 
         tokenBalances[listing.landNumber][msg.sender].ownershipPercentage =
             (tokenBalances[listing.landNumber][msg.sender].totalTokens * 100) /
             lands[listing.landNumber].totalTokens;
+        listing.availableTokens -=_tokenAmount;
 
         if (msg.value > cost) {
             payable(msg.sender).transfer(msg.value - cost);
         }
         payable(listing.seller).transfer(cost);
 
-        if (listing.tokenAmount == 0) {
+        if (listing.availableTokens == 0) {
             listing.active = false;
         }
 

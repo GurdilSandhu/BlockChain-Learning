@@ -339,25 +339,6 @@
 						"type": "uint256"
 					}
 				],
-				"name": "landIds",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
 				"name": "lands",
 				"outputs": [
 					{
@@ -436,7 +417,12 @@
 					},
 					{
 						"internalType": "uint256",
-						"name": "tokenAmount",
+						"name": "listedTokens",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "availableTokens",
 						"type": "uint256"
 					},
 					{
@@ -448,19 +434,6 @@
 						"internalType": "bool",
 						"name": "active",
 						"type": "bool"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "nextListingId",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -637,11 +610,11 @@
 	},
 	"sources": {
 		"Practice/4 june/codesandbox/tokenLand.sol": {
-			"keccak256": "0x34d89ae5476408ba8f835e618b473eeaa90fe6ab660b44690f25683142678568",
+			"keccak256": "0x3af2e14cec54d278ae0bce0ac6016584d9a0eddec116323f57878550780660a8",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://bc74da638d69f1cfc3a7682a1e65aa8e7701d1beb8e468945c2843e1be39df32",
-				"dweb:/ipfs/QmXR7JPPxAvLEPVMRjDDS6bMTRsyrmttKU5M3DsPsqmSWo"
+				"bzz-raw://0471486f5105866b8c9e4f36973cb2fb580e983c3e0b46f1d6ad275dc46731dc",
+				"dweb:/ipfs/QmaWtm5nb7batDNZ9EYb7JksoEAqkcDWsjMEDdC2pFCgKH"
 			]
 		}
 	},
