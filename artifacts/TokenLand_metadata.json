@@ -6,6 +6,105 @@
 	"output": {
 		"abi": [
 			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "landNumber",
+						"type": "uint256"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "totalTokens",
+						"type": "uint256"
+					}
+				],
+				"name": "LandTokenized",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "landNumber",
+						"type": "uint256"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "from",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "tokenAmount",
+						"type": "uint256"
+					}
+				],
+				"name": "OwnershipTransferred",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "landNumber",
+						"type": "uint256"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "buyer",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "tokenAmount",
+						"type": "uint256"
+					}
+				],
+				"name": "TokensPurchased",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "listingId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_tokenAmount",
+						"type": "uint256"
+					}
+				],
+				"name": "buyListedTokens",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "uint256",
@@ -53,6 +152,21 @@
 								"type": "string"
 							},
 							{
+								"internalType": "string",
+								"name": "location",
+								"type": "string"
+							},
+							{
+								"internalType": "uint256",
+								"name": "area",
+								"type": "uint256"
+							},
+							{
+								"internalType": "string",
+								"name": "documentCID",
+								"type": "string"
+							},
+							{
 								"internalType": "uint256",
 								"name": "totalTokens",
 								"type": "uint256"
@@ -69,8 +183,13 @@
 							},
 							{
 								"internalType": "address",
-								"name": "owner",
+								"name": "issuer",
 								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "timestamp",
+								"type": "uint256"
 							}
 						],
 						"internalType": "struct TokenLand.Land[]",
@@ -102,6 +221,21 @@
 						"type": "string"
 					},
 					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					},
+					{
 						"internalType": "uint256",
 						"name": "",
 						"type": "uint256"
@@ -120,6 +254,11 @@
 						"internalType": "address",
 						"name": "",
 						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -138,24 +277,12 @@
 						"type": "address"
 					}
 				],
-				"name": "getTokenBalance",
+				"name": "getOwnershipPercentage",
 				"outputs": [
 					{
-						"components": [
-							{
-								"internalType": "uint256",
-								"name": "totalTokens",
-								"type": "uint256"
-							},
-							{
-								"internalType": "uint256",
-								"name": "ownershipPercentage",
-								"type": "uint256"
-							}
-						],
-						"internalType": "struct TokenLand.landOwnership",
+						"internalType": "uint256",
 						"name": "",
-						"type": "tuple"
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -170,6 +297,30 @@
 					}
 				],
 				"name": "isExist",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "isShareholder",
 				"outputs": [
 					{
 						"internalType": "bool",
@@ -220,6 +371,21 @@
 						"type": "string"
 					},
 					{
+						"internalType": "string",
+						"name": "location",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "area",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "documentCID",
+						"type": "string"
+					},
+					{
 						"internalType": "uint256",
 						"name": "totalTokens",
 						"type": "uint256"
@@ -236,7 +402,111 @@
 					},
 					{
 						"internalType": "address",
-						"name": "owner",
+						"name": "issuer",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "timestamp",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "listings",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "landNumber",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "seller",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "tokenAmount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "pricePerToken",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "active",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "nextListingId",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_landNumber",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_tokenAmount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_pricePerToken",
+						"type": "uint256"
+					}
+				],
+				"name": "sell_tokens_shareHolder",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "shareholders",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
 						"type": "address"
 					}
 				],
@@ -285,6 +555,21 @@
 						"type": "string"
 					},
 					{
+						"internalType": "string",
+						"name": "_location",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_area",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "_documentCID",
+						"type": "string"
+					},
+					{
 						"internalType": "uint256",
 						"name": "_totalTokens",
 						"type": "uint256"
@@ -293,9 +578,32 @@
 						"internalType": "uint256",
 						"name": "_landPrice",
 						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_reservedTokens",
+						"type": "uint256"
 					}
 				],
 				"name": "tokenizeLand",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_landNumber",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "_newCID",
+						"type": "string"
+					}
+				],
+				"name": "updateDocumentCID",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -314,7 +622,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"Practice/4 june/tokenLand.sol": "TokenLand"
+			"Practice/4 june/codesandbox/tokenLand.sol": "TokenLand"
 		},
 		"evmVersion": "istanbul",
 		"libraries": {},
@@ -328,12 +636,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"Practice/4 june/tokenLand.sol": {
-			"keccak256": "0x335f0192f2db84db0743a3a5ed9d0f643a8458b9f7ad6e0cfaa6bd5611ac5e94",
+		"Practice/4 june/codesandbox/tokenLand.sol": {
+			"keccak256": "0x34d89ae5476408ba8f835e618b473eeaa90fe6ab660b44690f25683142678568",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://df5ef1edf90cabd603a63de1ce56c51cec59d2af9bc7b7ec43259a00e1cf7e04",
-				"dweb:/ipfs/QmeSQ8RMW3jAVhH1bRNCpL4AUQCoKfkp5KTThF18ACPSE7"
+				"bzz-raw://bc74da638d69f1cfc3a7682a1e65aa8e7701d1beb8e468945c2843e1be39df32",
+				"dweb:/ipfs/QmXR7JPPxAvLEPVMRjDDS6bMTRsyrmttKU5M3DsPsqmSWo"
 			]
 		}
 	},

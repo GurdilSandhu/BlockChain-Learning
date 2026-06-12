@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.24;
 
-import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
+import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
-contract HeroNFT is ERC721URIStorage {
+contract HeroNFT is ERC721 {
 
     uint256 public nextTokenId;
 
