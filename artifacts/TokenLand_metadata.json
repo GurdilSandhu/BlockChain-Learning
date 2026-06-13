@@ -733,11 +733,11 @@
 	},
 	"sources": {
 		"Practice/12 june/codesandbox/tokenLand.sol": {
-			"keccak256": "0xd0c16e1c5995c19846ca5681190c760f07e589e495f6837f2da3a87ca493901a",
+			"keccak256": "0x540d32bb32c754291b47f83b3b8c9759257e4cb3dafa818cf271691e759dcb42",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://e0b3bffb350d1ac1c938803e9cb7a9ed4553993ad8fb7c5fbb13e4e81eee7ab9",
-				"dweb:/ipfs/QmWmDDNsxiCCeuRsLYCQeL4LrovXcUE41K4K7UCLUmUxum"
+				"bzz-raw://ed1001d028c8aabac32defaa4d9ea07c4420abedbe715e7e78aaf5d150bd9f54",
+				"dweb:/ipfs/QmVSr336xdJGwajrKTRWQPGmMftN276FZR7AyzsjbKAVyk"
 			]
 		}
 	},
