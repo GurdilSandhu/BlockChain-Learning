@@ -7,7 +7,7 @@ contract TokenLand {
         address indexed owner,
         uint totalTokens
     );
- 
+  
     event TokensPurchased(
         uint indexed landNumber,
         address indexed buyer,
