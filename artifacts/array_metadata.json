@@ -9,63 +9,23 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "_value",
+						"name": "value",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "length",
 						"type": "uint256"
 					}
 				],
-				"name": "addNumber",
+				"name": "array_with_same_value",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "number",
-						"type": "uint256"
-					}
-				],
-				"name": "countDigits",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "result",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "pure",
-				"type": "function"
-			},
-			{
 				"inputs": [],
-				"name": "findLargest",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "result",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "findSum",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "result",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "getArray",
+				"name": "get_smArr",
 				"outputs": [
 					{
 						"internalType": "uint256[]",
@@ -78,7 +38,33 @@
 			},
 			{
 				"inputs": [],
-				"name": "removeDuplicates",
+				"name": "get_uniqueArr",
+				"outputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "",
+						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "merge",
+				"outputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "",
+						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "onlyUnique",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -97,7 +83,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"Practice/2 june/array.sol": "array"
+			"Practice/18 june/array.sol": "array"
 		},
 		"evmVersion": "istanbul",
 		"libraries": {},
@@ -111,12 +97,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"Practice/2 june/array.sol": {
-			"keccak256": "0xa5831913d0833a6895d5c5935fe905c797501fe737221daa0c3a284e2779c100",
+		"Practice/18 june/array.sol": {
+			"keccak256": "0x0f3b8d01081718ca27df5ea8eb616d5ea43f4b8fdbfd54761f3bb0a961aa8f0b",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://87bf3d2c536cf03d9aff76cde16039b4ed5c759e1d38e20af8a4b0643c52239a",
-				"dweb:/ipfs/Qmf49qSitNxPvWB4pJyXYDU7Ank3wWMnrTQ4o4dD7RtPpS"
+				"bzz-raw://29e10c33f97272d8c203d51123114d152ceb70b771eb5289d3acf30d719f933b",
+				"dweb:/ipfs/QmTLz1yFSpXZ8HCsv7kKzjMaCQBjJsWURzHf9iFcpJkjCF"
 			]
 		}
 	},
