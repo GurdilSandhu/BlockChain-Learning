@@ -1,0 +1,76 @@
+{
+	"compiler": {
+		"version": "0.8.0+commit.c7dfd78e"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address[]",
+						"name": "_initialOwners",
+						"type": "address[]"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "owners",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"Practice/19 june/ array_as_parameter.sol": "CommunityWallet"
+		},
+		"evmVersion": "istanbul",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"Practice/19 june/ array_as_parameter.sol": {
+			"keccak256": "0x87a8df76a9b7730406abc3438bf6894a2a00b958eecb7158270e4ce78bc4fb85",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://9c82fae97f915745287c34cba95d7f21d4b9c0b6e9f057462f342187f96d6063",
+				"dweb:/ipfs/QmefgWDuByWCtj2sPAjrinzk9NPRZ1wA1EgicNmknhkA9G"
+			]
+		}
+	},
+	"version": 1
+}

@@ -1,0 +1,136 @@
+{
+	"compiler": {
+		"version": "0.8.0+commit.c7dfd78e"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "Vnumber",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_shift",
+						"type": "uint256"
+					}
+				],
+				"name": "entry",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "Vnumber",
+						"type": "uint256"
+					}
+				],
+				"name": "exit",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "vehicles",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "Vnumber",
+						"type": "uint256"
+					},
+					{
+						"internalType": "enum parking.Shift",
+						"name": "S1",
+						"type": "uint8"
+					},
+					{
+						"internalType": "uint256",
+						"name": "entry",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "exit",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "time",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "parked",
+						"type": "bool"
+					},
+					{
+						"internalType": "string",
+						"name": "entryClock",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "exitClock",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"Practice/19 june/parking.sol": "parking"
+		},
+		"evmVersion": "istanbul",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"Practice/19 june/parking.sol": {
+			"keccak256": "0xfb64bf6a2ee1b33f2aa1d887f80462114f8526430e07beb979f3809c501942ae",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://48328325d8745339165b9166e3f2a01eea44e2fafa185e59214a6c70ecd3dcf4",
+				"dweb:/ipfs/QmYLkrJHFy9y5naGuVQAqm8BiC9MF5SzEnkedCW1xSMyJL"
+			]
+		}
+	},
+	"version": 1
+}
