@@ -1216,5 +1216,13 @@
         "file": "Practice/20 june/ auction.sol"
       }
     }
+  },
+  "Practice/22 june/ flight_delay.sol": {
+    "__sources__": {
+      "Practice/22 june/ flight_delay.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract flight_delay{\r\n    address owner;\r\n    uint flightTime;\r\n    constructor(uint _flightTime){\r\n        owner = msg.sender;\r\n        flightTime = block.timestamp + _flightTime;\r\n    }\r\n    struct flight{\r\n       address user;\r\n       uint time;\r\n       uint amount;\r\n    }\r\n    mapping(uint => flight) public flights;\r\n    uint userIds;\r\n    function buyTicket() public payable{\r\n        require(msg.value == 100 wei,\"ticket price is 100 wei\");\r\n        userIds++;\r\n        flights[userIds] = flight(msg.sender,flightTime, msg.value);\r\n    }\r\n\r\n    function cancel() public{\r\n        require(msg.sender == owner,\"Access Denied\");\r\n          require(block.timestamp > flightTime, \"canceled\");\r\n          for(uint i=1;i<=userIds;i++){\r\n          payable(flights[i].user).transfer(100 wei);\r\n          }\r\n    }\r\n\r\n    function badService_delay() public{\r\n        require(msg.sender == owner,\"Access Denied\");\r\n          require(block.timestamp > flightTime, \"dealyed\");\r\n          for(uint i=1;i<=userIds;i++){\r\n          payable(flights[i].user).transfer(10 wei);\r\n          }\r\n    }\r\n}",
+        "file": "Practice/22 june/ flight_delay.sol"
+      }
+    }
   }
 }
