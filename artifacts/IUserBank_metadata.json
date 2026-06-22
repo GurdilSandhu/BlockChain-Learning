@@ -6,11 +6,6 @@
 	"output": {
 		"abi": [
 			{
-				"inputs": [],
-				"stateMutability": "nonpayable",
-				"type": "constructor"
-			},
-			{
 				"inputs": [
 					{
 						"internalType": "address",
@@ -74,7 +69,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"Practice/22 june/userBank.sol": "UserBank"
+			"Practice/22 june/IUserBank.sol": "IUserBank"
 		},
 		"evmVersion": "istanbul",
 		"libraries": {},
@@ -88,12 +83,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"Practice/22 june/userBank.sol": {
-			"keccak256": "0x2ba6446a44d811aa59a85b787f87d450b9e716806f7759f18c4eaa0eeee51ca2",
+		"Practice/22 june/IUserBank.sol": {
+			"keccak256": "0x4b59529ba839fc0a7324b1a6b58e2c275cfa3e8a12caa29cc396171f92de26fe",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://93b3ea8f1ca28cce58febb9aad935f9f65972d15944db7a15071e86c2c65c521",
-				"dweb:/ipfs/QmXLAPoFstNfgsvYwpvkmDQHRpHFpi4NAkTf1P7qecQYAW"
+				"bzz-raw://efa390b3bb7391c332cd0c0a28b65dc81fe74ac3422e42be89420dba536a9e8c",
+				"dweb:/ipfs/QmaA2Jgp8qkxUoVRAuoSPXRpGn4X8oE8kXxyEf5x1TwPYB"
 			]
 		}
 	},

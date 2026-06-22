@@ -3,13 +3,6 @@ pragma solidity ^0.8.0;
 
 import "./bank.sol";
 
-interface UserBank {
-
-     function deposit() external payable;
-     function withdraw(uint amount) external payable;
-     function getMyBalance() external view returns(uint);
-    
-}
 
 contract atm{
     UserBank public bank1;
@@ -32,4 +25,13 @@ contract atm{
         bank1.withdraw(amount);
     }
 
+}
+
+
+interface UserBank {
+
+     function deposit() external payable;
+     function withdraw(uint amount) external payable;
+     function getMyBalance() external view returns(uint);
+    
 }

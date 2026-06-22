@@ -18,12 +18,25 @@
 			},
 			{
 				"inputs": [],
-				"name": "bank1",
+				"name": "Add_Cash",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					}
+				],
+				"name": "Available_Balance",
 				"outputs": [
 					{
-						"internalType": "contract UserBank",
+						"internalType": "uint256",
 						"name": "",
-						"type": "address"
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -31,19 +44,12 @@
 			},
 			{
 				"inputs": [],
-				"name": "deposit",
-				"outputs": [],
-				"stateMutability": "payable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "getMyBalance",
+				"name": "bank",
 				"outputs": [
 					{
-						"internalType": "uint256",
+						"internalType": "contract IUserBank",
 						"name": "",
-						"type": "uint256"
+						"type": "address"
 					}
 				],
 				"stateMutability": "view",
@@ -57,9 +63,9 @@
 						"type": "uint256"
 					}
 				],
-				"name": "withdraw",
+				"name": "withdraw_Amount",
 				"outputs": [],
-				"stateMutability": "payable",
+				"stateMutability": "nonpayable",
 				"type": "function"
 			}
 		],
@@ -76,7 +82,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"learning/Interface/atm.sol": "atm"
+			"Practice/22 june/IUserBank.sol": "SBI_ATM_CASH"
 		},
 		"evmVersion": "istanbul",
 		"libraries": {},
@@ -90,20 +96,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"learning/Interface/atm.sol": {
-			"keccak256": "0xf173341c660f27cf84ff92ff42c43f701bf690413d0d1ea5aa96e867ba42e6d8",
+		"Practice/22 june/IUserBank.sol": {
+			"keccak256": "0x4b59529ba839fc0a7324b1a6b58e2c275cfa3e8a12caa29cc396171f92de26fe",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://1730904550bba91e8d6c03b2f9b4fd27e6c9f2c91e27a92017553c7aba8c77df",
-				"dweb:/ipfs/QmWrBEstrcZx6rsk7rBKzpqLcBQSQd1Co37j1ne8Bcp2CP"
-			]
-		},
-		"learning/Interface/bank.sol": {
-			"keccak256": "0x514b34a5d15a57c2474afc28828670a217f255b582cedd3b65abc775d842ea82",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://0b4c8fd52ea296d3a2a5692d0ab4b41be99263c3e1e149da27a7ddbebf19c913",
-				"dweb:/ipfs/QmZZ79KDezJXYuKKjq95vTWN4ELuozpDjH6WWNPogo4dNw"
+				"bzz-raw://efa390b3bb7391c332cd0c0a28b65dc81fe74ac3422e42be89420dba536a9e8c",
+				"dweb:/ipfs/QmaA2Jgp8qkxUoVRAuoSPXRpGn4X8oE8kXxyEf5x1TwPYB"
 			]
 		}
 	},
