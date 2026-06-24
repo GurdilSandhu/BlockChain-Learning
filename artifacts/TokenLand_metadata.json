@@ -220,6 +220,51 @@
 				"type": "function"
 			},
 			{
+				"inputs": [],
+				"name": "getAllListings",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "landNumber",
+								"type": "uint256"
+							},
+							{
+								"internalType": "address",
+								"name": "seller",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "listedTokens",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "availableTokens",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "pricePerToken",
+								"type": "uint256"
+							},
+							{
+								"internalType": "bool",
+								"name": "active",
+								"type": "bool"
+							}
+						],
+						"internalType": "struct TokenLand.Listing[]",
+						"name": "",
+						"type": "tuple[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "uint256",
@@ -284,51 +329,13 @@
 				"type": "function"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "listingId",
-						"type": "uint256"
-					}
-				],
-				"name": "getListing",
+				"inputs": [],
+				"name": "getListingCount",
 				"outputs": [
 					{
-						"components": [
-							{
-								"internalType": "uint256",
-								"name": "landNumber",
-								"type": "uint256"
-							},
-							{
-								"internalType": "address",
-								"name": "seller",
-								"type": "address"
-							},
-							{
-								"internalType": "uint256",
-								"name": "listedTokens",
-								"type": "uint256"
-							},
-							{
-								"internalType": "uint256",
-								"name": "availableTokens",
-								"type": "uint256"
-							},
-							{
-								"internalType": "uint256",
-								"name": "pricePerToken",
-								"type": "uint256"
-							},
-							{
-								"internalType": "bool",
-								"name": "active",
-								"type": "bool"
-							}
-						],
-						"internalType": "struct TokenLand.Listing",
+						"internalType": "uint256",
 						"name": "",
-						"type": "tuple"
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -507,6 +514,25 @@
 					{
 						"internalType": "uint256",
 						"name": "timestamp",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "listingIds",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
 						"type": "uint256"
 					}
 				],
@@ -718,7 +744,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"Practice/12 june/codesandbox/tokenLand.sol": "TokenLand"
+			"Practice/12 june_TokenLand/codesandbox/tokenLand.sol": "TokenLand"
 		},
 		"evmVersion": "istanbul",
 		"libraries": {},
@@ -732,12 +758,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"Practice/12 june/codesandbox/tokenLand.sol": {
-			"keccak256": "0x540d32bb32c754291b47f83b3b8c9759257e4cb3dafa818cf271691e759dcb42",
+		"Practice/12 june_TokenLand/codesandbox/tokenLand.sol": {
+			"keccak256": "0x35bf9add66c6c824df1266909c2bbc2be7c57f016609f0120680a51db217ce62",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://ed1001d028c8aabac32defaa4d9ea07c4420abedbe715e7e78aaf5d150bd9f54",
-				"dweb:/ipfs/QmVSr336xdJGwajrKTRWQPGmMftN276FZR7AyzsjbKAVyk"
+				"bzz-raw://c42c9643b2907b83ce14ae4044596f484420aea74a505fcd1af1eee529a31811",
+				"dweb:/ipfs/QmbaNkDB5aGVcn58B1bLssk9tUoetp2HM5NtXfC62vEs7P"
 			]
 		}
 	},
