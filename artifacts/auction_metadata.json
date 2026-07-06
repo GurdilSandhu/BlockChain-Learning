@@ -18,18 +18,6 @@
 						"internalType": "uint256",
 						"name": "auctionId",
 						"type": "uint256"
-					},
-					{
-						"indexed": false,
-						"internalType": "address",
-						"name": "winner",
-						"type": "address"
-					},
-					{
-						"indexed": false,
-						"internalType": "uint256",
-						"name": "winningBid",
-						"type": "uint256"
 					}
 				],
 				"name": "AuctionCompleted",
@@ -71,7 +59,7 @@
 					{
 						"indexed": false,
 						"internalType": "uint256",
-						"name": "endTime",
+						"name": "time",
 						"type": "uint256"
 					}
 				],
@@ -92,34 +80,9 @@
 						"internalType": "address",
 						"name": "bidder",
 						"type": "address"
-					},
-					{
-						"indexed": false,
-						"internalType": "uint256",
-						"name": "amount",
-						"type": "uint256"
 					}
 				],
 				"name": "Bid",
-				"type": "event"
-			},
-			{
-				"anonymous": false,
-				"inputs": [
-					{
-						"indexed": false,
-						"internalType": "address",
-						"name": "user",
-						"type": "address"
-					},
-					{
-						"indexed": false,
-						"internalType": "uint256",
-						"name": "amount",
-						"type": "uint256"
-					}
-				],
-				"name": "Withdrawal",
 				"type": "event"
 			},
 			{
@@ -164,7 +127,7 @@
 					},
 					{
 						"internalType": "address",
-						"name": "highestBidder",
+						"name": "buyer",
 						"type": "address"
 					},
 					{
@@ -176,11 +139,6 @@
 						"internalType": "bool",
 						"name": "isActive",
 						"type": "bool"
-					},
-					{
-						"internalType": "bool",
-						"name": "isSettled",
-						"type": "bool"
 					}
 				],
 				"stateMutability": "view",
@@ -189,46 +147,17 @@
 			{
 				"inputs": [
 					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					},
-					{
 						"internalType": "address",
 						"name": "",
 						"type": "address"
 					}
 				],
-				"name": "bidderExists",
+				"name": "bidderExist",
 				"outputs": [
 					{
 						"internalType": "bool",
 						"name": "",
 						"type": "bool"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					},
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"name": "bidderIndexOf",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -251,7 +180,7 @@
 				"outputs": [
 					{
 						"internalType": "address",
-						"name": "bidder",
+						"name": "bider",
 						"type": "address"
 					},
 					{
@@ -282,7 +211,7 @@
 					},
 					{
 						"internalType": "uint256",
-						"name": "duration",
+						"name": "time",
 						"type": "uint256"
 					}
 				],
@@ -320,25 +249,6 @@
 			{
 				"inputs": [
 					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"name": "pendingBalance",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
 						"internalType": "uint256",
 						"name": "auctionId",
 						"type": "uint256"
@@ -347,45 +257,6 @@
 				"name": "placeBid",
 				"outputs": [],
 				"stateMutability": "payable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "totalAuctions",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"name": "totalBiddersOf",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "withdraw",
-				"outputs": [],
-				"stateMutability": "nonpayable",
 				"type": "function"
 			}
 		],
@@ -402,7 +273,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"Practice/6 july/auction.sol": "Auction"
+			"Practice/6 july/auction.sol": "auction"
 		},
 		"evmVersion": "shanghai",
 		"libraries": {},
@@ -417,11 +288,11 @@
 	},
 	"sources": {
 		"Practice/6 july/auction.sol": {
-			"keccak256": "0xb03899a15d8b221ccad727ee0bfb999d1f542b719d4b71074dca202eae3e5449",
+			"keccak256": "0x91e312f30a065334a3fc56437fd944ba1ff9b994d06679657abd3007803bd2dc",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://eaeb265e6bd604b6ff6d76bc8772528832490825a484f1179bd763a39b773092",
-				"dweb:/ipfs/QmZDiP7UJVpuQfuXWvKu1wKUFCYnMbFCWWaNGXXk4y84gy"
+				"bzz-raw://d1b7544b56c83dd29e39c819d0711350d8bdba47781ab4b9b19bf4dc6916c343",
+				"dweb:/ipfs/QmPKCTL1omVfff4AZsfHxbCqHkWnjVtqeHr96nDfXn8LGh"
 			]
 		}
 	},

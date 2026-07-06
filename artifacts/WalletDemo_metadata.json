@@ -1,0 +1,64 @@
+{
+	"compiler": {
+		"version": "0.8.20+commit.a1b79de6"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "generateKeys",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"Practice/29 june/ cryptoWallet.sol": "WalletDemo"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"Practice/29 june/ cryptoWallet.sol": {
+			"keccak256": "0x216621d0338aac890bf7ee829274b2173946664841790c1a56d1c9bfecd8090e",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://f4db87fb6a3209c78de0583abf8c3d22ea2c25507424464fd0bff66a8ca9cd70",
+				"dweb:/ipfs/QmSqcFcz1zJpRpAvU3YPbgkuhB4HSjbB7yd4m1RdQvZB8V"
+			]
+		}
+	},
+	"version": 1
+}
