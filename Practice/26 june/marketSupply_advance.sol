@@ -14,9 +14,9 @@ contract MarketSupply {
     struct Item {
         uint256 id;
         string name;
-        uint256 quantity;     
-        uint256 price;        
-        address manufacturer; 
+        uint256 quantity;
+        uint256 price;
+        address manufacturer;
         bool exists;
     }
 
@@ -36,7 +36,7 @@ contract MarketSupply {
         uint256 id;
         uint256 itemId;
         string item;
-        uint256 quantity;  
+        uint256 quantity;
         uint256 unitPrice;
         address retailer;
         bool active;
@@ -58,34 +58,21 @@ contract MarketSupply {
     uint256 public totalListings;
 
     mapping(address => mapping(uint256 => uint256)) public retailerStock;
-
     mapping(address => uint256) public pendingWithdrawals;
-
-    uint256 private locked; 
+    uint256 private locked;
 
     event UserRegistered(address indexed user, Role role, uint256 id);
     event UserRevoked(address indexed user);
     event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
     event Paused(address indexed by);
     event Unpaused(address indexed by);
-
     event ItemAdded(uint256 indexed itemId, string name, uint256 quantity, uint256 price, address indexed manufacturer);
     event QuantityAdded(uint256 indexed itemId, uint256 addedQuantity, uint256 newQuantity);
     event PriceUpdated(uint256 indexed itemId, uint256 oldPrice, uint256 newPrice);
-
-    event ItemDistributed(
-        uint256 indexed distributionId,
-        uint256 indexed itemId,
-        address indexed distributor,
-        address retailer,
-        uint256 quantity,
-        uint256 totalPaid
-    );
-
+    event ItemDistributed(uint256 indexed distributionId, uint256 indexed itemId, address indexed distributor, address retailer, uint256 quantity, uint256 totalPaid);
     event ItemListed(uint256 indexed listingId, uint256 indexed itemId, address indexed retailer, uint256 quantity, uint256 unitPrice);
     event ListingClosed(uint256 indexed listingId);
     event ItemPurchased(uint256 indexed listingId, address indexed buyer, uint256 quantity, uint256 totalPaid);
-
     event Withdrawn(address indexed account, uint256 amount);
 
     error NotOwner();
@@ -174,12 +161,7 @@ contract MarketSupply {
         emit Unpaused(msg.sender);
     }
 
-    function addItem(string calldata name, uint256 quantity, uint256 price)
-        external
-        onlyManufacturer
-        whenNotPaused
-        returns (uint256 itemId)
-    {
+    function addItem(string calldata name, uint256 quantity, uint256 price) external onlyManufacturer whenNotPaused returns (uint256 itemId) {
         if (bytes(name).length == 0) revert EmptyName();
         if (quantity == 0 || price == 0) revert ZeroAmount();
 
@@ -210,14 +192,7 @@ contract MarketSupply {
         emit PriceUpdated(itemId, old, newPrice);
     }
 
-    function distributeItem(uint256 itemId, uint256 quantity, address retailer)
-        external
-        payable
-        onlyDistributor
-        whenNotPaused
-        nonReentrant
-        returns (uint256 distributionId)
-    {
+    function distributeItem(uint256 itemId, uint256 quantity, address retailer) external payable onlyDistributor whenNotPaused nonReentrant returns (uint256 distributionId) {
         if (retailer == address(0)) revert ZeroAddress();
         if (!users[retailer].active || users[retailer].role != Role.Retailer) revert NotRetailer();
 
@@ -233,12 +208,9 @@ contract MarketSupply {
         retailerStock[retailer][itemId] += quantity;
 
         totalDistributions++;
-        distributions[totalDistributions] = Distribution(
-            totalDistributions, itemId, it.name, quantity, msg.sender, retailer, it.price, totalCost, block.timestamp
-        );
+        distributions[totalDistributions] = Distribution(totalDistributions, itemId, it.name, quantity, msg.sender, retailer, it.price, totalCost, block.timestamp);
 
         pendingWithdrawals[it.manufacturer] += totalCost;
-
         uint256 refund = msg.value - totalCost;
         if (refund > 0) {
             pendingWithdrawals[msg.sender] += refund;
@@ -248,12 +220,7 @@ contract MarketSupply {
         return totalDistributions;
     }
 
-    function listForSale(uint256 itemId, uint256 quantity, uint256 unitPrice)
-        external
-        onlyRetailer
-        whenNotPaused
-        returns (uint256 listingId)
-    {
+    function listForSale(uint256 itemId, uint256 quantity, uint256 unitPrice) external onlyRetailer whenNotPaused returns (uint256 listingId) {
         if (quantity == 0 || unitPrice == 0) revert ZeroAmount();
         if (retailerStock[msg.sender][itemId] < quantity) revert InsufficientQuantity();
 
@@ -261,7 +228,6 @@ contract MarketSupply {
         if (!it.exists) revert ItemNotFound();
 
         retailerStock[msg.sender][itemId] -= quantity;
-
         totalListings++;
         listings[totalListings] = Listing(totalListings, itemId, it.name, quantity, unitPrice, msg.sender, true);
         emit ItemListed(totalListings, itemId, msg.sender, quantity, unitPrice);
@@ -304,7 +270,6 @@ contract MarketSupply {
         emit ItemPurchased(listingId, msg.sender, quantity, totalCost);
     }
 
- 
     function withdraw() external nonReentrant {
         uint256 amount = pendingWithdrawals[msg.sender];
         if (amount == 0) revert ZeroAmount();
@@ -314,5 +279,127 @@ contract MarketSupply {
         if (!ok) revert TransferFailed();
 
         emit Withdrawn(msg.sender, amount);
+    }
+
+    function getUser(address account) external view returns (User memory) {
+        return users[account];
+    }
+
+    function getUserRole(address account) external view returns (Role) {
+        return users[account].role;
+    }
+
+    function isManufacturer(address account) external view returns (bool) {
+        return users[account].active && users[account].role == Role.Manufacturer;
+    }
+
+    function isDistributor(address account) external view returns (bool) {
+        return users[account].active && users[account].role == Role.Distributor;
+    }
+
+    function isRetailer(address account) external view returns (bool) {
+        return users[account].active && users[account].role == Role.Retailer;
+    }
+
+    function myBalance() external view returns (uint256) {
+        return pendingWithdrawals[msg.sender];
+    }
+
+    function getItem(uint256 itemId) external view returns (Item memory) {
+        return inventory[itemId];
+    }
+
+    function getDistribution(uint256 id) external view returns (Distribution memory) {
+        return distributions[id];
+    }
+
+    function getListing(uint256 id) external view returns (Listing memory) {
+        return listings[id];
+    }
+
+    function quoteDistributionCost(uint256 itemId, uint256 quantity) external view returns (uint256) {
+        Item storage it = inventory[itemId];
+        if (!it.exists) revert ItemNotFound();
+        if (it.quantity < quantity) revert InsufficientQuantity();
+        return it.price * quantity;
+    }
+
+    function quoteListingCost(uint256 listingId, uint256 quantity) external view returns (uint256) {
+        Listing storage l = listings[listingId];
+        if (!l.active) revert ListingNotFound();
+        if (l.quantity < quantity) revert InsufficientQuantity();
+        return l.unitPrice * quantity;
+    }
+
+    function getAllItems() external view returns (Item[] memory) {
+        Item[] memory result = new Item[](totalItems);
+        for (uint256 i = 1; i <= totalItems; i++) {
+            result[i - 1] = inventory[i];
+        }
+        return result;
+    }
+
+    function getItemsByManufacturer(address account) external view returns (Item[] memory) {
+        uint256 count;
+        for (uint256 i = 1; i <= totalItems; i++) {
+            if (inventory[i].manufacturer == account) count++;
+        }
+        Item[] memory result = new Item[](count);
+        uint256 j;
+        for (uint256 i = 1; i <= totalItems; i++) {
+            if (inventory[i].manufacturer == account) {
+                result[j] = inventory[i];
+                j++;
+            }
+        }
+        return result;
+    }
+
+    function getActiveListings() external view returns (Listing[] memory) {
+        uint256 count;
+        for (uint256 i = 1; i <= totalListings; i++) {
+            if (listings[i].active) count++;
+        }
+        Listing[] memory result = new Listing[](count);
+        uint256 j;
+        for (uint256 i = 1; i <= totalListings; i++) {
+            if (listings[i].active) {
+                result[j] = listings[i];
+                j++;
+            }
+        }
+        return result;
+    }
+
+    function getListingsByRetailer(address account) external view returns (Listing[] memory) {
+        uint256 count;
+        for (uint256 i = 1; i <= totalListings; i++) {
+            if (listings[i].retailer == account) count++;
+        }
+        Listing[] memory result = new Listing[](count);
+        uint256 j;
+        for (uint256 i = 1; i <= totalListings; i++) {
+            if (listings[i].retailer == account) {
+                result[j] = listings[i];
+                j++;
+            }
+        }
+        return result;
+    }
+
+    function getDistributionsByDistributor(address account) external view returns (Distribution[] memory) {
+        uint256 count;
+        for (uint256 i = 1; i <= totalDistributions; i++) {
+            if (distributions[i].distributor == account) count++;
+        }
+        Distribution[] memory result = new Distribution[](count);
+        uint256 j;
+        for (uint256 i = 1; i <= totalDistributions; i++) {
+            if (distributions[i].distributor == account) {
+                result[j] = distributions[i];
+                j++;
+            }
+        }
+        return result;
     }
 }
