@@ -305,6 +305,25 @@
 				"type": "function"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "auctionId",
+						"type": "uint256"
+					}
+				],
+				"name": "hasTimeExpired",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "owner",
 				"outputs": [
@@ -417,11 +436,11 @@
 	},
 	"sources": {
 		"Practice/6 july/auction.sol": {
-			"keccak256": "0xb03899a15d8b221ccad727ee0bfb999d1f542b719d4b71074dca202eae3e5449",
+			"keccak256": "0xf4b26b9f679525ead36f08bace11e19eb1bfc4878df73968b9314d1b27fec7cb",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://eaeb265e6bd604b6ff6d76bc8772528832490825a484f1179bd763a39b773092",
-				"dweb:/ipfs/QmZDiP7UJVpuQfuXWvKu1wKUFCYnMbFCWWaNGXXk4y84gy"
+				"bzz-raw://c15d80e34f1c3455e4c06b64c813e0cd95bbaed92b85b2ad023a6da63fd88116",
+				"dweb:/ipfs/QmdwXKcSNMY9Zk6vZ5xLSADvgnNASqD7j5uY5qQw5Uh38n"
 			]
 		}
 	},
