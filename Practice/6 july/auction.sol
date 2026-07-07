@@ -21,7 +21,7 @@ contract Auction {
         uint startingBid;
         uint highestBid;
         address highestBidder;
-        uint time;
+        uint time; 
         bool isActive;
         bool isSettled;
     }
@@ -33,10 +33,10 @@ contract Auction {
 
     mapping(uint => Auct) public auctions;
 
-    mapping(uint => mapping(uint => Bidder)) public bidders;          
-    mapping(uint => uint) public totalBiddersOf;                      
-    mapping(uint => mapping(address => bool)) public bidderExists;    
-    mapping(uint => mapping(address => uint)) public bidderIndexOf;  
+    mapping(uint => mapping(uint => Bidder)) public bidders;         
+    mapping(uint => uint) public totalBiddersOf;                     
+    mapping(uint => mapping(address => bool)) public bidderExists;   
+    mapping(uint => mapping(address => uint)) public bidderIndexOf;   
 
     mapping(address => uint) public pendingBalance;
 
@@ -75,8 +75,11 @@ contract Auction {
         require(msg.sender != a.seller, "Seller cannot bid");
         require(msg.value > 0, "Bid amount must be greater than 0");
 
+        uint newTotal;
+
         if (!bidderExists[auctionId][msg.sender]) {
-            require(msg.value >= a.startingBid, "Bid below starting bid");
+            newTotal = msg.value;
+            require(newTotal >= a.startingBid, "Bid below starting bid");
 
             totalBiddersOf[auctionId] += 1;
             uint idx = totalBiddersOf[auctionId];
@@ -86,10 +89,20 @@ contract Auction {
             bidderIndexOf[auctionId][msg.sender] = idx;
         } else {
             uint idx = bidderIndexOf[auctionId][msg.sender];
-            bidders[auctionId][idx].bidAmount += msg.value;
+            newTotal = bidders[auctionId][idx].bidAmount + msg.value;
+            bidders[auctionId][idx].bidAmount = newTotal;
         }
 
+        require(newTotal > a.highestBid, "Bid must exceed current highest bid");
+
+        a.highestBid = newTotal;
+        a.highestBidder = msg.sender;
+
         emit Bid(auctionId, msg.sender, msg.value);
+    }
+
+    function hasTimeExpired(uint auctionId) public view returns (bool) {
+        return block.timestamp >= auctions[auctionId].time;
     }
 
     function endAuction(uint auctionId) public {
@@ -114,10 +127,9 @@ contract Auction {
             return;
         }
 
-        (address winner, uint winningBid) = _maxBid(auctionId, count);
+        address winner = a.highestBidder;
+        uint winningBid = a.highestBid;
 
-        a.highestBidder = winner;
-        a.highestBid = winningBid;
         a.isActive = false;
         a.isSettled = true;
 
@@ -132,18 +144,6 @@ contract Auction {
         }
 
         emit AuctionCompleted(auctionId, winner, winningBid);
-    }
-
-    function _maxBid(uint auctionId, uint count) internal view returns (address highestBidder, uint highestBid) {
-        highestBidder = bidders[auctionId][1].bidder;
-        highestBid = bidders[auctionId][1].bidAmount;
-
-        for (uint i = 2; i <= count; i++) {
-            if (bidders[auctionId][i].bidAmount > highestBid) {
-                highestBid = bidders[auctionId][i].bidAmount;
-                highestBidder = bidders[auctionId][i].bidder;
-            }
-        }
     }
 
     function withdraw() public {
