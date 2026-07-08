@@ -82,11 +82,11 @@
 	},
 	"sources": {
 		"learning/Governance Voting/governanceVoting.sol": {
-			"keccak256": "0x2216631b2f72a2dfe72d585a5501d0be52a566e404568b9777e1fd6e18984917",
+			"keccak256": "0xff93e694753a74718a479b5c5977731453e4d69e6dc7bec38186f1b9d2aab72f",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://2e75ef69bca2e43115c14748ba1671967a8d05e97a96142d98af209034602f13",
-				"dweb:/ipfs/QmXrxmwtCefnPJsT8ZQEhoaLj99mY3BjXD8xV6xPFNYdfv"
+				"bzz-raw://01dab3e9d094986ea601d897626f14f30fa34017154a43a74de81714933e3a54",
+				"dweb:/ipfs/QmQDtZiqcDiMRqvkUrPAvFJ3Whkci84gZdcHcNVAZLzGYM"
 			]
 		}
 	},
