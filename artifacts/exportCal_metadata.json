@@ -8,17 +8,6 @@
 			{
 				"inputs": [
 					{
-						"internalType": "address",
-						"name": "interface_address",
-						"type": "address"
-					}
-				],
-				"stateMutability": "nonpayable",
-				"type": "constructor"
-			},
-			{
-				"inputs": [
-					{
 						"internalType": "uint256",
 						"name": "a",
 						"type": "uint256"
@@ -33,24 +22,11 @@
 				"outputs": [
 					{
 						"internalType": "uint256",
-						"name": "result",
+						"name": "",
 						"type": "uint256"
 					}
 				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "cal",
-				"outputs": [
-					{
-						"internalType": "contract calc",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"stateMutability": "view",
+				"stateMutability": "pure",
 				"type": "function"
 			},
 			{
@@ -70,11 +46,11 @@
 				"outputs": [
 					{
 						"internalType": "uint256",
-						"name": "result",
+						"name": "",
 						"type": "uint256"
 					}
 				],
-				"stateMutability": "view",
+				"stateMutability": "pure",
 				"type": "function"
 			},
 			{
@@ -94,11 +70,11 @@
 				"outputs": [
 					{
 						"internalType": "uint256",
-						"name": "result",
+						"name": "",
 						"type": "uint256"
 					}
 				],
-				"stateMutability": "view",
+				"stateMutability": "pure",
 				"type": "function"
 			},
 			{
@@ -118,11 +94,11 @@
 				"outputs": [
 					{
 						"internalType": "uint256",
-						"name": "result",
+						"name": "",
 						"type": "uint256"
 					}
 				],
-				"stateMutability": "view",
+				"stateMutability": "pure",
 				"type": "function"
 			}
 		],
@@ -139,7 +115,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"learning/9 july /calculator.sol": "calculator"
+			"learning/9 july /exportCal.sol": "exportCal"
 		},
 		"evmVersion": "shanghai",
 		"libraries": {},
@@ -153,12 +129,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"learning/9 july /calculator.sol": {
-			"keccak256": "0x0274f4cab71e6069ed7e690a6e3a2b72c15c7b456d320a97656706627bec36ef",
+		"learning/9 july /exportCal.sol": {
+			"keccak256": "0x7ea34d0480064846b1b8423cac2a2cc28bcac23ebd7557e1e20f5eb348391e23",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://e42e5b52c06e25ad541df00f44e2168cdbc409589240c4a4e3353e2590fd3c65",
-				"dweb:/ipfs/QmWw5B3Sx3NaxopgoAvjeZ4145XwEjnhiUNewPQKo1Tz8j"
+				"bzz-raw://34d523820f8a4a85463edc7deb5105aab48b553f9239a06f2f2f6811c49dd2a1",
+				"dweb:/ipfs/Qmd3eN8Bow9MfSJ6v5yDrQG4m1ejisV7V1HLegnjbwJEC1"
 			]
 		}
 	},
