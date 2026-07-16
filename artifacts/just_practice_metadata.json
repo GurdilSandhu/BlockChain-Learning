@@ -1,0 +1,77 @@
+{
+	"compiler": {
+		"version": "0.8.20+commit.a1b79de6"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [],
+				"name": "blockPassed",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "count",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "deployNumber",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"Practice/12 june_TokenLand/codesandbox/land_token.sol": "just_practice"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"Practice/12 june_TokenLand/codesandbox/land_token.sol": {
+			"keccak256": "0x9a4cf66fc427ddbf0f1f363853ed4ccda8888d1694495f1a058e1beae2180ad5",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://728de92280f38090c492255ff16b3f6c8ca2aaa39ebf9e00d2e1e347a14b5b42",
+				"dweb:/ipfs/QmcrQJC6UFoXk6h1v2B4Y4PVPdDxfJFWNTPc8nrab35xKE"
+			]
+		}
+	},
+	"version": 1
+}

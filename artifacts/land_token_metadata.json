@@ -1,0 +1,69 @@
+{
+	"compiler": {
+		"version": "0.8.20+commit.a1b79de6"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "blockDetails",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_blockNumber",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "Diffculty",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "timestamp",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"Practice/12 june_TokenLand/codesandbox/land_token.sol": "land_token"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"Practice/12 june_TokenLand/codesandbox/land_token.sol": {
+			"keccak256": "0xcf769330a079ed373ed9c02b643ff4b210ce616d68bd9db31881569ce219ba81",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://034cdc3e967bb0e536abc2f77e8a9e68094ff1237d910818e5f3d2e73b6a698c",
+				"dweb:/ipfs/QmZ8HZGHjCZJgg7RRLkfAMmyh5FiZZMrspsbdFfTekZSuH"
+			]
+		}
+	},
+	"version": 1
+}
