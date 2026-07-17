@@ -115,7 +115,8 @@ contract Voting {
         emit ProposalExecuted(proposalId, passed);
     }
 
-    function withdrawTokens() external onlyOwner {
+    function withdrawTokens(uint proposalId) external onlyOwner {
+        require(proposals[proposalId].executed,"Still not executed!");
         uint256 balance = token.balanceOf(address(this));
         require(balance > 0, "No tokens");
 

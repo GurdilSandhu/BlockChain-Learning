@@ -477,11 +477,11 @@
 			]
 		},
 		"learning/Governance Voting/token.sol": {
-			"keccak256": "0x66c10a920aa7c7a02c75d3dd0267b5ef5326f2d93b60ef17ec4910cd94eec58d",
+			"keccak256": "0x244900f42b9584dae803dc4824d412555d11a313cc468637bfaed1b3c0224f37",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://d71b32fa684348c1e0c2d3ad5d3f0d4cde2819556814271616042fb18c7ca903",
-				"dweb:/ipfs/QmXfUNy4NmAPjkiwAGzh9UKzNZ5UmTxAjESGwcZMPaMce1"
+				"bzz-raw://1d88b38b6860137fed3ba381b673f6b4236f5fe2a804f15676a1e885fb97f60b",
+				"dweb:/ipfs/QmQfHd5idvZPdXeytxuzAfKvhChXvMzFENMmvw9EhhF1mi"
 			]
 		}
 	},
