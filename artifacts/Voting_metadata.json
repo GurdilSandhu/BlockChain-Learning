@@ -430,7 +430,13 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "proposalId",
+						"type": "uint256"
+					}
+				],
 				"name": "withdrawTokens",
 				"outputs": [],
 				"stateMutability": "nonpayable",
@@ -520,11 +526,11 @@
 			]
 		},
 		"learning/Governance Voting/governanceVoting.sol": {
-			"keccak256": "0xfa7b3df3b863f1139417c43ce18fae15636a887fa7a2e3046d52733f68bd1d47",
+			"keccak256": "0xba37b70feac5e009f4cafa55385ead01370b406458390972fa2d03068f68d98c",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://e176e0d70160f432a53035447b2fd4bc60abbb26679af20f08b19b51a2b8fa89",
-				"dweb:/ipfs/QmVZzcRj3QRGYJnpzXxsTNiX76HgEGxByj9bYydGGcsA6z"
+				"bzz-raw://bfe8451b4e5d6e572f9514e8fcdc0daf79baad82a73e034f186d5a6a30007083",
+				"dweb:/ipfs/Qma1SCbxefxexRM52ZH3PzVTGcf7MkTpFe83LZ4vLoWFPk"
 			]
 		}
 	},
