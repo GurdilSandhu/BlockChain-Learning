@@ -9,7 +9,7 @@
 				"inputs": [
 					{
 						"internalType": "string",
-						"name": "_cId",
+						"name": "_CID",
 						"type": "string"
 					}
 				],
@@ -60,11 +60,11 @@
 	},
 	"sources": {
 		"learning/1 june/IPFS.sol": {
-			"keccak256": "0x87bca3f26b4ec4dac5527e56728a6103805e483b918fd09ff45cc96d3e2fae58",
+			"keccak256": "0xe9f4a7924dfd00c551e8310eb93387f245482d7f01dd09638196c806fc281e8a",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://ebd6f81faca7c29ada52439b7a099e2e380a61df4016f5596e079515921d54b1",
-				"dweb:/ipfs/Qmd7ke1osXBSMBfVktvcpNa5gqaaYfewpPNSVK9gwzTd4w"
+				"bzz-raw://7b31a8d8fd650db6e086b5ac0d7c12b959cbd7aee1f1dbfe9294e9544d2a5f6d",
+				"dweb:/ipfs/QmaQSPaukY3jyz49Kqe9ANLtAa9rFGJAwJRi317ejBdiNm"
 			]
 		}
 	},
