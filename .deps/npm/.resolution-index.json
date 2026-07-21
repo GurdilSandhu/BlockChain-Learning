@@ -784,14 +784,6 @@
       }
     }
   },
-  "learning/1 june/IPFS.sol": {
-    "__sources__": {
-      "learning/1 june/IPFS.sol": {
-        "content": "// cid store in variable\r\n// get file url\r\n\r\n\r\n// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract IPFS{\r\n    string cId;\r\n\r\n    function addCid(string memory _cId)public {\r\n        cId = _cId;\r\n    }\r\n    function geturl()public view returns(string memory){\r\n        string memory mainURL = string(abi.encodePacked(\"https://ipfs.io/ipfs/\",cId));\r\n    \r\n        return mainURL;\r\n    }\r\n}\r\n",
-        "file": "learning/1 june/IPFS.sol"
-      }
-    }
-  },
   "Practice/2 june/array.sol": {
     "__sources__": {
       "Practice/2 june/array.sol": {
@@ -1512,6 +1504,14 @@
       "Practice/17 july/ counter.sol": {
         "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.20;\r\n\r\ncontract counter{\r\n    uint num;\r\n\r\n    function incByOne() public{\r\n        num++;\r\n    }\r\n\r\n    function incByValue(uint value) public{\r\n        num += value;\r\n    }\r\n\r\n    function getNum() public view returns(uint){\r\n        return num;\r\n    }\r\n\r\n    function reset() public{\r\n        num = 0;\r\n    }\r\n}",
         "file": "Practice/17 july/ counter.sol"
+      }
+    }
+  },
+  "learning/1 june/IPFS.sol": {
+    "__sources__": {
+      "learning/1 june/IPFS.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract IPFS{\r\n    string CID;\r\n \r\n    function addCid(string memory _CID)public{\r\n        CID = _CID;\r\n    }\r\n    function geturl()public view returns(string memory){\r\n        string memory mainURL = string(abi.encodePacked(\"https://ipfs.io/ipfs/\",CID));\r\n    \r\n        return mainURL;\r\n    }\r\n}\r\n",
+        "file": "learning/1 june/IPFS.sol"
       }
     }
   }
