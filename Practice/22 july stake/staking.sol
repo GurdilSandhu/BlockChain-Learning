@@ -31,7 +31,9 @@ contract staking{
    mapping(address => User) public users;
 
    function depositToken(uint amount) public{
+   if(users[msg.sender].wallet == address(0)){
     totalUsers++;
+}
     users[msg.sender] = User(msg.sender,amount,0,block.timestamp,0);
     token.safeTransferFrom(msg.sender, address(this), amount);
    }
