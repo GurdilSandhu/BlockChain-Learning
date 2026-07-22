@@ -438,7 +438,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"Practice/15 july/ ERC020.sol": "generateToken"
+			"Practice/22 july stake/token.sol": "generateToken"
 		},
 		"evmVersion": "shanghai",
 		"libraries": {},
@@ -492,12 +492,12 @@
 				"dweb:/ipfs/Qmax9WHBnVsZP46ZxEMNRQpLQnrdE4dK8LehML1Py8FowF"
 			]
 		},
-		"Practice/15 july/ ERC020.sol": {
-			"keccak256": "0xd5f90eae25a95bf583db7039da32e52c570f66c264a2b088491fe0b0468569e1",
+		"Practice/22 july stake/token.sol": {
+			"keccak256": "0xfbdc60c650226c569d3f48012683bc802eba605114ea400d44584e80d897737b",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://6bef34e300c082ea4c9b213baeeeb1dff164be58f28da4c788ec6e223df595c5",
-				"dweb:/ipfs/QmNync438LB73aabi9dBJhVturLCFmSQgWuEL1Tt2ntmR4"
+				"bzz-raw://87523fc3524fa21c60afab8e91fbeece4cc54d9944e0e6d62b2cd58b349f3a6a",
+				"dweb:/ipfs/QmYdn98ijyDnk1WjHvGtrcy1zHtox6Q1zf1jb1nZKcXUJQ"
 			]
 		}
 	},
