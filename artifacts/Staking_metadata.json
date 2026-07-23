@@ -9,39 +9,12 @@
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "_token",
+						"name": "_tokenAddress",
 						"type": "address"
 					}
 				],
 				"stateMutability": "nonpayable",
 				"type": "constructor"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "owner",
-						"type": "address"
-					}
-				],
-				"name": "OwnableInvalidOwner",
-				"type": "error"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "account",
-						"type": "address"
-					}
-				],
-				"name": "OwnableUnauthorizedAccount",
-				"type": "error"
-			},
-			{
-				"inputs": [],
-				"name": "ReentrancyGuardReentrantCall",
-				"type": "error"
 			},
 			{
 				"inputs": [
@@ -68,6 +41,18 @@
 						"internalType": "uint256",
 						"name": "amount",
 						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "fee",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "enum Staking.Plans",
+						"name": "plan",
+						"type": "uint8"
 					}
 				],
 				"name": "Deposited",
@@ -79,30 +64,23 @@
 					{
 						"indexed": true,
 						"internalType": "address",
-						"name": "previousOwner",
+						"name": "tokenRescued",
 						"type": "address"
 					},
 					{
-						"indexed": true,
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
 						"internalType": "address",
-						"name": "newOwner",
+						"name": "to",
 						"type": "address"
 					}
 				],
-				"name": "OwnershipTransferred",
-				"type": "event"
-			},
-			{
-				"anonymous": false,
-				"inputs": [
-					{
-						"indexed": false,
-						"internalType": "uint256",
-						"name": "newRate",
-						"type": "uint256"
-					}
-				],
-				"name": "RewardRateUpdated",
+				"name": "TokensRescued",
 				"type": "event"
 			},
 			{
@@ -117,13 +95,19 @@
 					{
 						"indexed": false,
 						"internalType": "uint256",
-						"name": "amount",
+						"name": "principal",
 						"type": "uint256"
 					},
 					{
 						"indexed": false,
 						"internalType": "uint256",
 						"name": "reward",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "fee",
 						"type": "uint256"
 					}
 				],
@@ -132,27 +116,129 @@
 			},
 			{
 				"inputs": [],
-				"name": "checkAccount",
+				"name": "BPS_DENOMINATOR",
 				"outputs": [
 					{
 						"internalType": "uint256",
-						"name": "deposited",
+						"name": "",
 						"type": "uint256"
-					},
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "FEE_BPS",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "MIN_DEPOSIT",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "NINETY_DAYS",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "RATE_30",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "RATE_60",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "RATE_90",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "SIXTY_DAYS",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "THIRTY_DAYS",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "checkAccountReward",
+				"outputs": [
 					{
 						"internalType": "uint256",
 						"name": "reward",
 						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "stakingTime",
-						"type": "uint256"
-					},
-					{
-						"internalType": "bool",
-						"name": "active",
-						"type": "bool"
 					}
 				],
 				"stateMutability": "view",
@@ -164,42 +250,59 @@
 						"internalType": "uint256",
 						"name": "amount",
 						"type": "uint256"
-					}
-				],
-				"name": "deposit",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "_token",
-						"type": "address"
 					},
 					{
 						"internalType": "uint256",
-						"name": "amount",
+						"name": "selectedPlan",
 						"type": "uint256"
 					}
 				],
-				"name": "emergencyWithdrawTokens",
+				"name": "depositToken",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
-				"inputs": [
+				"inputs": [],
+				"name": "getDetails",
+				"outputs": [
 					{
 						"internalType": "uint256",
-						"name": "amount",
+						"name": "deposit",
 						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "pendingReward",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "startTime",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "unlockTime",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "timePassed",
+						"type": "uint256"
+					},
+					{
+						"internalType": "enum Staking.Plans",
+						"name": "selectedPlan",
+						"type": "uint8"
+					},
+					{
+						"internalType": "bool",
+						"name": "active",
+						"type": "bool"
 					}
 				],
-				"name": "fundRewards",
-				"outputs": [],
-				"stateMutability": "nonpayable",
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -219,50 +322,21 @@
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "user",
+						"name": "tokenAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "to",
 						"type": "address"
 					}
 				],
-				"name": "pendingReward",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "renounceOwnership",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "rewardRate",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "_rate",
-						"type": "uint256"
-					}
-				],
-				"name": "setRewardRate",
+				"name": "rescueTokens",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -297,19 +371,6 @@
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "newOwner",
-						"type": "address"
-					}
-				],
-				"name": "transferOwnership",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
 						"name": "",
 						"type": "address"
 					}
@@ -318,13 +379,18 @@
 				"outputs": [
 					{
 						"internalType": "uint256",
-						"name": "amount",
+						"name": "deposit",
 						"type": "uint256"
 					},
 					{
 						"internalType": "uint256",
 						"name": "startTime",
 						"type": "uint256"
+					},
+					{
+						"internalType": "enum Staking.Plans",
+						"name": "plan",
+						"type": "uint8"
 					},
 					{
 						"internalType": "bool",
@@ -337,29 +403,15 @@
 			},
 			{
 				"inputs": [],
-				"name": "withdraw",
+				"name": "withdrawToken",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
 			}
 		],
 		"devdoc": {
+			"details": "Rewards are only paid out once the chosen lock period has fully      elapsed; there is no partial/early-withdrawal reward path in this      version (see NOTE in withdrawToken if you want to change that).",
 			"errors": {
-				"OwnableInvalidOwner(address)": [
-					{
-						"details": "The owner is not a valid owner account. (eg. `address(0)`)"
-					}
-				],
-				"OwnableUnauthorizedAccount(address)": [
-					{
-						"details": "The caller account is not authorized to perform an operation."
-					}
-				],
-				"ReentrancyGuardReentrantCall()": [
-					{
-						"details": "Unauthorized reentrant call."
-					}
-				],
 				"SafeERC20FailedOperation(address)": [
 					{
 						"details": "An operation with an ERC-20 token failed."
@@ -368,21 +420,45 @@
 			},
 			"kind": "dev",
 			"methods": {
-				"owner()": {
-					"details": "Returns the address of the current owner."
+				"checkAccountReward()": {
+					"details": "Returns 0 if the lock period has not completed yet."
 				},
-				"renounceOwnership()": {
-					"details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby disabling any functionality that is only available to the owner."
+				"depositToken(uint256,uint256)": {
+					"params": {
+						"amount": "Amount of tokens to stake (before fee).",
+						"selectedPlan": "0 = 30 days, 1 = 60 days, 2 = 90 days."
+					}
 				},
-				"transferOwnership(address)": {
-					"details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
+				"rescueTokens(address,uint256,address)": {
+					"details": "Cannot be used to pull out the staking token itself, so staked user funds can never be rug-pulled through this function."
 				}
 			},
+			"title": "Staking",
 			"version": 1
 		},
 		"userdoc": {
 			"kind": "user",
-			"methods": {},
+			"methods": {
+				"FEE_BPS()": {
+					"notice": "Fee taken on deposit AND on withdrawal, expressed in basis points (50 = 0.5%)."
+				},
+				"checkAccountReward()": {
+					"notice": "Preview the reward currently owed to the caller."
+				},
+				"depositToken(uint256,uint256)": {
+					"notice": "Deposit tokens into a staking plan."
+				},
+				"getDetails()": {
+					"notice": "View full details of the caller's stake."
+				},
+				"rescueTokens(address,uint256,address)": {
+					"notice": "Recover ERC20 tokens accidentally sent to this contract."
+				},
+				"withdrawToken()": {
+					"notice": "Withdraw principal + reward once the lock period has completed. NOTE: this design requires the plan to have fully matured before withdrawal. If you want to support early withdrawal (e.g. principal only, no reward, maybe a penalty), add a separate `emergencyWithdraw` function rather than relaxing this check, so the reward math stays safe."
+				}
+			},
+			"notice": "Simple fixed-term staking contract with 30/60/90 day plans.",
 			"version": 1
 		}
 	},
@@ -402,14 +478,6 @@
 		"remappings": []
 	},
 	"sources": {
-		"@openzeppelin/contracts/access/Ownable.sol": {
-			"keccak256": "0xff6d0bb2e285473e5311d9d3caacb525ae3538a80758c10649a4d61029b017bb",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://8ed324d3920bb545059d66ab97d43e43ee85fd3bd52e03e401f020afb0b120f6",
-				"dweb:/ipfs/QmfEckWLmZkDDcoWrkEvMWhms66xwTLff9DDhegYpvHo1a"
-			]
-		},
 		"@openzeppelin/contracts/interfaces/IERC1363.sol": {
 			"keccak256": "0xd5ea07362ab630a6a3dee4285a74cf2377044ca2e4be472755ad64d7c5d4b69d",
 			"license": "MIT",
@@ -450,30 +518,6 @@
 				"dweb:/ipfs/QmbZNbcPTBxNvwChavN2kkZZs7xHhYL7mv51KrxMhsMs3j"
 			]
 		},
-		"@openzeppelin/contracts/utils/Context.sol": {
-			"keccak256": "0x493033a8d1b176a037b2cc6a04dad01a5c157722049bbecf632ca876224dd4b2",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://6a708e8a5bdb1011c2c381c9a5cfd8a9a956d7d0a9dc1bd8bcdaf52f76ef2f12",
-				"dweb:/ipfs/Qmax9WHBnVsZP46ZxEMNRQpLQnrdE4dK8LehML1Py8FowF"
-			]
-		},
-		"@openzeppelin/contracts/utils/ReentrancyGuard.sol": {
-			"keccak256": "0xa516cbf1c7d15d3517c2d668601ce016c54395bf5171918a14e2686977465f53",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://1e1d079e8edfb58efd23a311e315a4807b01b5d1cf153f8fa2d0608b9dec3e99",
-				"dweb:/ipfs/QmTBExeX2SDTkn5xbk5ssbYSx7VqRp9H4Ux1CY4uQM4b9N"
-			]
-		},
-		"@openzeppelin/contracts/utils/StorageSlot.sol": {
-			"keccak256": "0xcf74f855663ce2ae00ed8352666b7935f6cddea2932fdf2c3ecd30a9b1cd0e97",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://9f660b1f351b757dfe01438e59888f31f33ded3afcf5cb5b0d9bf9aa6f320a8b",
-				"dweb:/ipfs/QmarDJ5hZEgBtCmmrVzEZWjub9769eD686jmzb2XpSU1cM"
-			]
-		},
 		"@openzeppelin/contracts/utils/introspection/IERC165.sol": {
 			"keccak256": "0x8891738ffe910f0cf2da09566928589bf5d63f4524dd734fd9cedbac3274dd5c",
 			"license": "MIT",
@@ -483,11 +527,11 @@
 			]
 		},
 		"Practice/22 july stake/staking.sol": {
-			"keccak256": "0x2fd5193eae4ba395a0174abd528faaf5355961bd2bc9383a7e62ca39818da595",
+			"keccak256": "0x5a511d2ff8588d4e3f7735628425cf2bf5109925f4da20ad8f39f0da2eb83dee",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://0d40c5c14ac03bade1b8e720923ba118e5a5b785aed4f97d45eda85f7b537b16",
-				"dweb:/ipfs/QmZznEpgWAkaaVkNtL464g5M6jk2nBpDEMzGzZLDMfLzhQ"
+				"bzz-raw://d762052286556b63ac580ade35e13861fc1b37a3d35d352d20d4c12901be1040",
+				"dweb:/ipfs/QmdEo8uVr7C5jZnUp5Xy7K1gant7AsowzPgLM8YVeZ6eDw"
 			]
 		}
 	},

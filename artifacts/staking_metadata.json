@@ -28,32 +28,25 @@
 				"type": "error"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "approve",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
 				"inputs": [],
-				"name": "checkAccount",
+				"name": "checkAccountReward",
 				"outputs": [
 					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					},
-					{
 						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "",
+						"name": "reward",
 						"type": "uint256"
 					}
 				],
@@ -66,11 +59,49 @@
 						"internalType": "uint256",
 						"name": "amount",
 						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "selectedPlan",
+						"type": "uint256"
 					}
 				],
 				"name": "depositToken",
 				"outputs": [],
 				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getDetails",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "wallet",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "deposit",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "reward",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "timePassed",
+						"type": "uint256"
+					},
+					{
+						"internalType": "enum staking.Plans",
+						"name": "SelectedPlan",
+						"type": "uint8"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -146,6 +177,11 @@
 						"internalType": "uint256",
 						"name": "timepassed",
 						"type": "uint256"
+					},
+					{
+						"internalType": "enum staking.Plans",
+						"name": "choosenPlan",
+						"type": "uint8"
 					}
 				],
 				"stateMutability": "view",
@@ -242,11 +278,11 @@
 			]
 		},
 		"Practice/22 july stake/staking.sol": {
-			"keccak256": "0x5167e53280a288db1520a29d39e7de600a74c008f7e736a8f5e9493bb65282f3",
+			"keccak256": "0x015db97c6432b57ae3cf479f4b61330792aa3ef264c1d1e3647a400f9fa11044",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://870551fcffeb8999205896f3479456cd5dd957f5d6aaafe46515de39dbcdec1b",
-				"dweb:/ipfs/QmeWsCtgKcFXZd94Ax13qcKgpSUfxcrkhWf6DAgyDnHxNU"
+				"bzz-raw://d20f53ce9d941271ada8828f929f90172bde368d0b8e1800e3e14011e8217480",
+				"dweb:/ipfs/QmVcocc7g5nVf5XY1HVYLpMXBfdyidY2gFqgvqEyCBHAY1"
 			]
 		}
 	},
