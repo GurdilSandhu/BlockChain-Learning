@@ -39,6 +39,31 @@
 					{
 						"indexed": false,
 						"internalType": "uint256",
+						"name": "reward",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "newDeposit",
+						"type": "uint256"
+					}
+				],
+				"name": "Compounded",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
 						"name": "amount",
 						"type": "uint256"
 					},
@@ -245,6 +270,13 @@
 				"type": "function"
 			},
 			{
+				"inputs": [],
+				"name": "compoundReward",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "uint256",
@@ -419,20 +451,7 @@
 				]
 			},
 			"kind": "dev",
-			"methods": {
-				"checkAccountReward()": {
-					"details": "Returns 0 if the lock period has not completed yet."
-				},
-				"depositToken(uint256,uint256)": {
-					"params": {
-						"amount": "Amount of tokens to stake (before fee).",
-						"selectedPlan": "0 = 30 days, 1 = 60 days, 2 = 90 days."
-					}
-				},
-				"rescueTokens(address,uint256,address)": {
-					"details": "Cannot be used to pull out the staking token itself, so staked user funds can never be rug-pulled through this function."
-				}
-			},
+			"methods": {},
 			"title": "Staking",
 			"version": 1
 		},
@@ -445,20 +464,23 @@
 				"checkAccountReward()": {
 					"notice": "Preview the reward currently owed to the caller."
 				},
+				"compoundReward()": {
+					"notice": "If user wants to stake the deposit + reward again after the maturity of Stake then this function will be used to compound the staking again"
+				},
 				"depositToken(uint256,uint256)": {
-					"notice": "Deposit tokens into a staking plan."
+					"notice": "Deposit tokens into a staking plan. amount Amount of tokens to stake (before fee). selectedPlan 0 = 30 days, 1 = 60 days, 2 = 90 days."
 				},
 				"getDetails()": {
 					"notice": "View full details of the caller's stake."
 				},
 				"rescueTokens(address,uint256,address)": {
-					"notice": "Recover ERC20 tokens accidentally sent to this contract."
+					"notice": "Recover ERC20 tokens accidentally sent to this contract. Cannot be used to pull out the staking token itself, so staked user funds can never be rug-pulled through this function."
 				},
 				"withdrawToken()": {
-					"notice": "Withdraw principal + reward once the lock period has completed. NOTE: this design requires the plan to have fully matured before withdrawal. If you want to support early withdrawal (e.g. principal only, no reward, maybe a penalty), add a separate `emergencyWithdraw` function rather than relaxing this check, so the reward math stays safe."
+					"notice": "Withdraw principal + reward once the lock period has completed. NOTE: this design requires the plan to have fully matured before withdrawal."
 				}
 			},
-			"notice": "Simple fixed-term staking contract with 30/60/90 day plans.",
+			"notice": "Simple fixed-term staking contract with 30/60/90 day plans. But for testing purpose contract has seconds 300, 400,500 for now.",
 			"version": 1
 		}
 	},
@@ -527,11 +549,11 @@
 			]
 		},
 		"Practice/22 july stake/staking.sol": {
-			"keccak256": "0x5a511d2ff8588d4e3f7735628425cf2bf5109925f4da20ad8f39f0da2eb83dee",
+			"keccak256": "0x158d4e994ee956bd7351407a9528d213cb78f5b81fd1981fafa167695a67484e",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://d762052286556b63ac580ade35e13861fc1b37a3d35d352d20d4c12901be1040",
-				"dweb:/ipfs/QmdEo8uVr7C5jZnUp5Xy7K1gant7AsowzPgLM8YVeZ6eDw"
+				"bzz-raw://af5511cd3a1cbd6e08937f0d72ebd0443fbaad328975cafafbd10c8549aeb815",
+				"dweb:/ipfs/QmePozSVu275XjtSKf21nudBru7z9YFqfahhxHNX9AWahT"
 			]
 		}
 	},
