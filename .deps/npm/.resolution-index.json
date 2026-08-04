@@ -1088,14 +1088,6 @@
       }
     }
   },
-  "Practice/22 june/ flight_delay.sol": {
-    "__sources__": {
-      "Practice/22 june/ flight_delay.sol": {
-        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract flight_delay{\r\n    address owner;\r\n    uint flightTime;\r\n    constructor(uint _flightTime){\r\n        owner = msg.sender;\r\n        flightTime = block.timestamp + _flightTime;\r\n    }\r\n    struct flight{\r\n       address user;\r\n       uint time;\r\n       uint amount;\r\n    }\r\n    mapping(uint => flight) public flights;\r\n    uint userIds;\r\n    function buyTicket() public payable{\r\n        require(msg.value == 100 wei,\"ticket price is 100 wei\");\r\n        userIds++;\r\n        flights[userIds] = flight(msg.sender,flightTime, msg.value);\r\n    }\r\n\r\n    function cancel() public{\r\n        require(msg.sender == owner,\"Access Denied\");\r\n          require(block.timestamp > flightTime, \"canceled\");\r\n          for(uint i=1;i<=userIds;i++){\r\n          payable(flights[i].user).transfer(100 wei);\r\n          }\r\n    }\r\n\r\n    function badService_delay() public{\r\n        require(msg.sender == owner,\"Access Denied\");\r\n          require(block.timestamp > flightTime, \"dealyed\");\r\n          for(uint i=1;i<=userIds;i++){\r\n          payable(flights[i].user).transfer(10 wei);\r\n          }\r\n    }\r\n}",
-        "file": "Practice/22 june/ flight_delay.sol"
-      }
-    }
-  },
   "learning/Interface/atm.sol": {
     "./bank.sol": "learning/Interface/bank.sol",
     "__sources__": {
@@ -1106,14 +1098,6 @@
       "learning/Interface/bank.sol": {
         "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract bank{\r\n\r\n    mapping (address => uint) balances;\r\n\r\n    function deposit() external payable {\r\n         require(msg.value > 0,\"add some funds\");\r\n         balances[msg.sender] += msg.value;\r\n    }\r\n\r\n    function getMyBalance() external view returns(uint){\r\n        return balances[msg.sender];\r\n    }\r\n\r\n    function withdraw(uint amount) external payable{\r\n        require(balances[msg.sender] >= amount ,\"No Funds\");\r\n        balances[msg.sender] -= amount;\r\n        payable(msg.sender).transfer(amount);\r\n    }\r\n}",
         "file": "learning/Interface/bank.sol"
-      }
-    }
-  },
-  "Practice/22 june/userBank.sol": {
-    "__sources__": {
-      "Practice/22 june/userBank.sol": {
-        "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.0;\n\ncontract UserBank {\n    // event Depo (address indexed Owner, uint _amount);\n    address owner;\n    struct userDetail {\n        address id;\n        uint balance;\n    }\n\n    uint totalUsers;\n    mapping(address => userDetail) details;\n\n    constructor() {\n        owner = msg.sender;\n    }\n\n    modifier onlyOwner() {\n        require(msg.sender == owner, \"Not owner\");\n        _;\n    }\n\n    function deposit(address user) external payable {\n        require(msg.value > 2000, \"Add Some Money\");\n        if (details[user].id == address(0)) {\n            totalUsers++;\n            details[user].id = user;\n        }\n        details[user].id = user;\n        details[user].balance += msg.value;\n\n        // emit Depo(msg.sender,amount);\n    }\n\n    function withdraw_cash(address user, uint amount) external {\n        require(details[user].balance > 2000, \"not enough balance\");\n        require(amount < (details[user].balance - 2000), \"not enough balance\");\n        require(details[user].balance >= amount + 2000);\n\n        details[user].balance -= amount;\n        payable(user).transfer(amount);\n\n        // emit Depo(msg.sender,amount);\n    }\n    function Get_Balance(address user) external view returns (uint) {\n        uint balance = details[user].balance;\n        return balance;\n    }\n}\n",
-        "file": "Practice/22 june/userBank.sol"
       }
     }
   },
@@ -1258,14 +1242,6 @@
       "Practice/exportCalculator.sol": {
         "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract Calculator{\r\n    uint public result;\r\n\r\n    function add(uint value) external{\r\n        result+=value;\r\n    }\r\n\r\n    function sub(uint value) external{\r\n        result-=value;\r\n    }\r\n\r\n    function multi(uint value) external{\r\n        result*=value;\r\n    }\r\n\r\n    function divide(uint value) external{\r\n        result/=value;\r\n    }\r\n\r\n    function modulo(uint value) external{\r\n        result%=value;\r\n    }\r\n\r\n    function square(uint value) external{\r\n        result = value * value;\r\n    }\r\n\r\n    function cube(uint value) external{\r\n        result = value * value * value;\r\n    }\r\n\r\n    function sqrt(uint value) external{\r\n        if(value>3){\r\n           result = value;\r\n           uint x = value / 2 + 1;\r\n           while(x<result){\r\n            result = x;\r\n            x = (value / x + x) / 2;\r\n           }\r\n         }else if (value !=0){\r\n            result=1;\r\n         }else \r\n         result=0;\r\n    }\r\n\r\n    function SeeResult() external view returns(uint){\r\n        return result;\r\n    }\r\n\r\n}",
         "file": "Practice/exportCalculator.sol"
-      }
-    }
-  },
-  "Practice/22 june/IUserBank.sol": {
-    "__sources__": {
-      "Practice/22 june/IUserBank.sol": {
-        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\n\r\n/*\r\n Interface defines ONLY the functions\r\n that exist in UserBank and that ATM needs.\r\n*/\r\ninterface IUserBank {\r\n     function deposit(address user) external payable;\r\n    function withdraw_cash(address user, uint amount) external;\r\n    function Get_Balance(address user) external view returns (uint);\r\n}\r\n\r\ncontract SBI_ATM_CASH {\r\n\r\n    IUserBank public bank;\r\n\r\n    // Pass UserBank contract address while deploying ATM\r\n    constructor(address bank_address) {\r\n        bank = IUserBank(bank_address);\r\n    }\r\n\r\n    function Add_Cash() public payable{\r\n        bank.deposit{value: msg.value}(msg.sender);\r\n    }\r\n\r\n    function withdraw_Amount(uint amount) public {\r\n        bank.withdraw_cash(msg.sender, amount);\r\n    }\r\n\r\n    function Available_Balance(address user) public view returns (uint) {\r\n        return bank.Get_Balance(user);\r\n    }\r\n}",
-        "file": "Practice/22 june/IUserBank.sol"
       }
     }
   },
@@ -1625,5 +1601,29 @@
   },
   "@openzeppelin/contracts@5.6.1/interfaces/IERC165.sol": {
     "../utils/introspection/IERC165.sol": ".deps/npm/@openzeppelin/contracts@5.6.1/utils/introspection/IERC165.sol"
+  },
+  "Practice/22 june/IUserBank.sol": {
+    "__sources__": {
+      "Practice/22 june/IUserBank.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\n\r\n/*\r\n Interface defines ONLY the functions\r\n that exist in UserBank and that ATM needs.\r\n*/\r\ninterface IUserBank {\r\n     function deposit(address user) external payable;\r\n    function withdraw_cash(address user, uint amount) external;\r\n    function Get_Balance(address user) external view returns (uint);\r\n}\r\n\r\ncontract SBI_ATM_CASH {\r\n\r\n    IUserBank public bank;\r\n\r\n    // Pass UserBank contract address while deploying ATM\r\n    constructor(address bank_address) {\r\n        bank = IUserBank(bank_address);\r\n    }\r\n\r\n    function Add_Cash() public payable{\r\n        bank.deposit{value: msg.value}(msg.sender);\r\n    }\r\n\r\n    function withdraw_Amount(uint amount) public {\r\n        bank.withdraw_cash(msg.sender, amount);\r\n    }\r\n\r\n    function Available_Balance(address user) public view returns (uint) {\r\n        return bank.Get_Balance(user);\r\n    }\r\n}",
+        "file": "Practice/22 june/IUserBank.sol"
+      }
+    }
+  },
+  "Practice/22 june/userBank.sol": {
+    "__sources__": {
+      "Practice/22 june/userBank.sol": {
+        "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.0;\n\ncontract UserBank {\n    // event Depo (address indexed Owner, uint _amount);\n    address owner;\n    struct userDetail {\n        address id;\n        uint balance;\n    }\n\n    uint totalUsers;\n    mapping(address => userDetail) details;\n\n    constructor() {\n        owner = msg.sender;\n    }\n\n    modifier onlyOwner() {\n        require(msg.sender == owner, \"Not owner\");\n        _;\n    }\n\n    function deposit(address user) external payable {\n        require(msg.value > 2000, \"Add Some Money\");\n        if (details[user].id == address(0)) {\n            totalUsers++;\n            details[user].id = user;\n        }\n        details[user].id = user;\n        details[user].balance += msg.value;\n\n        // emit Depo(msg.sender,amount);\n    }\n\n    function withdraw_cash(address user, uint amount) external {\n        require(details[user].balance > 2000, \"not enough balance\");\n        require(amount < (details[user].balance - 2000), \"not enough balance\");\n        require(details[user].balance >= amount + 2000);\n\n        details[user].balance -= amount;\n        payable(user).transfer(amount);\n\n        // emit Depo(msg.sender,amount);\n    }\n    function Get_Balance(address user) external view returns (uint) {\n        uint balance = details[user].balance;\n        return balance;\n    }\n}\n",
+        "file": "Practice/22 june/userBank.sol"
+      }
+    }
+  },
+  "Practice/22 june/ flight_delay.sol": {
+    "__sources__": {
+      "Practice/22 june/ flight_delay.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract flight_delay{\r\n    address owner;\r\n    uint flightTime;\r\n    constructor(uint _flightTime){\r\n        owner = msg.sender;\r\n        flightTime = block.timestamp + _flightTime;\r\n    }\r\n    struct flight{\r\n       address user ;\r\n       uint time;\r\n       uint amount; \r\n    }\r\n    mapping(uint => flight) public flights;\r\n    uint userIds;\r\n    function buyTicket() public payable{\r\n        require(msg.value == 100 wei,\"ticket price is 100 wei\");\r\n        userIds++;\r\n        flights[userIds] = flight(msg.sender,flightTime, msg.value);\r\n    }\r\n\r\n    function cancel() public{\r\n        require(msg.sender == owner,\"Access Denied\");\r\n          require(block.timestamp > flightTime, \"canceled\");\r\n          for(uint i=1;i<=userIds;i++){\r\n          payable(flights[i].user).transfer(100 wei);\r\n          }\r\n    }\r\n\r\n    function badService_delay() public{\r\n        require(msg.sender == owner,\"Access Denied\");\r\n          require(block.timestamp > flightTime, \"dealyed\");\r\n          for(uint i=1;i<=userIds;i++){\r\n          payable(flights[i].user).transfer(10 wei);\r\n          }\r\n    }\r\n}",
+        "file": "Practice/22 june/ flight_delay.sol"
+      }
+    }
   }
 }
