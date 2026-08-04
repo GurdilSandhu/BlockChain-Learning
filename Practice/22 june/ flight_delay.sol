@@ -9,9 +9,9 @@ contract flight_delay{
         flightTime = block.timestamp + _flightTime;
     }
     struct flight{
-       address user;
+       address user ;
        uint time;
-       uint amount;
+       uint amount; 
     }
     mapping(uint => flight) public flights;
     uint userIds;
