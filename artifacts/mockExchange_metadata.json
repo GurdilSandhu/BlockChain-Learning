@@ -1,0 +1,110 @@
+{
+	"compiler": {
+		"version": "0.8.20+commit.a1b79de6"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "A_price",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "B_price",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "token",
+						"type": "uint256"
+					}
+				],
+				"name": "getPrice",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "price",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "tokenIn",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "tokenOut",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "swap",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "amountOut",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"Practice/6 july interface/mockExchange.sol": "mockExchange"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"Practice/6 july interface/mockExchange.sol": {
+			"keccak256": "0x6f583210ddd55d466ea0a9b39f6453b2b410fbe37f6f7f6b33bd87e24651fa91",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://e783a47c2b84e723cf3b1cc242fa298d05d117e135c00458df0e878ab5358828",
+				"dweb:/ipfs/QmR1iV7QxWJz58fQyczjkScgYcaBzeU6qgUCrwMXHU6waB"
+			]
+		}
+	},
+	"version": 1
+}
