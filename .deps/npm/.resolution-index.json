@@ -1602,14 +1602,6 @@
   "@openzeppelin/contracts@5.6.1/interfaces/IERC165.sol": {
     "../utils/introspection/IERC165.sol": ".deps/npm/@openzeppelin/contracts@5.6.1/utils/introspection/IERC165.sol"
   },
-  "Practice/22 june/IUserBank.sol": {
-    "__sources__": {
-      "Practice/22 june/IUserBank.sol": {
-        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\n\r\n/*\r\n Interface defines ONLY the functions\r\n that exist in UserBank and that ATM needs.\r\n*/\r\ninterface IUserBank {\r\n     function deposit(address user) external payable;\r\n    function withdraw_cash(address user, uint amount) external;\r\n    function Get_Balance(address user) external view returns (uint);\r\n}\r\n\r\ncontract SBI_ATM_CASH {\r\n\r\n    IUserBank public bank;\r\n\r\n    // Pass UserBank contract address while deploying ATM\r\n    constructor(address bank_address) {\r\n        bank = IUserBank(bank_address);\r\n    }\r\n\r\n    function Add_Cash() public payable{\r\n        bank.deposit{value: msg.value}(msg.sender);\r\n    }\r\n\r\n    function withdraw_Amount(uint amount) public {\r\n        bank.withdraw_cash(msg.sender, amount);\r\n    }\r\n\r\n    function Available_Balance(address user) public view returns (uint) {\r\n        return bank.Get_Balance(user);\r\n    }\r\n}",
-        "file": "Practice/22 june/IUserBank.sol"
-      }
-    }
-  },
   "Practice/22 june/userBank.sol": {
     "__sources__": {
       "Practice/22 june/userBank.sol": {
@@ -1623,6 +1615,41 @@
       "Practice/22 june/ flight_delay.sol": {
         "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract flight_delay{\r\n    address owner;\r\n    uint flightTime;\r\n    constructor(uint _flightTime){\r\n        owner = msg.sender;\r\n        flightTime = block.timestamp + _flightTime;\r\n    }\r\n    struct flight{\r\n       address user ;\r\n       uint time;\r\n       uint amount; \r\n    }\r\n    mapping(uint => flight) public flights;\r\n    uint userIds;\r\n    function buyTicket() public payable{\r\n        require(msg.value == 100 wei,\"ticket price is 100 wei\");\r\n        userIds++;\r\n        flights[userIds] = flight(msg.sender,flightTime, msg.value);\r\n    }\r\n\r\n    function cancel() public{\r\n        require(msg.sender == owner,\"Access Denied\");\r\n          require(block.timestamp > flightTime, \"canceled\");\r\n          for(uint i=1;i<=userIds;i++){\r\n          payable(flights[i].user).transfer(100 wei);\r\n          }\r\n    }\r\n\r\n    function badService_delay() public{\r\n        require(msg.sender == owner,\"Access Denied\");\r\n          require(block.timestamp > flightTime, \"dealyed\");\r\n          for(uint i=1;i<=userIds;i++){\r\n          payable(flights[i].user).transfer(10 wei);\r\n          }\r\n    }\r\n}",
         "file": "Practice/22 june/ flight_delay.sol"
+      }
+    }
+  },
+  "Practice/6 july interface.sol": {
+    "__sources__": {}
+  },
+  "Practice/6 july interface/wallet.sol": {
+    "__sources__": {
+      "Practice/6 july interface/wallet.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract wallet{\r\n    \r\n}",
+        "file": "Practice/6 july interface/wallet.sol"
+      }
+    }
+  },
+  "Practice/22 june/IUserBank.sol": {
+    "__sources__": {
+      "Practice/22 june/IUserBank.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\n\r\n/*\r\n Interface defines ONLY the functions\r\n that exist in UserBank and that ATM needs.\r\n*/\r\ninterface IUserBank {\r\n     function deposit(address user) external payable;\r\n    function withdraw_cash(address user, uint amount) external;\r\n    function Get_Balance(address user) external view returns (uint);\r\n}\r\n\r\ncontract SBI_ATM_CASH {\r\n\r\n    IUserBank public bank;\r\n\r\n    // Pass UserBank contract address while deploying ATM\r\n    constructor(address bank_address) {\r\n        bank = IUserBank(bank_address);\r\n    }\r\n\r\n    function Add_Cash() public payable{\r\n        bank.deposit{value: msg.value}(msg.sender);\r\n    }\r\n\r\n    function withdraw_Amount(uint amount) public {\r\n        bank.withdraw_cash(msg.sender, amount);\r\n    }\r\n\r\n    function Available_Balance(address user) public view returns (uint) {\r\n        return bank.Get_Balance(user);\r\n    }\r\n}",
+        "file": "Practice/22 june/IUserBank.sol"
+      }
+    }
+  },
+  "Practice/6 july interface/trader.sol": {
+    "__sources__": {
+      "Practice/6 july interface/trader.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.20;\r\n\r\n\r\ninterface IExchange {\r\n    function getPrice(uint token) external view returns (uint256);\r\n    function swap(uint tokenIn,uint tokenOut,uint256 amount) external view returns (uint256); \r\n}\r\n\r\ncontract trader{\r\n    IExchange public exchange;\r\n\r\n    constructor(address exchangeAddress){\r\n        exchange = IExchange(exchangeAddress);\r\n    }\r\n\r\n    function getPrice(uint token)public view returns(uint price){\r\n        return exchange.getPrice(token);\r\n    }\r\n\r\n    function swap(uint tokenIn, uint tokenOut,uint amount) public view returns(uint amountOut){\r\n        return exchange.swap(tokenIn, tokenOut, amount);\r\n    }\r\n}",
+        "file": "Practice/6 july interface/trader.sol"
+      }
+    }
+  },
+  "Practice/6 july interface/mockExchange.sol": {
+    "__sources__": {
+      "Practice/6 july interface/mockExchange.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract mockExchange{\r\n    mapping(uint => uint) prices;\r\n\r\n    constructor(uint A_price, uint B_price){\r\n         prices[0] = A_price;\r\n         prices[1] = B_price;\r\n    }\r\n\r\n    function getPrice(uint token) external view returns(uint256 price){\r\n        price = prices[token];\r\n        return price;\r\n     }\r\n\r\n    function swap(uint tokenIn,uint tokenOut,uint256 amount) external view returns (uint256 amountOut){\r\n          require(tokenIn<2 && tokenOut<2,\"Invalid tokens\");\r\n          require(amount>0,\"Amount should be greater than zero\");\r\n\r\n          amountOut = (amount * prices[tokenIn]) / prices[tokenOut];\r\n          return amountOut;\r\n     }\r\n    \r\n}",
+        "file": "Practice/6 july interface/mockExchange.sol"
       }
     }
   }
