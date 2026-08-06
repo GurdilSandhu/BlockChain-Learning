@@ -8,7 +8,7 @@ contract mockExchange{
          prices[0] = A_price;
          prices[1] = B_price;
     }
-
+ 
     function getPrice(uint token) external view returns(uint256 price){
         price = prices[token];
         return price;
