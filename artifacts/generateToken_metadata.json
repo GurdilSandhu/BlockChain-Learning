@@ -438,7 +438,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"Practice/22 july stake/token.sol": "generateToken"
+			"GDswap/generateToken.sol": "generateToken"
 		},
 		"evmVersion": "shanghai",
 		"libraries": {},
@@ -492,7 +492,7 @@
 				"dweb:/ipfs/Qmax9WHBnVsZP46ZxEMNRQpLQnrdE4dK8LehML1Py8FowF"
 			]
 		},
-		"Practice/22 july stake/token.sol": {
+		"GDswap/generateToken.sol": {
 			"keccak256": "0xfbdc60c650226c569d3f48012683bc802eba605114ea400d44584e80d897737b",
 			"license": "MIT",
 			"urls": [
