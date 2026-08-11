@@ -1543,14 +1543,6 @@
       }
     }
   },
-  "Practice/22 june/IUserBank.sol": {
-    "__sources__": {
-      "Practice/22 june/IUserBank.sol": {
-        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\n\r\n/*\r\n Interface defines ONLY the functions\r\n that exist in UserBank and that ATM needs.\r\n*/\r\ninterface IUserBank {\r\n     function deposit(address user) external payable;\r\n    function withdraw_cash(address user, uint amount) external;\r\n    function Get_Balance(address user) external view returns (uint);\r\n}\r\n\r\ncontract SBI_ATM_CASH {\r\n\r\n    IUserBank public bank;\r\n\r\n    // Pass UserBank contract address while deploying ATM\r\n    constructor(address bank_address) {\r\n        bank = IUserBank(bank_address);\r\n    }\r\n\r\n    function Add_Cash() public payable{\r\n        bank.deposit{value: msg.value}(msg.sender);\r\n    }\r\n\r\n    function withdraw_Amount(uint amount) public {\r\n        bank.withdraw_cash(msg.sender, amount);\r\n    }\r\n\r\n    function Available_Balance(address user) public view returns (uint) {\r\n        return bank.Get_Balance(user);\r\n    }\r\n}",
-        "file": "Practice/22 june/IUserBank.sol"
-      }
-    }
-  },
   "Practice/6 july interface/trader.sol": {
     "__sources__": {
       "Practice/6 july interface/trader.sol": {
@@ -1753,6 +1745,22 @@
       "GDswap/DEX/Factory.sol": {
         "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.20;\r\n\r\ncontract Factory{\r\n\r\n}",
         "file": "GDswap/DEX/Factory.sol"
+      }
+    }
+  },
+  "Practice/22 june/IUserBank.sol": {
+    "__sources__": {
+      "Practice/22 june/IUserBank.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\n\r\n/*\r\n Interface defines ONLY the functions\r\n that exist in UserBank and that ATM needs.\r\n*/\r\ninterface IUserBank {\r\n     function deposit(address user) external payable;\r\n    function withdraw_cash(address user, uint amount) external;\r\n    function Get_Balance(address user) external view returns (uint);\r\n}\r\n\r\ncontract SBI_ATM_CASH {\r\n\r\n    IUserBank public bank;\r\n\r\n    // Pass UserBank contract address while deploying ATM\r\n    constructor(address bank_address) {\r\n        bank = IUserBank(bank_address);\r\n    }\r\n\r\n    function Add_Cash() public payable{\r\n        bank.deposit{value: msg.value}(msg.sender);\r\n    }\r\n\r\n    function withdraw_Amount(uint amount) public {\r\n        bank.withdraw_cash(msg.sender, amount);\r\n    }\r\n\r\n    function Available_Balance(address user) public view returns (uint) {\r\n        return bank.Get_Balance(user);\r\n    }\r\n}",
+        "file": "Practice/22 june/IUserBank.sol"
+      }
+    }
+  },
+  "Practice/11 august interface/interface.sol": {
+    "__sources__": {
+      "Practice/11 august interface/interface.sol": {
+        "content": "//SPDX-License-Indentifier: MIT\r\npragma solidity ^0.8.0;\r\n/*\r\n   Below code is how we declare interface in contracts but this is not the only way to use\r\n   Interface we can also make another contract for interface only and that is the best practice\r\n   and here you can see clearly that we only add functions with no body so this is what we called abstraction.\r\n*/\r\ninterface IUserBank {\r\n   function deposit(uint amount) external;\r\n   function withdraw(uint amount) external;\r\n   function checkBalance() external view returns(uint);\r\n}\r\n\r\ncontract Userbank{\r\n   IUserBank bank;\r\n /*\r\n   Here inside the constructor when we are going to deploy before that we have to add \r\n   Contract address of contract from where we take the interface doing so we can use the logics of \r\n   functions we add inside interface above basically At this address, there is a contract that I want to communicate with using the IUserBank interface\r\n*/\r\n   constructor(address bankAddress){\r\n   bank = IUserBank(bankAddress);\r\n}\r\n\r\nfunction depositAmount(uint  _amount) public{\r\n    bank.deposit(_amount);   //this will change the state of that contract\r\n}\r\n\r\nfunction withdrawAmount(uint  _amount) public{\r\n    bank.withdraw(_amount);   //this will change the state of that contract\r\n}\r\n\r\nfunction checkBalance() public view returns(uint Balance){\r\n   Balance = bank.checkBalance();\r\n    return Balance;  \r\n}\r\n}",
+        "file": "Practice/11 august interface/interface.sol"
       }
     }
   }
