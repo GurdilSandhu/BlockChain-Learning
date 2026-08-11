@@ -37,21 +37,15 @@
 		},
 		"gasEstimates": null,
 		"methodIdentifiers": {
-			"Get_Balance(address)": "451abb4e",
-			"deposit(address)": "f340fa01",
-			"withdraw_cash(address,uint256)": "6bc36174"
+			"checkBalance()": "c71daccb",
+			"deposit(uint256)": "b6b55f25",
+			"withdraw(uint256)": "2e1a7d4d"
 		}
 	},
 	"abi": [
 		{
-			"inputs": [
-				{
-					"internalType": "address",
-					"name": "user",
-					"type": "address"
-				}
-			],
-			"name": "Get_Balance",
+			"inputs": [],
+			"name": "checkBalance",
 			"outputs": [
 				{
 					"internalType": "uint256",
@@ -65,30 +59,25 @@
 		{
 			"inputs": [
 				{
-					"internalType": "address",
-					"name": "user",
-					"type": "address"
+					"internalType": "uint256",
+					"name": "amount",
+					"type": "uint256"
 				}
 			],
 			"name": "deposit",
 			"outputs": [],
-			"stateMutability": "payable",
+			"stateMutability": "nonpayable",
 			"type": "function"
 		},
 		{
 			"inputs": [
-				{
-					"internalType": "address",
-					"name": "user",
-					"type": "address"
-				},
 				{
 					"internalType": "uint256",
 					"name": "amount",
 					"type": "uint256"
 				}
 			],
-			"name": "withdraw_cash",
+			"name": "withdraw",
 			"outputs": [],
 			"stateMutability": "nonpayable",
 			"type": "function"
