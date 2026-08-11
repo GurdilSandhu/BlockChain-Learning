@@ -6,12 +6,23 @@
 	"output": {
 		"abi": [
 			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "bankAddress",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
 				"inputs": [],
 				"name": "checkBalance",
 				"outputs": [
 					{
 						"internalType": "uint256",
-						"name": "",
+						"name": "Balance",
 						"type": "uint256"
 					}
 				],
@@ -22,11 +33,11 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "amount",
+						"name": "_amount",
 						"type": "uint256"
 					}
 				],
-				"name": "deposit",
+				"name": "depositAmount",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -35,11 +46,11 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "amount",
+						"name": "_amount",
 						"type": "uint256"
 					}
 				],
-				"name": "withdraw",
+				"name": "withdrawAmount",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -58,7 +69,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"Practice/11 august interface/interface.sol": "IUserBank"
+			"Practice/11 august interface/interface.sol": "Userbank"
 		},
 		"evmVersion": "shanghai",
 		"libraries": {},
