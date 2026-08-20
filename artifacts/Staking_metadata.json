@@ -8,9 +8,9 @@
 			{
 				"inputs": [
 					{
-						"internalType": "address[]",
-						"name": "_tokens",
-						"type": "address[]"
+						"internalType": "address",
+						"name": "_tokenAddress",
+						"type": "address"
 					}
 				],
 				"stateMutability": "nonpayable",
@@ -257,13 +257,7 @@
 				"type": "function"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "tokenAddress",
-						"type": "address"
-					}
-				],
+				"inputs": [],
 				"name": "checkAccountReward",
 				"outputs": [
 					{
@@ -276,13 +270,7 @@
 				"type": "function"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "tokenAddress",
-						"type": "address"
-					}
-				],
+				"inputs": [],
 				"name": "compoundReward",
 				"outputs": [],
 				"stateMutability": "nonpayable",
@@ -290,11 +278,6 @@
 			},
 			{
 				"inputs": [
-					{
-						"internalType": "address",
-						"name": "tokenAddress",
-						"type": "address"
-					},
 					{
 						"internalType": "uint256",
 						"name": "amount",
@@ -312,13 +295,7 @@
 				"type": "function"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "tokenAddress",
-						"type": "address"
-					}
-				],
+				"inputs": [],
 				"name": "getDetails",
 				"outputs": [
 					{
@@ -361,19 +338,49 @@
 				"type": "function"
 			},
 			{
-				"inputs": [
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
 					{
 						"internalType": "address",
 						"name": "",
 						"type": "address"
 					}
 				],
-				"name": "supportedTokens",
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "tokenAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					}
+				],
+				"name": "rescueTokens",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "token",
 				"outputs": [
 					{
-						"internalType": "bool",
+						"internalType": "contract IERC20",
 						"name": "",
-						"type": "bool"
+						"type": "address"
 					}
 				],
 				"stateMutability": "view",
@@ -394,11 +401,6 @@
 			},
 			{
 				"inputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					},
 					{
 						"internalType": "address",
 						"name": "",
@@ -432,13 +434,7 @@
 				"type": "function"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "tokenAddress",
-						"type": "address"
-					}
-				],
+				"inputs": [],
 				"name": "withdrawToken",
 				"outputs": [],
 				"stateMutability": "nonpayable",
@@ -465,19 +461,22 @@
 				"FEE_BPS()": {
 					"notice": "Fee taken on deposit AND on withdrawal, expressed in basis points (50 = 0.5%)."
 				},
-				"checkAccountReward(address)": {
+				"checkAccountReward()": {
 					"notice": "Preview the reward currently owed to the caller."
 				},
-				"compoundReward(address)": {
+				"compoundReward()": {
 					"notice": "If user wants to stake the deposit + reward again after the maturity of Stake then this function will be used to compound the staking again"
 				},
-				"depositToken(address,uint256,uint256)": {
+				"depositToken(uint256,uint256)": {
 					"notice": "Deposit tokens into a staking plan. amount Amount of tokens to stake (before fee). selectedPlan 0 = 30 days, 1 = 60 days, 2 = 90 days."
 				},
-				"getDetails(address)": {
+				"getDetails()": {
 					"notice": "View full details of the caller's stake."
 				},
-				"withdrawToken(address)": {
+				"rescueTokens(address,uint256,address)": {
+					"notice": "Recover ERC20 tokens accidentally sent to this contract. Cannot be used to pull out the staking token itself, so staked user funds can never be rug-pulled through this function."
+				},
+				"withdrawToken()": {
 					"notice": "Withdraw principal + reward once the lock period has completed. NOTE: this design requires the plan to have fully matured before withdrawal."
 				}
 			},
@@ -487,7 +486,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"GDswap/staking.sol": "Staking"
+			"Practice/22 july stake/staking.sol": "Staking"
 		},
 		"evmVersion": "shanghai",
 		"libraries": {},
@@ -549,12 +548,12 @@
 				"dweb:/ipfs/QmadRjHbkicwqwwh61raUEapaVEtaLMcYbQZWs9gUkgj3u"
 			]
 		},
-		"GDswap/staking.sol": {
-			"keccak256": "0xa19af94506f394762e25afb5300456a615928c32167a720456f0201bf5c35e78",
+		"Practice/22 july stake/staking.sol": {
+			"keccak256": "0x158d4e994ee956bd7351407a9528d213cb78f5b81fd1981fafa167695a67484e",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://2e07d9fe185b24f76f286f3ff0e8f8e44b00e6b51367c48f869be75de99b5352",
-				"dweb:/ipfs/QmSFBA2AFQFN4r3KzrWYzNj6oFcvvMWW4DJ6Ai1chKvg2R"
+				"bzz-raw://af5511cd3a1cbd6e08937f0d72ebd0443fbaad328975cafafbd10c8549aeb815",
+				"dweb:/ipfs/QmePozSVu275XjtSKf21nudBru7z9YFqfahhxHNX9AWahT"
 			]
 		}
 	},
