@@ -1,0 +1,29 @@
+{
+  "name": "practice",
+  "version": "0.2.0",
+  "bin": "bin/index.js",
+  "description": "A simple task manager and to do list using the console and leveldb",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/RichardLitt/practice.git"
+  },
+  "homepage": "https://github.com/RichardLitt/practice.git",
+  "keywords": [
+    "practice",
+    "to do",
+    "print values"
+  ],
+  "author": {
+    "name": "Richard Littauer",
+    "email": "richard.littauer@gmail.com",
+    "url": "http://burntfen.com"
+  },
+  "dependencies": {
+    "fs": "0.0.2",
+    "level": "^0.18.0",
+    "lodash": "^2.4.1",
+    "minimist": "^1.1.0",
+    "path": "^0.4.9"
+  }
+}
