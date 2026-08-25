@@ -13,78 +13,6 @@
 						"type": "uint256"
 					}
 				],
-				"name": "Cadd",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "Cclear",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "a",
-						"type": "uint256"
-					}
-				],
-				"name": "Cdivide",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "a",
-						"type": "uint256"
-					}
-				],
-				"name": "Cmulti",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "Cresult",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "a",
-						"type": "uint256"
-					}
-				],
-				"name": "Csub",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "a",
-						"type": "uint256"
-					}
-				],
 				"name": "add",
 				"outputs": [],
 				"stateMutability": "nonpayable",
@@ -186,11 +114,11 @@
 			]
 		},
 		"Practice/25 aug interface/calculatorContract.sol": {
-			"keccak256": "0x174f09094a44547dd1a6a3042f9f5d5d29bc650e392d7cd8f5a55bb26c5d5e18",
+			"keccak256": "0x3ead7b4abd5954ecb1f767dbb537ded1db951b063e7cab38fd52c372a9f52c1c",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://b055fa71b273b57956e92b49f98d2ad019b58e0e49e65c647585ab4dc228d84e",
-				"dweb:/ipfs/QmPcyNyQZgsyA7DbGUYLqvqaknybNGpGg5BKY9abVqFTmV"
+				"bzz-raw://8669c96156d763d650093940b6a7caaa2a068452405e7b4821915fe028f6ccb1",
+				"dweb:/ipfs/QmXSwgywPUNpxSEmkiCmphbFHfd18WpKNordU8u4WLzxmw"
 			]
 		},
 		"Practice/25 aug interface/calculatorInterface.sol": {

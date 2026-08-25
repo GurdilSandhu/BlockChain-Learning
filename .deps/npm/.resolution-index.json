@@ -1798,7 +1798,7 @@
     "./calculatorInterface.sol": "Practice/25 aug interface/calculatorInterface.sol",
     "__sources__": {
       "Practice/25 aug interface/calculatorContract.sol": {
-        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.20;\r\n\r\nimport \"./calculatorInterface.sol\";\r\n\r\ncontract calculatorContract is calculatorInterface{\r\n\r\n    function Cadd(uint a) public{\r\n        this.add(a);\r\n    }\r\n    function Csub(uint a) public{\r\n        this.sub(a);\r\n    }\r\n    function Cmulti(uint a) public{\r\n        this.multi(a);\r\n    }\r\n    function Cdivide(uint a) public{\r\n        this.divide(a);\r\n    }\r\n    function Cresult() public view returns(uint){\r\n        return this.result();\r\n    }\r\n    function Cclear() public{\r\n        this.clear();\r\n    }\r\n}",
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.20;\r\n\r\nimport \"./calculatorInterface.sol\";\r\n\r\ncontract calculatorContract is calculatorInterface{\r\n}",
         "file": "Practice/25 aug interface/calculatorContract.sol"
       },
       "Practice/25 aug interface/calculatorInterface.sol": {
