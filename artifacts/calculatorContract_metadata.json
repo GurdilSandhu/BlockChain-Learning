@@ -76,6 +76,19 @@
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "temp",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
 			}
 		],
 		"devdoc": {
@@ -113,20 +126,20 @@
 				"dweb:/ipfs/QmcXy7gaiwVNvohZp5Wdnxuo2bMyx4pVJmMfoPFLKBD8M8"
 			]
 		},
-		"Practice/25 aug interface/calculatorContract.sol": {
-			"keccak256": "0x3ead7b4abd5954ecb1f767dbb537ded1db951b063e7cab38fd52c372a9f52c1c",
+		"Practice/25 aug interface/calculator.sol": {
+			"keccak256": "0x8ad5673954a8912aa0d1f6279cef407b2b83be112ad208732b60533aa3da62e1",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://8669c96156d763d650093940b6a7caaa2a068452405e7b4821915fe028f6ccb1",
-				"dweb:/ipfs/QmXSwgywPUNpxSEmkiCmphbFHfd18WpKNordU8u4WLzxmw"
+				"bzz-raw://f11d7b3c193b0b32f3b2eabe17ef5394aec27b38424739515b8cc7d8bec69a77",
+				"dweb:/ipfs/QmXD5XJuSEy7RgX3wVk78jDMgcT4sy74hxyk6vWFe6KK5n"
 			]
 		},
-		"Practice/25 aug interface/calculatorInterface.sol": {
-			"keccak256": "0x96ef18b9ffa724996ca01408943eb2487e94d6d2b86ecc89cba84a5504c2e03a",
+		"Practice/25 aug interface/calculatorContract.sol": {
+			"keccak256": "0x7c5cb106d8c13001105d7a17329acda2f0726de5fb3702f2bdc44503dbeedd0c",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://11c43915764abd9a384186ae3bd5018f61772603b1c4eee7c7cd0d6845092ef3",
-				"dweb:/ipfs/QmRzuDLp83gMrMG97vcbkpHTSeFWNrX763i4mBjnDqxHwm"
+				"bzz-raw://5eaccc4a11893ef226c4ea94f9ecb60cd31b02fa87e0d7f0f3f7d52100a33b6e",
+				"dweb:/ipfs/QmSUkcELyrRoiNbNX6tFpdjzkaXyyMEvzyjqYnKVqA9URh"
 			]
 		}
 	},

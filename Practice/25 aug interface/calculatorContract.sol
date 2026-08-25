@@ -1,7 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-import "./calculatorInterface.sol";
+import "./calculator.sol";
 
-contract calculatorContract is calculatorInterface{
+contract calculatorContract is calculator{
+    
 }

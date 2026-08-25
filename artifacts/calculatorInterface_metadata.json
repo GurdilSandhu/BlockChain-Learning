@@ -76,6 +76,19 @@
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "temp",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
 			}
 		],
 		"devdoc": {
@@ -114,11 +127,11 @@
 			]
 		},
 		"Practice/25 aug interface/calculatorInterface.sol": {
-			"keccak256": "0x96ef18b9ffa724996ca01408943eb2487e94d6d2b86ecc89cba84a5504c2e03a",
+			"keccak256": "0xd5dc0e6c9848d65cbac810100863bed315520e625083f1a3f9fda9fcf1415d29",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://11c43915764abd9a384186ae3bd5018f61772603b1c4eee7c7cd0d6845092ef3",
-				"dweb:/ipfs/QmRzuDLp83gMrMG97vcbkpHTSeFWNrX763i4mBjnDqxHwm"
+				"bzz-raw://d2fddb7e423042f55cea7debb500d8d3552dec13c8f52d3c687385af45eaf638",
+				"dweb:/ipfs/QmdTTbtkkYjDmuHhUWPVXYvxM7XCbQ9s87ZTm4maCXFBoh"
 			]
 		}
 	},

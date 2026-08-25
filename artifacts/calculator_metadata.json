@@ -8,30 +8,19 @@
 			{
 				"inputs": [
 					{
-						"internalType": "address",
-						"name": "calculatorAddress",
-						"type": "address"
-					}
-				],
-				"stateMutability": "nonpayable",
-				"type": "constructor"
-			},
-			{
-				"inputs": [
-					{
 						"internalType": "uint256",
 						"name": "a",
 						"type": "uint256"
 					}
 				],
-				"name": "Cadd",
+				"name": "add",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
 				"inputs": [],
-				"name": "Cclear",
+				"name": "clear",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -44,7 +33,7 @@
 						"type": "uint256"
 					}
 				],
-				"name": "Cdivide",
+				"name": "divide",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -57,14 +46,14 @@
 						"type": "uint256"
 					}
 				],
-				"name": "Cmulti",
+				"name": "multi",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
 				"inputs": [],
-				"name": "Cresult",
+				"name": "result",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -83,19 +72,19 @@
 						"type": "uint256"
 					}
 				],
-				"name": "Csub",
+				"name": "sub",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
 				"inputs": [],
-				"name": "calc",
+				"name": "temp",
 				"outputs": [
 					{
-						"internalType": "contract ICALCULATOR",
+						"internalType": "uint256",
 						"name": "",
-						"type": "address"
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -129,12 +118,20 @@
 		"remappings": []
 	},
 	"sources": {
-		"Practice/25 aug interface/calculator.sol": {
-			"keccak256": "0x605cac6bad578c1785b883322441b36a0ef66e8c1da103f058e3724c51f65ee0",
+		"Practice/25 aug interface/ICALCULATOR.sol": {
+			"keccak256": "0x8bdac93965f5965e66c7378b822fa2f21e3a361f6aaffc7fc11c7e4d6cfaa199",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://129574fd81d034923205f7da4b1e91e6359d8097feb2dab62c18a07355a031aa",
-				"dweb:/ipfs/QmPt8SrWd2NThRFWtevrk3KqZtEnVx6ZwLkCoiheGoZMma"
+				"bzz-raw://ddc79a36ab8b3443565c3150b16548acbd8a3057458bcc4fce1814c091b61627",
+				"dweb:/ipfs/QmcXy7gaiwVNvohZp5Wdnxuo2bMyx4pVJmMfoPFLKBD8M8"
+			]
+		},
+		"Practice/25 aug interface/calculator.sol": {
+			"keccak256": "0x8ad5673954a8912aa0d1f6279cef407b2b83be112ad208732b60533aa3da62e1",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://f11d7b3c193b0b32f3b2eabe17ef5394aec27b38424739515b8cc7d8bec69a77",
+				"dweb:/ipfs/QmXD5XJuSEy7RgX3wVk78jDMgcT4sy74hxyk6vWFe6KK5n"
 			]
 		}
 	},

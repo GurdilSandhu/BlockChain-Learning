@@ -3,8 +3,8 @@ pragma solidity ^0.8.20;
 
 import "./ICALCULATOR.sol";
 
-contract calculatorInterface is ICALCULATOR{
-    uint temp;
+contract calculator is ICALCULATOR{
+    uint public temp;
     function add(uint a)external{
         temp += a;
     }

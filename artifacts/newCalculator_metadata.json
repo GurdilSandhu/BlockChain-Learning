@@ -8,6 +8,17 @@
 			{
 				"inputs": [
 					{
+						"internalType": "address",
+						"name": "calculatorAddress",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "uint256",
 						"name": "a",
 						"type": "uint256"
@@ -16,6 +27,38 @@
 				"name": "add",
 				"outputs": [],
 				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "a",
+						"type": "uint256"
+					}
+				],
+				"name": "add1",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "calc",
+				"outputs": [
+					{
+						"internalType": "contract ICALCULATOR",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -45,7 +88,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"Practice/25 aug interface/newCalculator.sol": "ICALCULATOR"
+			"Practice/25 aug interface/newCalculator.sol": "newCalculator"
 		},
 		"evmVersion": "shanghai",
 		"libraries": {},
