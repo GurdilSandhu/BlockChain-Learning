@@ -1,0 +1,206 @@
+{
+	"compiler": {
+		"version": "0.8.20+commit.a1b79de6"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "a",
+						"type": "uint256"
+					}
+				],
+				"name": "Cadd",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "Cclear",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "a",
+						"type": "uint256"
+					}
+				],
+				"name": "Cdivide",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "a",
+						"type": "uint256"
+					}
+				],
+				"name": "Cmulti",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "Cresult",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "a",
+						"type": "uint256"
+					}
+				],
+				"name": "Csub",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "a",
+						"type": "uint256"
+					}
+				],
+				"name": "add",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "clear",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "a",
+						"type": "uint256"
+					}
+				],
+				"name": "divide",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "a",
+						"type": "uint256"
+					}
+				],
+				"name": "multi",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "result",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "a",
+						"type": "uint256"
+					}
+				],
+				"name": "sub",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"Practice/25 aug interface/calculatorContract.sol": "calculatorContract"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"Practice/25 aug interface/ICALCULATOR.sol": {
+			"keccak256": "0x8bdac93965f5965e66c7378b822fa2f21e3a361f6aaffc7fc11c7e4d6cfaa199",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://ddc79a36ab8b3443565c3150b16548acbd8a3057458bcc4fce1814c091b61627",
+				"dweb:/ipfs/QmcXy7gaiwVNvohZp5Wdnxuo2bMyx4pVJmMfoPFLKBD8M8"
+			]
+		},
+		"Practice/25 aug interface/calculatorContract.sol": {
+			"keccak256": "0x174f09094a44547dd1a6a3042f9f5d5d29bc650e392d7cd8f5a55bb26c5d5e18",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://b055fa71b273b57956e92b49f98d2ad019b58e0e49e65c647585ab4dc228d84e",
+				"dweb:/ipfs/QmPcyNyQZgsyA7DbGUYLqvqaknybNGpGg5BKY9abVqFTmV"
+			]
+		},
+		"Practice/25 aug interface/calculatorInterface.sol": {
+			"keccak256": "0x96ef18b9ffa724996ca01408943eb2487e94d6d2b86ecc89cba84a5504c2e03a",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://11c43915764abd9a384186ae3bd5018f61772603b1c4eee7c7cd0d6845092ef3",
+				"dweb:/ipfs/QmRzuDLp83gMrMG97vcbkpHTSeFWNrX763i4mBjnDqxHwm"
+			]
+		}
+	},
+	"version": 1
+}
