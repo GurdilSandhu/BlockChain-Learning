@@ -1,0 +1,78 @@
+{
+	"compiler": {
+		"version": "0.8.0+commit.c7dfd78e"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "TP_address",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					}
+				],
+				"name": "addcash",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"Practice/15 september /sachinTP.sol": "TP2"
+		},
+		"evmVersion": "istanbul",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"Practice/15 september /sachinTP.sol": {
+			"keccak256": "0xbb06de2a88568869bf1ec1f84af1c60497a06239c78621be83d14365b096d795",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://41b1f2acade2d8e49cb8167fe74acba53e366466ba6044d3d26b7a5f0e386772",
+				"dweb:/ipfs/QmfK8DGT4vducxMQKK97RZVLTAP5jJwwEQHZeE4DxQGvTm"
+			]
+		},
+		"https://github.com/sachinsharma0007/tp_contracts/blob/main/TP_1.sol": {
+			"keccak256": "0xc76fdbfdce3a8bdc0dd90397627cdc344247074555e4ec5e95694128bc66fe9e",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://4e9be7aa066068030812e5a1e5dbbcc185a4760103db229ef6338d645e2fc85e",
+				"dweb:/ipfs/QmemCtT8SedkVzins2fZQX7DmmsR7s2oZg5RUrYHW9dyas"
+			]
+		}
+	},
+	"version": 1
+}

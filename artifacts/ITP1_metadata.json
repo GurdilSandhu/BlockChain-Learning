@@ -1,0 +1,72 @@
+{
+	"compiler": {
+		"version": "0.8.0+commit.c7dfd78e"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "add_money",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "get_balance",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"Practice/15 september /sachinTP.sol": "ITP1"
+		},
+		"evmVersion": "istanbul",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"Practice/15 september /sachinTP.sol": {
+			"keccak256": "0x78cbb7c6fdbddf8a4c54b390a991ed08d25cdd2534b54af00ea697cba718a9cc",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://13634a731a54c38d051c35b65e382e02035a587f3a31a7e308a95e7ee1180857",
+				"dweb:/ipfs/QmbEfLV68RsAMLymBfBrPdVQ9nBqerTkSUoHhSTj5CTewq"
+			]
+		}
+	},
+	"version": 1
+}
